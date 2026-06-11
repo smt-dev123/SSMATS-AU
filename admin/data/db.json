@@ -1,0 +1,145 @@
+{
+    "schedules": [{
+        "id": 1,
+        "faculty": {
+            "id": 3,
+            "name": "Computer Science"
+        },
+        "year": 2024,
+        "level": {
+            "id": 2,
+            "level": "Bachelor"
+        },
+        "generation": 2024,
+        "skill": {
+            "id": 1,
+            "name": "Programming"
+        },
+        "semester": 1,
+        "semesterStart": "2024-09-01T00:00:00.000Z",
+        "semesterEnd": "2025-01-31T00:00:00.000Z",
+        "studyShift": "MORNING",
+        "createdAt": "2025-10-10T03:29:41.951Z",
+        "updatedAt": "2025-10-10T03:29:41.951Z",
+        "building": {
+            "id": 1,
+            "name": "Main Building",
+            "totalClassroom": 20
+        },
+        "classroom": {
+            "number": 101,
+            "name": "Room 101",
+            "capacity": 30,
+            "isAvailable": true,
+            "equipment": null
+        },
+        "sessionTime": {
+            "id": 1,
+            "shift": "MORNING",
+            "firstSessionStartTime": "07:30",
+            "firstSessionEndTime": "09:00",
+            "secondSessionStartTime": "09:30",
+            "secondSessionEndTime": "11:00",
+            "description": "Morning sessions"
+        },
+        "courses": [
+            {
+                "id": 1,
+                "name": "Introduction to Programming",
+                "code": "CS101",
+                "credits": 3,
+                "day": "MONDAY",
+                "firstSessionNote": "Bring laptops",
+                "secondSessionNote": "Complete exercises",
+                "teacher": {
+                    "id": 21,
+                    "name": "Dr. Smith Computer",
+                    "email": "dr.smith.computer@computerscience.edu",
+                    "phone": "555-0021",
+                    "facultyId": 3
+                }
+            },
+            {
+                "id": 2,
+                "name": "Data Structures",
+                "code": "CS102",
+                "credits": 3,
+                "day": "TUESDAY",
+                "firstSessionNote": "Arrays and Lists",
+                "secondSessionNote": "Trees and Graphs",
+                "teacher": {
+                    "id": 22,
+                    "name": "Prof. Johnson Computer",
+                    "email": "prof.johnson.computer@computerscience.edu",
+                    "phone": "555-0022",
+                    "facultyId": 3
+                }
+            },
+            {
+                "id": 3,
+                "name": "Algorithms",
+                "code": "CS103",
+                "credits": 3,
+                "day": "WEDNESDAY",
+                "firstSessionNote": "Sorting algorithms",
+                "secondSessionNote": "Search algorithms",
+                "teacher": {
+                    "id": 23,
+                    "name": "Dr. Williams Computer",
+                    "email": "dr.williams.computer@computerscience.edu",
+                    "phone": "555-0023",
+                    "facultyId": 3
+                }
+            },
+            {
+                "id": 4,
+                "name": "Database Systems",
+                "code": "CS201",
+                "credits": 4,
+                "day": "THURSDAY",
+                "firstSessionNote": "Install MySQL",
+                "secondSessionNote": "Project work",
+                "teacher": {
+                    "id": 24,
+                    "name": "Prof. Brown Computer",
+                    "email": "prof.brown.computer@computerscience.edu",
+                    "phone": "555-0024",
+                    "facultyId": 3
+                }
+            },
+            {
+                "id": 5,
+                "name": "Web Development",
+                "code": "CS202",
+                "credits": 3,
+                "day": "FRIDAY",
+                "firstSessionNote": "HTML and CSS basics",
+                "secondSessionNote": "JavaScript frameworks",
+                "teacher": {
+                    "id": 25,
+                    "name": "Dr. Davis Computer",
+                    "email": "dr.davis.computer@computerscience.edu",
+
+                    "phone": "555-0025",
+                    "facultyId": 3
+                }
+            },
+            {
+                "id": 6,
+                "name": "Programming Lab",
+                "code": "CS101L",
+                "credits": 1,
+                "day": "SATURDAY",
+                "firstSessionNote": "Lab setup",
+                "secondSessionNote": "Debugging techniques",
+                "teacher": {
+                    "id": 26,
+                    "name": "Prof. Miller Computer",
+                    "email": "prof.miller.computer@computerscience.edu",
+                    "phone": "555-0026",
+                    "facultyId": 3
+                }
+            }
+        ]
+    }]
+}

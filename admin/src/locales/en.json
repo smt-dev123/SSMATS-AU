@@ -1,0 +1,40 @@
+{
+  "Home": {
+    "login": "Login"
+  },
+  "Navbar": {
+    "hello": "Hello",
+    "setting": "Setting",
+    "logout": "Logout"
+  },
+  "Sidebar": {
+    "dashboard": "Dashboard",
+    "University": {
+      "university": "University",
+      "building": "Building",
+      "room": "Room"
+    },
+    "Study": {
+      "study": "Studies",
+      "level": "Level",
+      "generation": "Generation",
+      "faculty": "Fyculty",
+      "department": "Department",
+      "major": "Major"
+    },
+    "teacher": "Teacher",
+    "student": "Student",
+    "class": "Class",
+    "schedule": "Schedule",
+    "course": "Course",
+    "academic_year": "Academic Year",
+    "academic_level": "Academic Level",
+    "department": "Department",
+    "faculty": "Faculty",
+    "session_time": "Session Time",
+    "notification": "Notification",
+    "attendance": "Attendance",
+    "user": "User",
+    "setting": "Setting"
+  }
+}

@@ -1,0 +1,143 @@
+
+example/
+certs/
+
+# Backend (Hono.js)
+backend/node_modules/
+backend/dist/
+backend/build/
+backend/.env
+# backend/.env.*
+backend/uploads/
+backend/logs/
+backend/coverage/
+backend/.nyc_output/
+backend/src/database/migrations/
+
+# Frontend Web (React.js)
+admin/. DS_Store
+admin/out/
+admin/node_modules/
+admin/dist/
+admin/dist-ssr
+admin/build/
+admin/.env
+# admin/.env.*
+admin/*.local/
+admin/.vscode
+
+# Frontend Mobile (Expo React Native)
+mobile/.expo/
+mobile/node_modules/
+mobile/dist/
+mobile/build/
+mobile/.env
+# mobile/.env.*
+mobile/web-build/
+mobile/dist/
+
+# Expo specific
+.expo/
+.expo-shared/
+expo-env.d.ts
+
+.env
+
+# React Native specific
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+*.ipa
+*.apk
+
+# Metro
+.metro-health-check*
+
+# Android
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+android/.idea/
+*.iml
+
+# iOS
+ios/build/
+ios/DerivedData/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+ios/Podfile.lock
+ios/Pods/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Test coverage
+coverage/
+*.lcov
+
+# Bundle analyzer
+.next-bundle-analyzer/
+
+# Vercel
+.vercel/
+
+# Turbo
+.turbo/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity

@@ -1,0 +1,26 @@
+graph TD
+    subgraph DFD Level 0 - Context Diagram
+
+        %% External Entities (តួអង្គខាងក្រៅ)
+        Admin["អ្នកគ្រប់គ្រង / បុគ្គលិក"]
+        Teacher["សាស្ត្រាចារ្យ"]
+        Student["និស្សិត"]
+
+        %% Central Process (ប្រព័ន្ធស្នូល)
+        System(ប្រព័ន្ធគ្រប់គ្រងសាលារៀន)
+
+        %% Data Flows (លំហូរទិន្នន័យ)
+        
+        %% Admin/Staff
+        Admin -- "ព័ត៌មានគ្រប់គ្រងប្រព័ន្ធ<br/>(បង្កើតមុខវិជ្ជា, កាលវិភាគ, អ្នកប្រើប្រាស់, ឆមាស)" --> System
+        System -- "របាយការណ៍សរុប" --> Admin
+
+        %% Teacher
+        Teacher -- "ការបញ្ចូលវត្តមាន" --> System
+        System -- "កាលវិភាគបង្រៀន<br/>បញ្ជីឈ្មោះនិស្សិត" --> Teacher
+
+        %% Student
+        Student -- "ព័ត៌មានផ្ទាល់ខ្លួន" --> System
+        System -- "កាលវិភាគសិក្សា<br/> និងវត្តមាន" --> Student
+
+    end

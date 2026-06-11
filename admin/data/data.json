@@ -1,0 +1,439 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "សេង ស៊ង់",
+      "email": "soung@gmail.com",
+      "role": "admin",
+      "password": "123"
+    },
+    {
+      "id": "2",
+      "username": "លុយ សុមាត្រា",
+      "email": "smt@gmail.com",
+      "role": "student",
+      "password": "123"
+    },
+    {
+      "id": "3",
+      "username": "ស្រៀង លីហួរ",
+      "email": "hour@gmail.com",
+      "role": "student",
+      "password": "123"
+    },
+    {
+      "id": "4",
+      "username": "ធឿង ឡង់ឌី",
+      "email": "longdy@gmail.com",
+      "role": "student",
+      "password": "123"
+    },
+    {
+      "id": "5",
+      "username": "ទូច វិទូរ",
+      "email": "vitu@gmail.com",
+      "role": "student",
+      "password": "123"
+    },
+    {
+      "id": "6",
+      "username": "សិទ្ធ ធារ៉ា",
+      "email": "theara@gmail.com",
+      "role": "student",
+      "password": "123"
+    },
+    {
+      "id": "7",
+      "username": "សិទ្ធ ស្រីនិច",
+      "email": "sreynich@gmail.com",
+      "role": "student",
+      "password": "123"
+    }
+  ],
+
+  "academicYears": [
+  { "id": "1", "name": "ឆ្នាំសិក្សា ២០២៣-២០២៤" },
+  { "id": "2", "name": "ឆ្នាំសិក្សា ២០២៤-២០២៥" },
+  { "id": "3", "name": "ឆ្នាំសិក្សា ២០២៥-២០២៦" }
+],
+
+
+  "buildings": [
+    { "id": "1", "name": "សៀង ណាំ", "description": "2004" },
+    { "id": "2", "name": "សុខតុញ", "description": "2022" }
+  ],
+
+  "rooms": [
+    { "id": "1", "name": "ស្រុកកងមាស", "floor": "ទី1", "buildingId": "1" },
+    { "id": "2", "name": "ស្រុកកោះសុទិន", "floor": "ទី1", "buildingId": "1" },
+    { "id": "3", "name": "ភូមិតាចេក", "floor": "ផ្ទាល់ដី", "buildingId": "2" }
+  ],
+
+  "classes": [
+    {
+      "id": "1",
+      "facultyId": "1",
+      "gradeLevelId": "2",
+      "generationId": "2",
+      "roomId": "1"
+    },
+    {
+      "id": "2",
+      "facultyId": "1",
+      "gradeLevelId": "1",
+      "generationId": "1",
+      "roomId": "1"
+    }
+  ],
+
+  "faculties": [
+    { "id": "1", "name": "វិទ្យាសាស្រ្ត និងបច្ចេកវិទ្យា" },
+    { "id": "5", "name": "គ្រប់គ្រងពាណិជ្ជកម្ម និងទេសចរណ៍" }
+  ],
+
+  "departments": [
+    { "id": "1", "name": "វិទ្យាសាស្រ្តកុំព្យូទ័រ", "facultyId": "1" },
+    { "id": "2", "name": "ភាសាអង់គ្លេស", "facultyId": "2" },
+    { "id": "3", "name": "គណនេយ្យ", "facultyId": "3" },
+    { "id": "4", "name": "រដ្ឋបាលសាធារណៈ", "facultyId": "4" }
+  ],
+
+  "majors": [
+    { "id": "1", "name": "អភិវឌ្ឍន៍គេហទំព័រ", "departmentId": "1" },
+    { "id": "2", "name": "បកប្រែ", "departmentId": "2" },
+    { "id": "3", "name": "គណនេយ្យការិយាល័យ", "departmentId": "3" },
+    { "id": "4", "name": "រដ្ឋបាលសាធារណៈ", "departmentId": "4" }
+  ],
+
+  "gradeLevels": [
+    { "id": "1", "name": "បរិញ្ញាបត្ររង" },
+    { "id": "2", "name": "បរិញ្ញាបត្រ" },
+    { "id": "3", "name": "បរិញ្ញាបត្រជាន់ខ្ពស់" }
+  ],
+
+  "generations": [
+    { "id": "1", "name": "ជំនាន់ទី១៨" },
+    { "id": "2", "name": "ជំនាន់ទី១៩" },
+    { "id": "3", "name": "ជំនាន់ទី២០" },
+    { "id": "4", "name": "ជំនាន់ទី២២" },
+    { "id": "5", "name": "ជំនាន់ទី២៣" }
+  ],
+
+  "programs": [
+    {
+      "id": "1",
+      "name": "កម្មវិធីវេបសាយ",
+      "generationId": "1",
+      "majorId": "1",
+      "levelId": "1"
+    },
+    {
+      "id": "2",
+      "name": "កម្មវិធីបកប្រែ",
+      "generationId": "2",
+      "majorId": "2",
+      "levelId": "2"
+    },
+    {
+      "id": "3",
+      "name": "កម្មវិធីគណនេយ្យ",
+      "generationId": "3",
+      "majorId": "3",
+      "levelId": "3"
+    },
+    {
+      "id": "4",
+      "name": "កម្មវិធីរដ្ឋបាល",
+      "generationId": "4",
+      "majorId": "4",
+      "levelId": "4"
+    },
+    {
+      "id": "5",
+      "name": "កម្មវិធីវេជ្ជសាស្រ្ត",
+      "generationId": "5",
+      "majorId": "5",
+      "levelId": "5"
+    }
+  ],
+
+  "subjects": [
+    { "id": "1", "name": "PHP Programming", "credit": 3, "departmentId": "1" },
+    {
+      "id": "2",
+      "name": "English Literature",
+      "credit": 2,
+      "departmentId": "2"
+    },
+    {
+      "id": "3",
+      "name": "Accounting Basics",
+      "credit": 3,
+      "departmentId": "3"
+    },
+    {
+      "id": "4",
+      "name": "Public Administration",
+      "credit": 3,
+      "departmentId": "4"
+    },
+    { "id": "5", "name": "General Medicine", "credit": 4, "departmentId": "5" }
+  ],
+
+  "teachers": [
+    {
+      "id": "1",
+      "name": "សេង ស៊ង់",
+      "gender": "ប្រុស",
+      "marital_status": "មានគ្រួសារ",
+      "education_level": "បរិញ្ញាបត្រជាន់ខ្ពស់",
+      "email": "soung@gmail.com",
+      "phone": "012 345 671",
+      "statusId": "1"
+    },
+
+    {
+      "id": "2",
+      "name": "សេង គ្រី",
+      "gender": "ប្រុស",
+      "marital_status": "មានគ្រួសារ",
+      "education_level": "បរិញ្ញាបត្រជាន់ខ្ពស់",
+      "email": "sengkry@gmail.com",
+      "phone": "088 739 429",
+      "statusId": "1"
+    },
+    {
+      "id": "3",
+      "name": "ហេង សុវណ្ណី",
+      "gender": "ប្រុស",
+      "marital_status": "មានគ្រួសារ",
+      "education_level": "បរិញ្ញាបត្រជាន់ខ្ពស់",
+      "email": "vanny@gmail.com",
+      "phone": "095 873 234",
+      "statusId": "1"
+    },
+    {
+      "id": "4",
+      "name": "ហេង ប៊ុនសុង",
+      "gender": "ប្រុស",
+      "marital_status": "មានគ្រួសារ",
+      "education_level": "បណ្ឌិត",
+      "email": "bunsung@gmail.com",
+      "phone": "012 345 246",
+      "statusId": "2"
+    },
+    {
+      "id": "5",
+      "name": "ខឿត សុផា",
+      "gender": "ប្រុស",
+      "marital_status": "នៅលីវ",
+      "education_level": "បរិញ្ញាបត្រជាន់ខ្ពស់",
+      "email": "sopha@gmail.com",
+      "phone": "097 823 325",
+      "statusId": "1"
+    }
+  ],
+
+  "teacherSubjects": [
+    { "id": "1", "teacherId": "1", "subjectId": "1" },
+    { "id": "2", "teacherId": "2", "subjectId": "2" },
+    { "id": "3", "teacherId": "3", "subjectId": "3" },
+    { "id": "4", "teacherId": "4", "subjectId": "4" },
+    { "id": "5", "teacherId": "5", "subjectId": "5" }
+  ],
+
+  "students": [
+    {
+      "id": "1",
+      "name": "សុខ ស្រីនី",
+      "gender": "F",
+      "dob": "2001-05-12",
+      "pob": "ភ្នំពេញ",
+      "phone": "011223344",
+      "email": "sok@example.com",
+      "statusId": "1",
+      "photo": "student1.jpg",
+      "programId": "1"
+    },
+    {
+      "id": "2",
+      "name": "ចាន់ វិច្ឆិកា",
+      "gender": "M",
+      "dob": "2000-08-20",
+      "pob": "សៀមរាប",
+      "phone": "011334455",
+      "email": "chan@example.com",
+      "statusId": "1",
+      "photo": "student2.jpg",
+      "programId": "2"
+    },
+    {
+      "id": "3",
+      "name": "កែវ សុផានា",
+      "gender": "F",
+      "dob": "2002-03-15",
+      "pob": "បាត់ដំបង",
+      "phone": "011556677",
+      "email": "kae@example.com",
+      "statusId": "1",
+      "photo": "student3.jpg",
+      "programId": "3"
+    },
+    {
+      "id": "4",
+      "name": "រ័ត្ន សុភី",
+      "gender": "M",
+      "dob": "1999-11-05",
+      "pob": "កំពង់ឆ្នាំង",
+      "phone": "011667788",
+      "email": "rath@example.com",
+      "statusId": "1",
+      "photo": "student4.jpg",
+      "programId": "4"
+    },
+    {
+      "id": "5",
+      "name": "អ៊ុំ មុន្នី",
+      "gender": "F",
+      "dob": "2001-12-22",
+      "pob": "កណ្ដាល",
+      "phone": "011778899",
+      "email": "oum@example.com",
+      "statusId": "1",
+      "photo": "student5.jpg",
+      "programId": "5"
+    }
+  ],
+
+  "attendanceTypes": [
+    { "id": "1", "attendanceName": "A", "description": "Absent" },
+    { "id": "2", "attendanceName": "P", "description": "Present" },
+    { "id": "3", "attendanceName": "AL", "description": "Allowed Leave" },
+    { "id": "4", "attendanceName": "PS", "description": "Permission to Stay" },
+    { "id": "5", "attendanceName": "L", "description": "Late" }
+  ],
+
+  "attendances": [
+    {
+      "id": "1",
+      "studentId": "1",
+      "scheduleId": "1",
+      "date": "2025-09-01",
+      "attendanceTypeId": "2"
+    },
+    {
+      "id": "2",
+      "studentId": "2",
+      "scheduleId": "1",
+      "date": "2025-09-01",
+      "attendanceTypeId": "1"
+    },
+    {
+      "id": "3",
+      "studentId": "3",
+      "scheduleId": "2",
+      "date": "2025-09-02",
+      "attendanceTypeId": "3"
+    },
+    {
+      "id": "4",
+      "studentId": "4",
+      "scheduleId": "2",
+      "date": "2025-09-02",
+      "attendanceTypeId": "2"
+    },
+    {
+      "id": "5",
+      "studentId": "5",
+      "scheduleId": "3",
+      "date": "2025-09-03",
+      "attendanceTypeId": "5"
+    }
+  ],
+
+  "schedules": [
+    {
+      "id": "1",
+      "teacherId": "1",
+      "subjectId": "1",
+      "roomId": "1",
+      "programId": "1",
+      "studyDayId": "1",
+      "sessionId": "1",
+      "academicYearId": "2",
+      "dateStart": "2025-09-01",
+      "dateEnd": "2025-12-31"
+    },
+    {
+      "id": "2",
+      "teacherId": "2",
+      "subjectId": "2",
+      "roomId": "2",
+      "programId": "2",
+      "studyDayId": "2",
+      "sessionId": "2",
+       "academicYearId": "2",
+      "dateStart": "2025-09-01",
+      "dateEnd": "2025-12-31"
+    },
+    {
+      "id": "3",
+      "teacherId": "3",
+      "subjectId": "3",
+      "roomId": "3",
+      "programId": "3",
+      "studyDayId": "1",
+      "sessionId": "1",
+       "academicYearId": "2",
+      "dateStart": "2025-09-01",
+      "dateEnd": "2025-12-31"
+    },
+    {
+      "id": "4",
+      "teacherId": "4",
+      "subjectId": "4",
+      "roomId": "4",
+      "programId": "4",
+      "studyDayId": "2",
+      "sessionId": "2",
+       "academicYearId": "2",
+      "dateStart": "2025-09-01",
+      "dateEnd": "2025-12-31"
+    },
+    {
+      "id": "5",
+      "teacherId": "5",
+      "subjectId": "5",
+      "roomId": "5",
+      "programId": "5",
+      "studyDayId": "1",
+      "sessionId": "1",
+       "academicYearId": "2",
+      "dateStart": "2025-09-01",
+      "dateEnd": "2025-12-31"
+    }
+  ],
+
+  "studyDays": [
+    { "id": "1", "name": "ថ្ងៃចន្ទ" },
+    { "id": "2", "name": "ថ្ងៃអង្គារ" },
+    { "id": "3", "name": "ថ្ងៃពុធ" },
+    { "id": "4", "name": "ថ្ងៃព្រហស្បតិ៍" },
+    { "id": "5", "name": "ថ្ងៃសុក្រ" }
+  ],
+
+  "sessions": [
+    { "id": "1", "name": "ព្រឹក" },
+    { "id": "2", "name": "ល្ងាច" },
+    { "id": "3", "name": "យប់" },
+    { "id": "4", "name": "ពាក់កណ្ដាលថ្ងៃ" },
+    { "id": "5", "name": "ពេលពេល" }
+  ],
+
+  "status": [
+    { "id": "1", "name": "សកម្ម" },
+    { "id": "2", "name": "មិនសកម្ម" },
+    { "id": "3", "name": "សម្រាក" },
+    { "id": "4", "name": "បោះបង់" }
+  ]
+}

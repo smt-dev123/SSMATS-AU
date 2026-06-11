@@ -1,0 +1,204 @@
+erDiagram
+    levels {
+        int id PK
+        string name
+    }
+
+    generations {
+        int id PK
+        string name
+    }
+
+    faculties {
+        int id PK
+        string name
+    }
+
+    departments {
+        int id PK
+        string name
+        int faculty_id FK
+    }
+
+    majors {
+        int id PK
+        string name
+        int department_id FK
+    }
+
+    programs {
+        int id PK
+        int generation_id FK
+        int major_id FK
+        int level_id FK
+    }
+
+    students {
+        int id PK
+        string name
+        string gender
+        date dob
+        int program_id FK
+    }
+
+    teachers {
+        int id PK
+        string name
+        string gender
+        string email
+        string phone
+    }
+
+    teacher_departments {
+        int teacher_id FK
+        int department_id FK
+    }
+
+    subjects {
+        int id PK
+        string name
+        int credit
+        int department_id FK
+    }
+
+    teacher_subjects {
+        int teacher_id FK
+        int subject_id FK
+    }
+
+    buildings {
+        int id PK
+        string name
+    }
+
+    rooms {
+        int id PK
+        string name
+        int building_id FK
+    }
+
+    shifts {
+        int id PK
+        string name
+        time start_time
+        time end_time
+    }
+
+    sessions {
+        int id PK
+        int shift_id FK
+        int session_order
+    }
+
+    study_days {
+        int id PK
+        string name
+    }
+
+    schedules {
+        int id PK
+        int subject_id FK
+        int room_id FK
+        int program_id FK
+        int study_day_id FK
+        int session_id FK
+        date date_start
+        date date_end
+    }
+
+    schedule_changes {
+        int id PK
+        int schedule_id FK
+        date old_date
+        int old_session_id FK
+        date new_date
+        int new_session_id FK
+        string reason
+    }
+
+    attendances {
+        int id PK
+        int student_id FK
+        int schedule_id FK
+        date date
+        int status_id FK
+    }
+
+    attendance_statuses {
+        int id PK
+        string name
+    }
+
+    users {
+        int id PK
+        string username
+        string email
+        string password
+        int role_id FK
+        int teacher_id FK
+        boolean can_assign_role
+    }
+
+    roles {
+        int id PK
+        string name
+        string description
+    }
+
+    policies {
+        int id PK
+        string name
+        string action
+        string description
+    }
+
+    policy_conditions {
+        int id PK
+        int policy_id FK
+        string attribute
+        string operator
+        string value
+    }
+
+    translations {
+        int id PK
+        string key
+        string locale
+        string value
+    }
+
+    %% Relationships
+    generations ||--o{ programs : "has"
+    majors ||--o{ programs : "has"
+    levels ||--o{ programs : "has"
+    programs ||--o{ students : "enroll"
+
+    faculties ||--o{ departments : "has"
+    departments ||--o{ majors : "offers"
+
+    departments ||--o{ teachers : "employs"
+    teachers ||--o{ teacher_departments : ""
+    departments ||--o{ teacher_departments : ""
+
+    subjects ||--o{ teacher_subjects : ""
+    teachers ||--o{ teacher_subjects : ""
+
+    buildings ||--o{ rooms : "contains"
+
+    shifts ||--o{ sessions : "divides"
+
+    study_days ||--o{ schedules : "assigns"
+    sessions ||--o{ schedules : "assigns"
+    programs ||--o{ schedules : "schedule for"
+    rooms ||--o{ schedules : "holds"
+    subjects ||--o{ schedules : "teaches"
+
+    schedules ||--o{ schedule_changes : "modified by"
+
+    students ||--o{ attendances : "marks"
+    schedules ||--o{ attendances : "taken in"
+    attendance_statuses ||--o{ attendances : "status"
+
+    roles ||--o{ users : "assign"
+    users ||--o{ policies : "manage"
+    policies ||--o{ policy_conditions : "defines"

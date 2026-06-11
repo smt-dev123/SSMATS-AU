@@ -1,0 +1,123 @@
+services:
+  ssams_au_db:
+    image: postgres:16-alpine # ប្រើ alpine version ដើម្បីឱ្យស្រាល
+    container_name: postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}       # ប្រើ Environment Variable
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ssams_au_redis:
+    image: redis:7-alpine
+    container_name: redis_cache
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+
+  backend_ssams_au:
+    build:
+      context: ./backend
+      dockerfile: ../docker/backend/Dockerfile
+      target: production
+    container_name: backend_app
+    restart: unless-stopped
+    depends_on:
+      ssams_au_db:
+        condition: service_healthy
+      ssams_au_redis:
+        condition: service_started
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DB_HOST=ssams_au_db
+      - REDIS_HOST=ssams_au_redis
+      - DATABASE_URL=${DATABASE_URL}
+      - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    command: >
+      sh -c "bunx drizzle-kit push && bun run src/main.ts"
+
+  web_ssams_au:
+    build:
+      context: ./frontend-web
+      dockerfile: ../docker/frontend-web/Dockerfile
+    container_name: web_app
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+      - "443:443" # បន្ថែមសម្រាប់ SSL (HTTPS)
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/ssl:ro # Certificate SSL
+    depends_on:
+      - web_ssams_au
+      - backend_ssams_au
+    restart: always
+
+  # Monitoring
+  # ១. cAdvisor: មើលការប្រើប្រាស់ CPU/RAM របស់ Container នីមួយៗ
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "8080:8080"
+
+  # ២. Prometheus: រក្សាទុកទិន្នន័យ Metric (Time-series database)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    depends_on:
+      - cadvisor
+
+  # ៣. Grafana: មើល Dashboard ស្អាតៗ
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+  
+  # Monitoring Logs
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8888:8080"
+
+volumes:
+  postgres_data:
+  redis_data:
+  grafana_data:

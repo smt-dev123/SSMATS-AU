@@ -1,0 +1,100 @@
+services:
+  ssams_au_db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: ssams_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ssams_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  ssams_au_redis:
+    image: redis:7
+    container_name: redis_cache
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  backend_ssams_au:
+    build: 
+      context: ./backend 
+      dockerfile: ../docker/backend/Dockerfile 
+    container_name: backend_ssams_au
+    # ports:
+    #   - "3000:3000"
+    command: bun dev
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      ssams_au_db:
+        condition: service_healthy
+      ssams_au_redis:
+        condition: service_started
+    environment:
+      DB_HOST: ssams_au_db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres123
+      DB_NAME: ssams_db
+      REDIS_HOST: ssams_au_redis
+      REDIS_PORT: 6379
+
+  web_ssams_au:
+    build: 
+      context: ./frontend-web
+      dockerfile: ../docker/frontend-web/Dockerfile
+    container_name: web_ssams_au
+    # ports:
+    #   - "4000:4000"
+    command: bun dev
+    volumes:
+      - ./frontend-web:/app
+      - /app/node_modules
+    depends_on:
+      - backend_ssams_au
+    environment:
+      - VITE_API_BASE_URL=/api
+
+  # mobile_ssams_au:
+  #   build: 
+  #     context: ./frontend-mobile
+  #     dockerfile: ../docker/frontend-mobile/Dockerfile
+    # ports:
+    #   - "19001:19001"
+    #   - "19002:19002"
+    # command: bun dev
+    # volumes:
+    #   - ./frontend-mobile:/app
+    #   - /app/node_modules
+    # depends_on:
+    #   - backend_ssams_au
+    # environment:
+    #   EXPO_DEVTOOLS_LISTEN: "0.0.0.0"
+    #   DANGEROUSLY_DISABLE_HOST_CHECK: "true"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - web_ssams_au
+      - backend_ssams_au
+
+volumes:
+  postgres_data:
+  redis_data:

@@ -1,0 +1,40 @@
+{
+  "Home": {
+    "login": "ចូលប្រើប្រាស់"
+  },
+  "Navbar": {
+    "hello": "សួស្ដី",
+    "setting": "ការកំណត់",
+    "logout": "ចាកចេញ"
+  },
+  "Sidebar": {
+    "dashboard": "ផ្ទាំងគ្រប់គ្រង",
+    "University": {
+      "university": "សាកលវិទ្យាល័យ",
+      "building": "អាគារសិក្សា",
+      "room": "បន្ទប់សិក្សា"
+    },
+    "Study": {
+      "study": "កម្មវិធីសិក្សា",
+      "level": "កម្រិតថ្នាក់",
+      "generation": "ជំនាន់",
+      "faculty": "មហាវិទ្យាល័យ",
+      "department": "ដេប៉ាតឺម៉ង់",
+      "major": "ជំនាញ"
+    },
+    "teacher": "គ្រូបង្រៀន",
+    "student": "និស្សិត",
+    "class": "ថ្នាក់រៀន",
+    "schedule": "កាលវិភាគ",
+    "course": "វគ្គសិក្សា",
+    "academic_year": "ឆ្នាំសិក្សា",
+    "academic_level": "កម្រិតសិក្សា",
+    "department": "ដេប៉ាតឺម៉ង់",
+    "faculty": "មហាវិទ្យាល័យ",
+    "session_time": "ម៉ោងសិក្សា",
+    "notification": "ការជូនដំណឹង",
+    "attendance": "វត្តមាននិស្សិត",
+    "user": "អ្នកប្រើប្រាស់",
+    "setting": "ការកំណត់"
+  }
+}

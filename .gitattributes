@@ -1,0 +1,21 @@
+# គ្រប់គ្រង Line Endings ដោយស្វ័យប្រវត្តិ
+* text=auto
+
+# បង្ខំឱ្យរាល់ឯកសារកូដប្រើប្រាស់ LF (ទោះជាស្ថិតនៅលើ Windows ឬ Linux ក៏ដោយ)
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.md text eol=lf
+*.gitignore text eol=lf
+
+# រាល់ឯកសារ Binary (ដូចជារូបភាព) មិនត្រូវប៉ះពាល់ឡើយ
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary

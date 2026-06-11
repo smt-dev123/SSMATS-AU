@@ -1,0 +1,198 @@
+@baseUrl = http://localhost:3000/api
+@contentType = application/json
+
+### Health Check
+GET {{baseUrl}}/health
+
+### ----------------------------------------
+### BUILDING & CLASSROOM
+### ----------------------------------------
+
+### 1. Create Building
+# @name createBuilding
+POST {{baseUrl}}/buildings
+Content-Type: {{contentType}}
+
+{
+  "name": "Main Building",
+  "isActive": true
+}
+
+### 2. Create Classroom
+POST {{baseUrl}}/classrooms
+Content-Type: {{contentType}}
+
+{
+  "classroomNumber": 101,
+  "name": "Room 101",
+  "buildingId": 1,
+  "isAvailable": true
+}
+
+### ----------------------------------------
+### ACADEMY (Faculty, Department, Level)
+### ----------------------------------------
+
+### 3. Create Faculty
+# @name createFaculty
+POST {{baseUrl}}/faculties
+Content-Type: {{contentType}}
+
+{
+  "name": "Faculty of Engineering"
+}
+
+### 4. Create Academic Level
+# @name createAcademicLevel
+POST {{baseUrl}}/academic-levels
+Content-Type: {{contentType}}
+
+{
+  "level": "Bachelor"
+}
+
+### 5. Create Department
+POST {{baseUrl}}/departments
+Content-Type: {{contentType}}
+
+{
+  "name": "Computer Science",
+  "facultyId": 1
+}
+
+### ----------------------------------------
+### SESSION TIMES
+### ----------------------------------------
+
+### 6. Create Session Time
+POST {{baseUrl}}/session-times
+Content-Type: {{contentType}}
+
+{
+  "shift": "morning",
+  "firstSessionStartTime": "08:00",
+  "firstSessionEndTime": "09:30",
+  "secondSessionStartTime": "09:45",
+  "secondSessionEndTime": "11:15",
+  "description": "Morning Shift 1",
+  "isActive": true
+}
+
+
+### ----------------------------------------
+### TEACHERS & STUDENTS
+### ----------------------------------------
+
+### 7. Create Teacher
+POST {{baseUrl}}/teachers
+Content-Type: {{contentType}}
+
+{
+  "id": "T001",
+  "name": "Dr. John Smith",
+  "phone": "0123456789",
+  "email": "john.smith@example.edu",
+  "gender": "male",
+  "academicLevelId": 1,
+  "facultyId": 1,
+  "isActive": true
+}
+
+### 8. Create Student
+POST {{baseUrl}}/students
+Content-Type: {{contentType}}
+
+{
+  "id": "S001",
+  "name": "Jane Doe",
+  "phone": "0987654321",
+  "email": "jane.doe@example.edu",
+  "facultyId": 1,
+  "departmentId": 1,
+  "academicLevelId": 1,
+  "educationalStatus": "enrolled",
+  "year": 1,
+  "gender": "female",
+  "generation": 1,
+  "semester": 1,
+  "isActive": true
+}
+
+### ----------------------------------------
+### SCHEDULE
+### ----------------------------------------
+
+### 9. Create Schedule (without courses)
+POST {{baseUrl}}/schedules
+Content-Type: {{contentType}}
+
+{
+  "facultyId": 1,
+  "year": 2024,
+  "academicLevelId": 1,
+  "generation": 1,
+  "departmentId": 1,
+  "semester": 1,
+  "semesterStart": "2024-09-01T00:00:00Z",
+  "semesterEnd": "2025-01-15T00:00:00Z",
+  "studyShift": "morning"
+}
+
+### 10. Create Schedule With Courses
+POST {{baseUrl}}/schedules/with-courses
+Content-Type: {{contentType}}
+
+{
+  "schedule": {
+    "facultyId": 1,
+    "year": 2024,
+    "academicLevelId": 1,
+    "generation": 1,
+    "departmentId": 1,
+    "semester": 1,
+    "semesterStart": "2024-09-01T00:00:00Z",
+    "semesterEnd": "2025-01-15T00:00:00Z",
+    "studyShift": "morning"
+  },
+  "courses": [
+    {
+      "name": "Introduction to Programming",
+      "code": "CS101",
+      "credits": 3,
+      "description": "Basic programming concepts",
+      "day": "Monday",
+      "teacherId": "T001",
+      "buildingId": 1,
+      "classroomId": 1,
+      "sessionTimeId": 1,
+      "isActive": true,
+      "facultyId": 1,
+      "departmentId": 1,
+      "academicLevelId": 1
+    }
+  ]
+}
+
+### ----------------------------------------
+### AUTHENTICATION
+### ----------------------------------------
+
+### 11. Register Teacher
+POST {{baseUrl}}/authentications/register/teacher
+Content-Type: {{contentType}}
+
+{
+  "name": "Seng Sourng",
+  "email": "sourng@gmail.com",
+  "password": "12345678"
+}
+
+### 12. Register Student
+POST {{baseUrl}}/authentications/register/student
+Content-Type: {{contentType}}
+
+{
+  "name": "SMT Student",
+  "email": "smt@gmail.com",
+  "password": "12345678"
+}
