@@ -111,7 +111,13 @@ router.post(
           image: image?.url,
         } as any,
       });
-      const { studentService } = c.var.container;
+      
+      const { studentService, userService } = c.var.container;
+      
+      if (data.nameEn) {
+        await userService.updateUser(user.id, { nameEn: data.nameEn });
+      }
+
       const { name, nameEn, email, password, ...studentData } = data;
       const student = await studentService.create({
         ...studentData,

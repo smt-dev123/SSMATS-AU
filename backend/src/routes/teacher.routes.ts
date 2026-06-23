@@ -87,7 +87,7 @@ router.post(
   upload("image"),
   zValidator("form", teacherCreateSchema),
   async (c) => {
-    const { teacherService } = c.var.container;
+    const { teacherService, userService } = c.var.container;
     const data = c.req.valid("form");
     const image = c.get("upload");
     try {
@@ -101,6 +101,10 @@ router.post(
           image: image?.url,
         } as any,
       });
+
+      if (data.nameEn) {
+        await userService.updateUser(user.id as string, { nameEn: data.nameEn });
+      }
 
       const { name, nameEn, email, password, ...teacherData } = data;
       const teacher = await teacherService.create({

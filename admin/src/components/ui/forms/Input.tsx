@@ -2,8 +2,6 @@ import { Box, Text, TextField, Select, TextArea } from '@radix-ui/themes'
 import {
   Controller,
   type FieldError,
-  type UseFormRegister,
-  type Control,
 } from 'react-hook-form'
 
 interface BaseProps {
@@ -12,12 +10,12 @@ interface BaseProps {
   placeholder?: string
   error?: FieldError
   isRequired?: boolean
-  register?: UseFormRegister<any>
-  control?: Control<any>
+  register?: any
+  control?: any
 }
 
 interface InputProps extends BaseProps {
-  register: UseFormRegister<any>
+  register: any
   type?:
     | 'number'
     | 'text'
@@ -39,7 +37,7 @@ interface InputProps extends BaseProps {
 }
 
 interface SelectProps extends BaseProps {
-  control: Control<any>
+  control: any
   options: { [key: string]: any }[]
   disabled?: boolean
   disabledOptions?: string[]
