@@ -144,7 +144,7 @@ function Login() {
         </Flex>
       </form>
 
-      <Flex justify="center" align="center" mt="4" gap="2">
+      <div className="flex items-center md:justify-between my-4 flex-wrap gap-2 justify-center">
         <Text size="2">បើសិនអ្នកអត់មានគណនីទេ? ទាក់ទងមកកាន់</Text>
         <a
           className="text-indigo-600 font-medium hover:underline text-[14px]"
@@ -154,7 +154,7 @@ function Login() {
         >
           Angkor University
         </a>
-      </Flex>
+      </div>
       {/* <Flex justify="center" align="center" mt="4" gap="2">
         <Text size="2">Don't have an account?</Text>
         <Link

@@ -22,15 +22,12 @@ export function ScheduleTimetable({ schedule }: ScheduleTimetableProps) {
     }, {}) || {}
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm bg-white">
+    <div className="overflow-x-auto">
       <div className="min-w-[1000px]">
         <RootTable>
           <HeaderTable>
             <RowTable isHeader>
-              <CellTable
-                isHeader
-                className="w-32 bg-gray-50 text-center py-4 border-b"
-              >
+              <CellTable isHeader className="w-32 bg-gray-50 text-center py-4">
                 <Text size="2" weight="bold" color="indigo">
                   ម៉ោងសិក្សា
                 </Text>
@@ -39,7 +36,7 @@ export function ScheduleTimetable({ schedule }: ScheduleTimetableProps) {
                 <CellTable
                   key={day.key}
                   isHeader
-                  className="text-center bg-gray-50 border-l border-b border-gray-200/50 py-4"
+                  className="text-center bg-gray-50 border-l border-gray-200/50 py-4"
                 >
                   <Text size="2" weight="bold" color="indigo">
                     {day.label}

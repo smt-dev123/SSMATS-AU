@@ -238,7 +238,9 @@ function CourseListComponent() {
               </Text>
               <Select.Root
                 value={draft.departmentId}
-                onValueChange={(val) => setDraft({ ...draft, departmentId: val })}
+                onValueChange={(val) =>
+                  setDraft({ ...draft, departmentId: val })
+                }
                 disabled={draft.facultyId === 'all'}
               >
                 <Select.Trigger style={{ minWidth: '150px' }} />
@@ -280,18 +282,18 @@ function CourseListComponent() {
             </Text>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {courses.map((course: any) => (
               <div
                 key={course.id}
-                className="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border-b-4 hover:border-b-blue-500"
+                className="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border-b-4 hover:border-b-blue-500"
               >
                 {/* Header Card */}
-                <div className="flex justify-between items-start mb-5">
-                  <div className="p-3 bg-slate-100 text-slate-600 rounded-2xl group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-                    <BookOpen size={24} />
+                <div className="flex justify-between items-start mb-4">
+                  <div className="p-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                    <BookOpen size={20} />
                   </div>
-                  <Flex align="center" gap="3">
+                  <Flex align="center" gap="2">
                     <BadgeCode code={course.code} />
                     {['admin', 'manager', 'staff'].includes(role) && (
                       <>
@@ -303,10 +305,10 @@ function CourseListComponent() {
                             setIsUpdateOpen(true)
                           }}
                         >
-                          <Flex align="center" gap="1">
+                          {/* <Flex align="center" gap="1">
                             <Pencil size={14} />
                             កែប្រែ
-                          </Flex>
+                          </Flex> */}
                         </button>
                         <CourseDelete data={course} />
                       </>
@@ -315,56 +317,56 @@ function CourseListComponent() {
                 </div>
 
                 {/* Course Info */}
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4 line-clamp-1">
+                <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 line-clamp-1">
                   មុខជំនាញ: {course?.schedule?.department?.name}
                 </h3>
 
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4 line-clamp-1">
+                <h3 className="text-base font-bold text-gray-800 dark:text-white mb-3 line-clamp-1">
                   មុខវិជ្ជា: {course.name}
                 </h3>
 
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-center text-sm text-gray-500 dark:text-white">
-                    <Clock size={16} className="mr-2 text-blue-500" />
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-xs text-gray-600 dark:text-gray-300">
+                    <Clock size={14} className="mr-2 text-blue-500" />
                     <span>
                       {course.day} |{' '}
                       {course.schedule?.sessionTime?.firstSessionStartTime} -{' '}
                       {course.schedule?.sessionTime?.secondSessionEndTime}
                     </span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-500 dark:text-white">
-                    <User size={16} className="mr-2 text-blue-500" />
+                  <div className="flex items-center text-xs text-gray-600 dark:text-gray-300">
+                    <User size={14} className="mr-2 text-blue-500" />
                     <span className="truncate">
-                      គ្រូបង្រៀន៖ {course.teacher?.name}
+                      គ្រូបង្រៀន៖ {course.teacher?.user?.name || 'TBA'}
                     </span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-500 font-medium dark:text-white">
-                    <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center mr-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
+                  <div className="flex items-center text-xs text-gray-600 font-medium dark:text-gray-300">
+                    <div className="w-3 h-3 rounded-full bg-blue-100 flex items-center justify-center mr-2">
+                      <div className="w-1 h-1 rounded-full bg-blue-600"></div>
                     </div>
                     បន្ទប់៖ {course.schedule?.classroom?.name || 'TBA'}
                   </div>
                 </div>
 
                 {/* Action Buttons: Schedule & Attendance */}
-                <div className="grid grid-cols-2 gap-3 pt-5 border-t border-gray-50">
+                <div className="grid grid-cols-2 gap-2 pt-4 border-t border-gray-100 dark:border-gray-800">
                   <Link
                     to="/admin/schedule/$scheduleId"
                     params={{
                       scheduleId: String(course.scheduleId || course.id),
                     }}
-                    className="flex items-center justify-center gap-2 py-2.5 px-4 bg-slate-50 text-slate-600 rounded-2xl text-xs font-bold hover:bg-indigo-50 hover:text-indigo-600 transition-colors border border-transparent hover:border-indigo-100"
+                    className="flex items-center justify-center gap-1.5 py-2 px-2 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl text-[11px] font-bold hover:bg-indigo-50 hover:text-indigo-600 dark:hover:bg-indigo-900/50 dark:hover:text-indigo-400 transition-colors border border-transparent hover:border-indigo-100 dark:hover:border-indigo-900"
                   >
-                    <CalendarDays size={16} />
+                    <CalendarDays size={14} />
                     កាលវិភាគ
                   </Link>
 
                   <Link
                     to="/admin/course/attendance/$attendanceId"
                     params={{ attendanceId: String(course.id) }}
-                    className="flex items-center justify-center gap-2 py-2.5 px-4 bg-blue-50 text-blue-600 rounded-2xl text-xs font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm hover:shadow-blue-200"
+                    className="flex items-center justify-center gap-1.5 py-2 px-2 bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-xl text-[11px] font-bold hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-all shadow-sm hover:shadow-blue-200 dark:hover:shadow-none"
                   >
-                    <CheckCircle size={16} />
+                    <CheckCircle size={14} />
                     ស្រង់វត្តមាន
                   </Link>
                 </div>
@@ -393,7 +395,7 @@ function CourseListComponent() {
 function BadgeCode({ code }: { code: string }) {
   return (
     <div className="flex flex-col items-end">
-      <span className="text-md font-mono font-bold text-slate-700 dark:text-white italic">
+      <span className="text-xs font-mono font-bold text-slate-700 dark:text-gray-300 italic">
         {code || 'N/A'}
       </span>
     </div>

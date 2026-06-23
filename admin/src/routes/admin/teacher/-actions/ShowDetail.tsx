@@ -125,9 +125,9 @@ const TeacherDetail = ({ data }: Props) => {
                   textShadow: '0 2px 4px rgba(0,0,0,0.2)',
                 }}
               >
-                {data.name}
+                {data.name} - {data.nameEn}
               </Heading>
-              <Text size="2" style={{ color: 'rgba(255,255,255,0.9)' }}>
+              <Text size="2" color="gray" weight="medium">
                 {data.teacherCode} • {data.email}
               </Text>
             </Box>
@@ -166,15 +166,6 @@ const TeacherDetail = ({ data }: Props) => {
                   label="ភេទ"
                   value={data.gender === 'male' ? 'ប្រុស' : 'ស្រី'}
                 />
-                {/* <InfoItem
-                  icon={FaCalendarAlt}
-                  label="ថ្ងៃខែឆ្នាំកំណើត"
-                  value={
-                    data.dob
-                      ? new Date(data.dob).toLocaleDateString('km-KH')
-                      : '---'
-                  }
-                /> */}
                 <InfoItem
                   icon={FaEnvelope}
                   label="អ៊ីម៉ែល"

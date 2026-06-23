@@ -27,7 +27,7 @@ export function ScheduleHeader({ schedule }: ScheduleHeaderProps) {
       <Flex gap="3" align="center">
         <button
           onClick={() => router.history.back()}
-          className="cursor-pointer hover:bg-gray-200 transition-colors p-2.5 bg-gray-100 rounded-full"
+          className="cursor-pointer hover:bg-gray-200 p-2.5 bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-full transition-colors duration-300"
         >
           <FaArrowLeft size={14} />
         </button>

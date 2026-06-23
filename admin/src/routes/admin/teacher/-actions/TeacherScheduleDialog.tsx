@@ -15,6 +15,9 @@ import { getCourses } from '@/api/CourseAPI'
 import { useAcademicStore } from '@/stores/useAcademicStore'
 import { TeacherTimetable } from '@/features/schedule/components/TeacherTimetable'
 import { useState } from 'react'
+import PDFDownload from '@/components/ui/PDFDownload'
+import { TeacherTimetableReport } from '../-exports/ExportTeacherPDF'
+import ExportTeacherExcel from '../-exports/ExportTeacherExcel'
 
 interface Props {
   data: TeachersType
@@ -23,6 +26,8 @@ interface Props {
 const TeacherScheduleDialog = ({ data }: Props) => {
   const { selectedYearId, selectedYearName } = useAcademicStore()
   const [open, setOpen] = useState(false)
+
+  // Export logic moved to separate components
 
   const {
     data: res,
@@ -65,7 +70,8 @@ const TeacherScheduleDialog = ({ data }: Props) => {
               កាលវិភាគបង្រៀន
             </Heading>
             <Text size="2" color="gray">
-              គ្រូបង្រៀន៖ {data.name} | ឆ្នាំសិក្សា៖ {selectedYearName || 'ទាំងអស់'}
+              គ្រូបង្រៀន៖ {data.name} | ឆ្នាំសិក្សា៖{' '}
+              {selectedYearName || 'ទាំងអស់'}
             </Text>
           </Box>
         </Flex>
@@ -89,7 +95,18 @@ const TeacherScheduleDialog = ({ data }: Props) => {
           )}
         </Box>
 
-        <Flex justify="end" mt="6">
+        <Flex justify="between" mt="6">
+          <Flex gap="3">
+            {courses.length > 0 && (
+              <>
+                <PDFDownload
+                  document={<TeacherTimetableReport teacher={data} courses={courses} />}
+                  fileName={`កាលវិភាគបង្រៀន_${data.name}.pdf`}
+                />
+                <ExportTeacherExcel teacher={data} courses={courses} />
+              </>
+            )}
+          </Flex>
           <Dialog.Close>
             <Button
               variant="soft"

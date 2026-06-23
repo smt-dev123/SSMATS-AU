@@ -1,23 +1,23 @@
 services:
-  ssams_au_db:
+  ssmats_au_db:
     image: postgres:16
     container_name: postgres_db
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres123
-      POSTGRES_DB: ssams_db
+      POSTGRES_DB: ssmats_db
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d ssams_db"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ssmats_db"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  ssams_au_redis:
+  ssmats_au_redis:
     image: redis:7
     container_name: redis_cache
     restart: always
@@ -27,73 +27,56 @@ services:
       - redis_data:/data
     command: redis-server --appendonly yes
 
-  backend_ssams_au:
+  backend_ssmats_au:
     build: 
       context: ./backend 
-      dockerfile: ../docker/backend/Dockerfile 
-    container_name: backend_ssams_au
+      dockerfile: ../docker/productions/backend/Dockerfile 
+    container_name: backend_ssmats_au
+    restart: unless-stopped
     # ports:
     #   - "3000:3000"
-    command: bun dev
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
     depends_on:
-      ssams_au_db:
+      ssmats_au_db:
         condition: service_healthy
-      ssams_au_redis:
+      ssmats_au_redis:
         condition: service_started
     environment:
-      DB_HOST: ssams_au_db
+      DB_HOST: ssmats_au_db
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: postgres123
-      DB_NAME: ssams_db
-      REDIS_HOST: ssams_au_redis
+      DB_NAME: ssmats_db
+      DATABASE_URL: postgresql://postgres:postgres123@ssmats_au_db:5432/ssmats_db
+      REDIS_HOST: ssmats_au_redis
       REDIS_PORT: 6379
 
-  web_ssams_au:
+  admin_au:
     build: 
-      context: ./frontend-web
-      dockerfile: ../docker/frontend-web/Dockerfile
-    container_name: web_ssams_au
+      context: ./admin
+      dockerfile: ../docker/productions/admin/Dockerfile
+    container_name: admin_au
+    restart: unless-stopped
     # ports:
     #   - "4000:4000"
-    command: bun dev
-    volumes:
-      - ./frontend-web:/app
-      - /app/node_modules
-    depends_on:
-      - backend_ssams_au
-    environment:
-      - VITE_API_BASE_URL=/api
-
-  # mobile_ssams_au:
-  #   build: 
-  #     context: ./frontend-mobile
-  #     dockerfile: ../docker/frontend-mobile/Dockerfile
-    # ports:
-    #   - "19001:19001"
-    #   - "19002:19002"
     # command: bun dev
     # volumes:
-    #   - ./frontend-mobile:/app
+    #   - ./admin:/app
     #   - /app/node_modules
-    # depends_on:
-    #   - backend_ssams_au
-    # environment:
-    #   EXPO_DEVTOOLS_LISTEN: "0.0.0.0"
-    #   DANGEROUSLY_DISABLE_HOST_CHECK: "true"
+    depends_on:
+      - backend_ssmats_au
+    environment:
+      - VITE_API_BASE_URL=/api
 
   nginx:
     build:
       context: .
-      dockerfile: docker/nginx/Dockerfile
+      dockerfile: docker/productions/nginx/Dockerfile
+    restart: unless-stopped
     ports:
       - "80:80"
     depends_on:
-      - web_ssams_au
-      - backend_ssams_au
+      - admin_au
+      - backend_ssmats_au
 
 volumes:
   postgres_data:

@@ -14,10 +14,6 @@ interface TeacherTimetableProps {
 }
 
 export function TeacherTimetable({ courses }: TeacherTimetableProps) {
-  // Group courses by shift (morning, evening, night)
-  // For a teacher, they might teach in different shifts across different days
-  
-  // Get unique session times across all courses
   const uniqueSessionTimes = Array.from(
     new Map(
       courses
@@ -33,7 +29,10 @@ export function TeacherTimetable({ courses }: TeacherTimetableProps) {
   })
 
   // Helper to find a course in a specific session time and day
-  const getCoursesForSessionAndDay = (sessionTimeId: number, dayKey: string) => {
+  const getCoursesForSessionAndDay = (
+    sessionTimeId: number,
+    dayKey: string,
+  ) => {
     return courses.filter(
       (c) =>
         c.schedule?.sessionTimeId === sessionTimeId &&
@@ -42,15 +41,12 @@ export function TeacherTimetable({ courses }: TeacherTimetableProps) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm bg-white">
+    <div className="overflow-x-auto">
       <div className="min-w-[1000px]">
         <RootTable>
           <HeaderTable>
             <RowTable isHeader>
-              <CellTable
-                isHeader
-                className="w-32 bg-gray-50 text-center py-4 border-b"
-              >
+              <CellTable isHeader className="w-32 bg-gray-50 text-center py-4">
                 <Text size="2" weight="bold" color="indigo">
                   ម៉ោង/វេនសិក្សា
                 </Text>
@@ -59,7 +55,7 @@ export function TeacherTimetable({ courses }: TeacherTimetableProps) {
                 <CellTable
                   key={day.key}
                   isHeader
-                  className="text-center bg-gray-50 border-l border-b border-gray-200/50 py-4"
+                  className="text-center bg-gray-50 py-4"
                 >
                   <Text size="2" weight="bold" color="indigo">
                     {day.label}
@@ -78,7 +74,10 @@ export function TeacherTimetable({ courses }: TeacherTimetableProps) {
           <BodyTable>
             {uniqueSessionTimes.length === 0 ? (
               <RowTable>
-                <CellTable columSpan={DAYS_OF_WEEK.length + 1} className="py-8 text-center">
+                <CellTable
+                  columSpan={DAYS_OF_WEEK.length + 1}
+                  className="py-8 text-center"
+                >
                   <Text color="gray">មិនមានកាលវិភាគបង្រៀនទេ</Text>
                 </CellTable>
               </RowTable>
@@ -86,11 +85,24 @@ export function TeacherTimetable({ courses }: TeacherTimetableProps) {
               uniqueSessionTimes.map((session: any) => (
                 <RowTable key={session.id}>
                   {/* Session Time Column */}
-                  <CellTable className="bg-gray-50/30 text-center border-r border-gray-100 border-b">
+                  <CellTable className="bg-gray-50/30 text-center">
                     <Box py="4">
                       <Flex direction="column" gap="1" align="center">
-                        <Badge color={session.shift === 'morning' ? 'blue' : session.shift === 'evening' ? 'orange' : 'indigo'} mb="2">
-                           {session.shift === 'morning' ? 'ព្រឹក' : session.shift === 'evening' ? 'ល្ងាច' : 'យប់'}
+                        <Badge
+                          color={
+                            session.shift === 'morning'
+                              ? 'blue'
+                              : session.shift === 'evening'
+                                ? 'orange'
+                                : 'indigo'
+                          }
+                          mb="2"
+                        >
+                          {session.shift === 'morning'
+                            ? 'ព្រឹក'
+                            : session.shift === 'evening'
+                              ? 'ល្ងាច'
+                              : 'យប់'}
                         </Badge>
                         <Text
                           size="2"
@@ -117,12 +129,15 @@ export function TeacherTimetable({ courses }: TeacherTimetableProps) {
 
                   {/* Courses Columns for this session time */}
                   {DAYS_OF_WEEK.map((day) => {
-                    const dayCourses = getCoursesForSessionAndDay(session.id, day.key)
+                    const dayCourses = getCoursesForSessionAndDay(
+                      session.id,
+                      day.key,
+                    )
 
                     return (
                       <CellTable
                         key={day.key}
-                        className="p-4 align-top border-l border-b border-gray-100 group transition-colors hover:bg-blue-50/30 min-h-[140px]"
+                        className="p-4 align-top group transition-colors hover:bg-blue-50/30 min-h-[140px]"
                       >
                         {dayCourses.length > 0 ? (
                           <Flex direction="column" gap="4" className="h-full">
@@ -156,12 +171,20 @@ export function TeacherTimetable({ courses }: TeacherTimetableProps) {
                                     size="2"
                                     className="font-semibold text-slate-600 block"
                                   >
-                                    {course.schedule?.faculty?.name} / {course.schedule?.department?.name}
+                                    {course.schedule?.faculty?.name} /{' '}
+                                    {course.schedule?.department?.name}
                                   </Text>
-                                  <Text size="1" className="text-gray-500 block">
-                                    ជំនាន់ {course.schedule?.generation} (ឆ្នាំ {course.schedule?.year})
+                                  <Text
+                                    size="1"
+                                    className="text-gray-500 block"
+                                  >
+                                    ជំនាន់ {course.schedule?.generation} (ឆ្នាំ{' '}
+                                    {course.schedule?.year})
                                   </Text>
-                                  <Text size="1" className="text-gray-500 font-mono italic">
+                                  <Text
+                                    size="1"
+                                    className="text-gray-500 font-mono italic"
+                                  >
                                     បន្ទប់: {course.schedule?.classroom?.name}
                                   </Text>
                                 </div>

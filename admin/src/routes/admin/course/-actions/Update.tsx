@@ -51,7 +51,7 @@ const CourseUpdate = ({ course, open, onOpenChange }: Props) => {
   // Fetch Data
   const { data: teachers = [] } = useQuery({
     queryKey: ['teachers'],
-    queryFn: getTeachers,
+    queryFn: () => getTeachers(),
   })
 
   const { data: schedules = [] } = useQuery({
@@ -81,8 +81,12 @@ const CourseUpdate = ({ course, open, onOpenChange }: Props) => {
     })
   }
 
-  const scheduleList = Array.isArray(schedules) ? schedules : (schedules as any).data || []
-  const teacherList = Array.isArray(teachers) ? teachers : (teachers as any).data || []
+  const scheduleList = Array.isArray(schedules)
+    ? schedules
+    : (schedules as any).data || []
+  const teacherList = Array.isArray(teachers)
+    ? teachers
+    : (teachers as any).data || []
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -180,12 +184,22 @@ const CourseUpdate = ({ course, open, onOpenChange }: Props) => {
                       />
                       <Select.Content>
                         <Select.Item value="Monday">ច័ន្ទ (Monday)</Select.Item>
-                        <Select.Item value="Tuesday">អង្គារ (Tuesday)</Select.Item>
-                        <Select.Item value="Wednesday">ពុធ (Wednesday)</Select.Item>
-                        <Select.Item value="Thursday">ព្រហស្បតិ៍ (Thursday)</Select.Item>
+                        <Select.Item value="Tuesday">
+                          អង្គារ (Tuesday)
+                        </Select.Item>
+                        <Select.Item value="Wednesday">
+                          ពុធ (Wednesday)
+                        </Select.Item>
+                        <Select.Item value="Thursday">
+                          ព្រហស្បតិ៍ (Thursday)
+                        </Select.Item>
                         <Select.Item value="Friday">សុក្រ (Friday)</Select.Item>
-                        <Select.Item value="Saturday">សៅរ៍ (Saturday)</Select.Item>
-                        <Select.Item value="Sunday">អាទិត្យ (Sunday)</Select.Item>
+                        <Select.Item value="Saturday">
+                          សៅរ៍ (Saturday)
+                        </Select.Item>
+                        <Select.Item value="Sunday">
+                          អាទិត្យ (Sunday)
+                        </Select.Item>
                       </Select.Content>
                     </Select.Root>
                   )}
@@ -253,7 +267,9 @@ const CourseUpdate = ({ course, open, onOpenChange }: Props) => {
                       <Select.Content>
                         {scheduleList.map((s: any) => (
                           <Select.Item key={s.id} value={String(s.id)}>
-                            {s.department?.name || 'ដេប៉ាតឺម៉ង់'} - ជំនាន់ {s.generation} (ឆ្នាំទី {s.year} ឆមាស {s.semester}) -{' '}
+                            {s.department?.name || 'ដេប៉ាតឺម៉ង់'} - ជំនាន់{' '}
+                            {s.generation} (ឆ្នាំទី {s.year} ឆមាស {s.semester})
+                            -{' '}
                             {s.studyShift === 'morning'
                               ? 'ព្រឹក'
                               : s.studyShift === 'evening'
@@ -275,14 +291,27 @@ const CourseUpdate = ({ course, open, onOpenChange }: Props) => {
           </Flex>
 
           <Flex gap="3" mt="4" justify="end">
-            <Button variant="soft" color="gray" type="button" style={{ cursor: 'pointer' }} onClick={() => onOpenChange(false)}>ចាកចេញ</Button>
-            <Button type="submit" loading={mutation.isPending} style={{ cursor: 'pointer' }}>រក្សាទុកការកែប្រែ</Button>
+            <Button
+              variant="soft"
+              color="gray"
+              type="button"
+              style={{ cursor: 'pointer' }}
+              onClick={() => onOpenChange(false)}
+            >
+              ចាកចេញ
+            </Button>
+            <Button
+              type="submit"
+              loading={mutation.isPending}
+              style={{ cursor: 'pointer' }}
+            >
+              រក្សាទុកការកែប្រែ
+            </Button>
           </Flex>
         </form>
       </Dialog.Content>
     </Dialog.Root>
   )
 }
-
 
 export default CourseUpdate

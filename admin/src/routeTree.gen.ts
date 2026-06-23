@@ -177,23 +177,23 @@ export interface FileRoutesByFullPath {
   '/auth/register': typeof AuthRegisterRoute
   '/admin/schedule/$scheduleId': typeof AdminScheduleScheduleIdRoute
   '/admin/teacher/$teacherId': typeof AdminTeacherTeacherIdRoute
-  '/admin/academic_year': typeof AdminAcademic_yearIndexRoute
-  '/admin/building': typeof AdminBuildingIndexRoute
-  '/admin/course': typeof AdminCourseIndexRoute
-  '/admin/dashboard': typeof AdminDashboardIndexRoute
-  '/admin/department': typeof AdminDepartmentIndexRoute
-  '/admin/faculty': typeof AdminFacultyIndexRoute
-  '/admin/generation': typeof AdminGenerationIndexRoute
-  '/admin/grade_level': typeof AdminGrade_levelIndexRoute
-  '/admin/major': typeof AdminMajorIndexRoute
-  '/admin/notification': typeof AdminNotificationIndexRoute
-  '/admin/room': typeof AdminRoomIndexRoute
-  '/admin/schedule': typeof AdminScheduleIndexRoute
-  '/admin/session_time': typeof AdminSession_timeIndexRoute
-  '/admin/setting': typeof AdminSettingIndexRoute
-  '/admin/student': typeof AdminStudentIndexRoute
-  '/admin/teacher': typeof AdminTeacherIndexRoute
-  '/admin/user': typeof AdminUserIndexRoute
+  '/admin/academic_year/': typeof AdminAcademic_yearIndexRoute
+  '/admin/building/': typeof AdminBuildingIndexRoute
+  '/admin/course/': typeof AdminCourseIndexRoute
+  '/admin/dashboard/': typeof AdminDashboardIndexRoute
+  '/admin/department/': typeof AdminDepartmentIndexRoute
+  '/admin/faculty/': typeof AdminFacultyIndexRoute
+  '/admin/generation/': typeof AdminGenerationIndexRoute
+  '/admin/grade_level/': typeof AdminGrade_levelIndexRoute
+  '/admin/major/': typeof AdminMajorIndexRoute
+  '/admin/notification/': typeof AdminNotificationIndexRoute
+  '/admin/room/': typeof AdminRoomIndexRoute
+  '/admin/schedule/': typeof AdminScheduleIndexRoute
+  '/admin/session_time/': typeof AdminSession_timeIndexRoute
+  '/admin/setting/': typeof AdminSettingIndexRoute
+  '/admin/student/': typeof AdminStudentIndexRoute
+  '/admin/teacher/': typeof AdminTeacherIndexRoute
+  '/admin/user/': typeof AdminUserIndexRoute
   '/admin/course/attendance/$attendanceId': typeof AdminCourseAttendanceAttendanceIdRoute
   '/admin/course/attendance/report/$attendanceReportId': typeof AdminCourseAttendanceReportAttendanceReportIdRoute
 }
@@ -264,23 +264,23 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/admin/schedule/$scheduleId'
     | '/admin/teacher/$teacherId'
-    | '/admin/academic_year'
-    | '/admin/building'
-    | '/admin/course'
-    | '/admin/dashboard'
-    | '/admin/department'
-    | '/admin/faculty'
-    | '/admin/generation'
-    | '/admin/grade_level'
-    | '/admin/major'
-    | '/admin/notification'
-    | '/admin/room'
-    | '/admin/schedule'
-    | '/admin/session_time'
-    | '/admin/setting'
-    | '/admin/student'
-    | '/admin/teacher'
-    | '/admin/user'
+    | '/admin/academic_year/'
+    | '/admin/building/'
+    | '/admin/course/'
+    | '/admin/dashboard/'
+    | '/admin/department/'
+    | '/admin/faculty/'
+    | '/admin/generation/'
+    | '/admin/grade_level/'
+    | '/admin/major/'
+    | '/admin/notification/'
+    | '/admin/room/'
+    | '/admin/schedule/'
+    | '/admin/session_time/'
+    | '/admin/setting/'
+    | '/admin/student/'
+    | '/admin/teacher/'
+    | '/admin/user/'
     | '/admin/course/attendance/$attendanceId'
     | '/admin/course/attendance/report/$attendanceReportId'
   fileRoutesByTo: FileRoutesByTo
@@ -387,119 +387,119 @@ declare module '@tanstack/react-router' {
     '/admin/user/': {
       id: '/admin/user/'
       path: '/user'
-      fullPath: '/admin/user'
+      fullPath: '/admin/user/'
       preLoaderRoute: typeof AdminUserIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/teacher/': {
       id: '/admin/teacher/'
       path: '/teacher'
-      fullPath: '/admin/teacher'
+      fullPath: '/admin/teacher/'
       preLoaderRoute: typeof AdminTeacherIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/student/': {
       id: '/admin/student/'
       path: '/student'
-      fullPath: '/admin/student'
+      fullPath: '/admin/student/'
       preLoaderRoute: typeof AdminStudentIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/setting/': {
       id: '/admin/setting/'
       path: '/setting'
-      fullPath: '/admin/setting'
+      fullPath: '/admin/setting/'
       preLoaderRoute: typeof AdminSettingIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/session_time/': {
       id: '/admin/session_time/'
       path: '/session_time'
-      fullPath: '/admin/session_time'
+      fullPath: '/admin/session_time/'
       preLoaderRoute: typeof AdminSession_timeIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/schedule/': {
       id: '/admin/schedule/'
       path: '/schedule'
-      fullPath: '/admin/schedule'
+      fullPath: '/admin/schedule/'
       preLoaderRoute: typeof AdminScheduleIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/room/': {
       id: '/admin/room/'
       path: '/room'
-      fullPath: '/admin/room'
+      fullPath: '/admin/room/'
       preLoaderRoute: typeof AdminRoomIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/notification/': {
       id: '/admin/notification/'
       path: '/notification'
-      fullPath: '/admin/notification'
+      fullPath: '/admin/notification/'
       preLoaderRoute: typeof AdminNotificationIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/major/': {
       id: '/admin/major/'
       path: '/major'
-      fullPath: '/admin/major'
+      fullPath: '/admin/major/'
       preLoaderRoute: typeof AdminMajorIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/grade_level/': {
       id: '/admin/grade_level/'
       path: '/grade_level'
-      fullPath: '/admin/grade_level'
+      fullPath: '/admin/grade_level/'
       preLoaderRoute: typeof AdminGrade_levelIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/generation/': {
       id: '/admin/generation/'
       path: '/generation'
-      fullPath: '/admin/generation'
+      fullPath: '/admin/generation/'
       preLoaderRoute: typeof AdminGenerationIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/faculty/': {
       id: '/admin/faculty/'
       path: '/faculty'
-      fullPath: '/admin/faculty'
+      fullPath: '/admin/faculty/'
       preLoaderRoute: typeof AdminFacultyIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/department/': {
       id: '/admin/department/'
       path: '/department'
-      fullPath: '/admin/department'
+      fullPath: '/admin/department/'
       preLoaderRoute: typeof AdminDepartmentIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/dashboard/': {
       id: '/admin/dashboard/'
       path: '/dashboard'
-      fullPath: '/admin/dashboard'
+      fullPath: '/admin/dashboard/'
       preLoaderRoute: typeof AdminDashboardIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/course/': {
       id: '/admin/course/'
       path: '/course'
-      fullPath: '/admin/course'
+      fullPath: '/admin/course/'
       preLoaderRoute: typeof AdminCourseIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/building/': {
       id: '/admin/building/'
       path: '/building'
-      fullPath: '/admin/building'
+      fullPath: '/admin/building/'
       preLoaderRoute: typeof AdminBuildingIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/admin/academic_year/': {
       id: '/admin/academic_year/'
       path: '/academic_year'
-      fullPath: '/admin/academic_year'
+      fullPath: '/admin/academic_year/'
       preLoaderRoute: typeof AdminAcademic_yearIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }

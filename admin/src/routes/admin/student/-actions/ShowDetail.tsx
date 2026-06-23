@@ -144,7 +144,7 @@ const StudentDetail = ({ data }: Props) => {
               >
                 {data.name}
               </Heading>
-              <Text size="2" style={{ color: 'rgba(255,255,255,0.9)' }}>
+              <Text size="2" color="gray" weight="medium">
                 {data.studentCode} • {data.nameEn}
               </Text>
             </Box>

@@ -3,8 +3,8 @@ import {
   createRootRouteWithContext,
   useRouteContext,
 } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanstackDevtools } from '@tanstack/react-devtools'
+// import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+// import { TanstackDevtools } from '@tanstack/react-devtools'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 export interface MyRouterContext {
@@ -19,7 +19,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         <QueryClientProvider client={queryClient}>
           <Outlet />
         </QueryClientProvider>
-        <TanstackDevtools
+        {/* <TanstackDevtools
           config={{
             position: 'bottom-left',
           }}
@@ -29,7 +29,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
               render: <TanStackRouterDevtoolsPanel />,
             },
           ]}
-        />
+        /> */}
       </>
     )
   },

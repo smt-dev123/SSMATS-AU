@@ -5,10 +5,7 @@ import { Flex, Text } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import BuildingCreate from './-actions/Create'
-import ExportExcel from './-exports/ExportExcel'
-import { BuildingReport } from './-exports/ExportPDF'
 import FetchData from '@/components/FetchData'
-import PDFDownload from '@/components/ui/PDFDownload'
 
 import { useNavigate } from '@tanstack/react-router'
 import { useSessionContext } from '@/providers/AuthProvider'
@@ -72,11 +69,6 @@ function RouteComponent() {
             តារាងអាគារសិក្សា
           </Text>
           <Flex gap="2">
-            <PDFDownload
-              document={<BuildingReport data={data?.data || []} />}
-              fileName="building-report.pdf"
-            />
-            <ExportExcel data={data?.data || []} />
             {['admin', 'manager', 'staff'].includes(role) && <BuildingCreate />}
           </Flex>
         </div>
