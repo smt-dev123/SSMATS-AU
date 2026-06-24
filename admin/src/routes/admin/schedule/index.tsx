@@ -149,7 +149,7 @@ function ScheduleListComponent() {
   }))
 
   return (
-    <Box p="4">
+    <Box>
       <Flex justify="between" align="center" mb="4">
         <Text size="5" weight="bold">
           {role === 'student'
