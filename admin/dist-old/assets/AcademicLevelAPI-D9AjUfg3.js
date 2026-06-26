@@ -1,1 +1,0 @@
-import{a}from"./axios-Y4V3X_W2.js";const r=async()=>(await a.get("/academic-levels")).data,d=async e=>(await a.post("/academic-levels",e)).data,n=async(e,s)=>(await a.put(`/academic-levels/${e}`,s)).data,i=async e=>(await a.delete(`/academic-levels/${e}`)).data;export{d as c,i as d,r as g,n as u};

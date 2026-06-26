@@ -1,1 +1,0 @@
-import{r as n}from"./index-BxyvquRv.js";function o(t){n.useEffect(()=>{const e=document.title;return document.title=t+" - AU Schedule & Students Attendance Management",()=>{document.title=e}},[t])}export{o as u};
