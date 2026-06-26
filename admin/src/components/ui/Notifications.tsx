@@ -49,9 +49,29 @@ export function Notifications() {
 
   const markAsReadMutation = useMutation({
     mutationFn: markNotificationAsRead,
-    onSuccess: () => {
+    onMutate: async (id) => {
+      await queryClient.cancelQueries({ queryKey: ['notifications', user?.id] })
+      await queryClient.cancelQueries({ queryKey: ['notifications', role] })
+
+      const prevUserNotifs = queryClient.getQueryData(['notifications', user?.id])
+      const prevRoleNotifs = queryClient.getQueryData(['notifications', role])
+
+      const updateReadStatus = (old: any) => {
+        if (!Array.isArray(old)) return old
+        return old.map((n: any) => n.id === id ? { ...n, isRead: true } : n)
+      }
+
+      queryClient.setQueryData(['notifications', user?.id], updateReadStatus)
+      queryClient.setQueryData(['notifications', role], updateReadStatus)
+
+      return { prevUserNotifs, prevRoleNotifs }
+    },
+    onError: (err, newId, context) => {
+      queryClient.setQueryData(['notifications', user?.id], context?.prevUserNotifs)
+      queryClient.setQueryData(['notifications', role], context?.prevRoleNotifs)
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['notifications', user?.id] })
-      // Also invalidate the main notification page query so they stay in sync
       queryClient.invalidateQueries({ queryKey: ['notifications', role] })
     },
   })
@@ -88,31 +108,46 @@ export function Notifications() {
     return () => socket.close()
   }, [queryClient, sessionToken, role, user?.id])
 
-  // --- Badge Logic (Hide when viewed) ---
-  const [lastSeenId, setLastSeenId] = useState<number | null>(() => {
-    const saved = localStorage.getItem(`lastSeenNotif_${user?.id}`)
-    return saved ? parseInt(saved, 10) : null
+  // --- Badge Logic (Read/Unread) ---
+  const [readIds, setReadIds] = useState<number[]>(() => {
+    const saved = localStorage.getItem(`readNotifs_${user?.id}`)
+    return saved ? JSON.parse(saved) : []
   })
 
-  // Re-calculate if notifications change, but badge will be based on lastSeenId for admins
+  // Synchronize across tabs or route changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const saved = localStorage.getItem(`readNotifs_${user?.id}`)
+      if (saved) setReadIds(JSON.parse(saved))
+    }
+    window.addEventListener('storage', handleStorageChange)
+    // Custom event for same-tab sync
+    window.addEventListener('readNotifsUpdated', handleStorageChange)
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      window.removeEventListener('readNotifsUpdated', handleStorageChange)
+    }
+  }, [user?.id])
+
   let unreadCount = 0
   if (isStudentOrTeacher) {
     unreadCount = notifications.filter((n: any) => !n.isRead).length
   } else {
-    if (lastSeenId) {
-      unreadCount = notifications.filter((n: any) => n.id > lastSeenId).length
-    } else {
-      unreadCount = notifications.length
+    unreadCount = notifications.filter((n: any) => !readIds.includes(n.id)).length
+  }
+
+  const markAdminRead = (id: number) => {
+    if (!readIds.includes(id)) {
+      const newReadIds = [...readIds, id]
+      setReadIds(newReadIds)
+      localStorage.setItem(`readNotifs_${user?.id}`, JSON.stringify(newReadIds))
+      window.dispatchEvent(new Event('readNotifsUpdated'))
     }
   }
 
   const handleOpenChange = (open: boolean) => {
-    if (open && notifications.length > 0 && !isStudentOrTeacher) {
-      // Find the maximum ID among all notifications for admins
-      const maxId = Math.max(...notifications.map((n: any) => n.id))
-      localStorage.setItem(`lastSeenNotif_${user?.id}`, maxId.toString())
-      setLastSeenId(maxId)
-    }
+    // We no longer automatically mark everything as read when opening.
+    // They must click individual notifications.
   }
 
   return (
@@ -183,7 +218,7 @@ export function Notifications() {
                 n.createdAt ||
                 n.notification?.createdAt ||
                 new Date().toISOString()
-              const isRead = isStudentOrTeacher ? !!n.isRead : true
+              const isRead = isStudentOrTeacher ? !!n.isRead : readIds.includes(n.id || 0)
 
               return (
                 <Popover.Close key={n.id || i}>
@@ -192,6 +227,8 @@ export function Notifications() {
                     onClick={() => {
                       if (isStudentOrTeacher && !isRead && n.id) {
                         markAsReadMutation.mutate(n.id)
+                      } else if (!isStudentOrTeacher && !isRead && n.id) {
+                        markAdminRead(n.id)
                       }
                     }}
                     style={{

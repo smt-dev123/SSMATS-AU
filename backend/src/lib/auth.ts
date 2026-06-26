@@ -4,6 +4,7 @@ import { db } from "@/database";
 import { twoFactor, bearer } from "better-auth/plugins";
 import { admin as adminPlugin } from "better-auth/plugins/admin";
 import { ac, admin, manager, staff, student, teacher } from "./permission";
+import redis from "@/config/redis";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -23,8 +24,24 @@ export const auth = betterAuth({
   trustHost: true,
   rateLimit: {
     windowMs: 60 * 1000,
-    max: 50,
-    storage: "database",
+    max: 60,
+    storage: "secondary-storage",
+  },
+  secondaryStorage: {
+    get: async (key) => {
+      const value = await redis.get(key);
+      return value ? JSON.parse(value) : null;
+    },
+    set: async (key, value, ttl) => {
+      if (ttl) {
+        await redis.set(key, JSON.stringify(value), "PX", ttl);
+      } else {
+        await redis.set(key, JSON.stringify(value));
+      }
+    },
+    delete: async (key) => {
+      await redis.del(key);
+    },
   },
   emailAndPassword: {
     enabled: true,
