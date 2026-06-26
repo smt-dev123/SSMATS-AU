@@ -1,4 +1,4 @@
-const menuPermissions: Record<string, string[]> = {
+const menuPermissions: Record<string, Array<string>> = {
   dashboard: ['admin', 'manager', 'staff', 'teacher', 'student'],
   university: ['admin', 'manager', 'staff'],
   building: ['admin', 'manager'],

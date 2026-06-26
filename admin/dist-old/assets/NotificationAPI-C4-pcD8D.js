@@ -1,0 +1,1 @@
+import{a}from"./axios-Y4V3X_W2.js";const o=async t=>(await a.post("/notifications/broadcast",t)).data,n=async()=>(await a.get("/notifications")).data,c=async()=>(await a.get("/notifications/my-notifications")).data,r=async t=>(await a.patch(`/notifications/read/${t}`)).data;export{n as a,o as b,c as g,r as m};

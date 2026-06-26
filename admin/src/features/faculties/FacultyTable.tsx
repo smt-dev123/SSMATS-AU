@@ -1,9 +1,9 @@
-import { DataTable } from '@/components/table/DataTable'
-import type { FacultiesType } from '@/types'
 import { FacultiesColumns } from './Columns'
+import type { FacultiesType } from '@/types'
+import { DataTable } from '@/components/table/DataTable'
 
 interface Props {
-  data: FacultiesType[]
+  data: Array<FacultiesType>
 }
 
 export function FacultiesTable({ data }: Props) {

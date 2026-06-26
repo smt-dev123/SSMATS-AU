@@ -1,9 +1,9 @@
-import { DataTable } from '@/components/table/DataTable'
-import type { ScheduleType } from '@/types'
 import { ScheduleColumns } from './Columns'
+import type { ScheduleType } from '@/types'
+import { DataTable } from '@/components/table/DataTable'
 
 interface Props {
-  data: ScheduleType[]
+  data: Array<ScheduleType>
 }
 
 export function ScheduleTable({ data }: Props) {

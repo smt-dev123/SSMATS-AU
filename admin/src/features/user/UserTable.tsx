@@ -1,10 +1,10 @@
-import { DataTable } from '@/components/table/DataTable'
-import type { UsersType } from '@/types'
 import { getUserColumns } from './Columns'
+import type { UsersType } from '@/types'
+import { DataTable } from '@/components/table/DataTable'
 import { useSessionContext } from '@/providers/AuthProvider'
 
 interface Props {
-  data: UsersType[]
+  data: Array<UsersType>
 }
 
 export function UserTable({ data }: Props) {

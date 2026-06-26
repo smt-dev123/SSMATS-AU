@@ -1,5 +1,5 @@
-import api from '@/lib/axios'
 import type { AcademicLevelType } from '@/types'
+import api from '@/lib/axios'
 
 export const getGeneration = async () => {
   const res = await api.get('/academic-levels')

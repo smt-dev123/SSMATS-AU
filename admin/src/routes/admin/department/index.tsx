@@ -1,10 +1,10 @@
-import { getDepartments } from '@/api/DepartmentAPI'
-import { DepartmentTable } from '@/features/department/DepartmentTable'
-import { useTitle } from '@/hooks/useTitle'
 import { Flex, Text } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import DepartmentCreate from './-actions/Create'
+import { useTitle } from '@/hooks/useTitle'
+import { DepartmentTable } from '@/features/department/DepartmentTable'
+import { getDepartments } from '@/api/DepartmentAPI'
 import FetchData from '@/components/FetchData'
 import { useSessionContext } from '@/providers/AuthProvider'
 

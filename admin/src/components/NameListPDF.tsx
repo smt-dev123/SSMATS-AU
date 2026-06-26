@@ -1,11 +1,11 @@
 import React from 'react'
 import {
   Document,
+  Font,
   Page,
+  StyleSheet,
   Text,
   View,
-  StyleSheet,
-  Font,
 } from '@react-pdf/renderer'
 import KhmerOS_siemreap from '../fonts/KhmerOS_siemreap.ttf'
 
@@ -54,7 +54,7 @@ interface NameItem {
 }
 
 interface Props {
-  data: NameItem[]
+  data: Array<NameItem>
 }
 
 const NameListPDF: React.FC<Props> = ({ data }) => (

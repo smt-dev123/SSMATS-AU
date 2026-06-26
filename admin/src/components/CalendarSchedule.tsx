@@ -11,7 +11,7 @@ import {
   startOfMonth,
   startOfWeek,
 } from 'date-fns'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 // Simple types
 type CalEvent = {
@@ -77,7 +77,7 @@ export default function CalendarSchedule() {
   const [month, setMonth] = useState<Date>(new Date())
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [query, setQuery] = useState('')
-  const [events, setEvents] = useState<CalEvent[]>([
+  const [events, setEvents] = useState<Array<CalEvent>>([
     {
       id: uid(),
       title: 'Team standup',
@@ -100,7 +100,7 @@ export default function CalendarSchedule() {
   const grid = useMemo(() => {
     const start = startOfWeek(startOfMonth(month), { weekStartsOn: 0 }) // Sunday
     const end = endOfMonth(month)
-    const days: Date[] = []
+    const days: Array<Date> = []
     let cur = start
     while (cur <= end || days.length % 7 !== 0) {
       days.push(cur)
@@ -111,7 +111,7 @@ export default function CalendarSchedule() {
   }, [month])
 
   const eventsByDay = useMemo(() => {
-    const map: Record<string, CalEvent[]> = {}
+    const map: Record<string, Array<CalEvent>> = {}
     for (const evt of events) {
       const d = format(parseISO(evt.start), 'yyyy-MM-dd')
       if (!map[d]) map[d] = []

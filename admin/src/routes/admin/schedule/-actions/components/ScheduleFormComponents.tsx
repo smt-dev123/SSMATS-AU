@@ -1,7 +1,7 @@
-import { FormInput, FormSelect } from '@/components/ui/forms/Input'
 import { Box, Grid, IconButton } from '@radix-ui/themes'
 import { useWatch } from 'react-hook-form'
 import { FaTrash } from 'react-icons/fa'
+import { FormInput, FormSelect } from '@/components/ui/forms/Input'
 
 export const CourseItem = ({
   index,
@@ -29,14 +29,14 @@ export const CourseItem = ({
     ?.filter((c: any, i: number) => {
       if (i === index) return false
       if (!c?.teacherId) return false
-      
+
       const otherCourseName = c?.name?.trim().toLowerCase()
-      
+
       // Allow selecting the same teacher if the subject name is exactly the same (meaning multiple days a week)
       if (currentCourseName && otherCourseName === currentCourseName) {
         return false
       }
-      
+
       // Otherwise, the teacher is teaching a different subject, so disable them
       return true
     })

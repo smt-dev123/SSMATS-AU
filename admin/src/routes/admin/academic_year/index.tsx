@@ -1,10 +1,10 @@
-import { getAcademicYear } from '@/api/AcademicYearAPI'
-import { AcademicYearTable } from '@/features/academic_year/GenerationTable'
-import { useTitle } from '@/hooks/useTitle'
 import { Flex, Text } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import AcademicYearCreate from './-actions/Create'
+import { useTitle } from '@/hooks/useTitle'
+import { AcademicYearTable } from '@/features/academic_year/GenerationTable'
+import { getAcademicYear } from '@/api/AcademicYearAPI'
 import FetchData from '@/components/FetchData'
 
 export const Route = createFileRoute('/admin/academic_year/')({

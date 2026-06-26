@@ -52,11 +52,10 @@
   ],
 
   "academicYears": [
-  { "id": "1", "name": "ឆ្នាំសិក្សា ២០២៣-២០២៤" },
-  { "id": "2", "name": "ឆ្នាំសិក្សា ២០២៤-២០២៥" },
-  { "id": "3", "name": "ឆ្នាំសិក្សា ២០២៥-២០២៦" }
-],
-
+    { "id": "1", "name": "ឆ្នាំសិក្សា ២០២៣-២០២៤" },
+    { "id": "2", "name": "ឆ្នាំសិក្សា ២០២៤-២០២៥" },
+    { "id": "3", "name": "ឆ្នាំសិក្សា ២០២៥-២០២៦" }
+  ],
 
   "buildings": [
     { "id": "1", "name": "សៀង ណាំ", "description": "2004" },
@@ -372,7 +371,7 @@
       "programId": "2",
       "studyDayId": "2",
       "sessionId": "2",
-       "academicYearId": "2",
+      "academicYearId": "2",
       "dateStart": "2025-09-01",
       "dateEnd": "2025-12-31"
     },
@@ -384,7 +383,7 @@
       "programId": "3",
       "studyDayId": "1",
       "sessionId": "1",
-       "academicYearId": "2",
+      "academicYearId": "2",
       "dateStart": "2025-09-01",
       "dateEnd": "2025-12-31"
     },
@@ -396,7 +395,7 @@
       "programId": "4",
       "studyDayId": "2",
       "sessionId": "2",
-       "academicYearId": "2",
+      "academicYearId": "2",
       "dateStart": "2025-09-01",
       "dateEnd": "2025-12-31"
     },
@@ -408,7 +407,7 @@
       "programId": "5",
       "studyDayId": "1",
       "sessionId": "1",
-       "academicYearId": "2",
+      "academicYearId": "2",
       "dateStart": "2025-09-01",
       "dateEnd": "2025-12-31"
     }

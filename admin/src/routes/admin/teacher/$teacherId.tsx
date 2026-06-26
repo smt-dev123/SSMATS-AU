@@ -1,6 +1,6 @@
-import { useTeacherStore } from '@/stores/Teachers'
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
+import { useTeacherStore } from '@/stores/Teachers'
 
 export const Route = createFileRoute('/admin/teacher/$teacherId')({
   component: RouteComponent,

@@ -1,5 +1,5 @@
-import api from '@/lib/axios'
 import type { FacultiesType } from '@/types'
+import api from '@/lib/axios'
 
 export const getFaculties = async () => {
   const res = await api.get('/faculties')

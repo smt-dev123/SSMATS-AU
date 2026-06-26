@@ -1,29 +1,28 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { Link, createFileRoute, useNavigate } from '@tanstack/react-router'
 import {
   BookOpen,
-  Clock,
   CalendarDays,
   CheckCircle,
-  User,
+  Clock,
   Pencil,
+  User,
 } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
+import { Box, Button, Flex, Select, Text, TextField  } from '@radix-ui/themes'
+import { useEffect, useMemo, useState } from 'react'
+import { IoFilter, IoSearch } from 'react-icons/io5'
+import CourseCreate from './-actions/Create'
+import CourseUpdate from './-actions/Update'
+import CourseDelete from './-actions/Delete'
 import { useAcademicStore } from '@/stores/useAcademicStore'
 import FetchData from '@/components/FetchData'
 import { getCourses } from '@/api/CourseAPI'
-import { Flex, Text, Box, Select, Button } from '@radix-ui/themes'
-import CourseCreate from './-actions/Create'
-import CourseUpdate from './-actions/Update'
-import { useState, useEffect, useMemo } from 'react'
 
 import { useSessionContext } from '@/providers/AuthProvider'
-import CourseDelete from './-actions/Delete'
 import { ManualPagination } from '@/components/ui/ManualPagination'
 import { getFaculties } from '@/api/FacultyAPI'
 import { getDepartments } from '@/api/DepartmentAPI'
 import { getAcademicLevels } from '@/api/AcademicLevelAPI'
-import { IoFilter, IoSearch } from 'react-icons/io5'
-import { TextField } from '@radix-ui/themes'
 
 type CourseSearch = {
   name?: string

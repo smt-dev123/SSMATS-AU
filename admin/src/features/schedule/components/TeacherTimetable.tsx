@@ -1,4 +1,6 @@
 import { Badge, Box, Flex, Text } from '@radix-ui/themes'
+import { DAYS_OF_WEEK } from '../constants'
+import type { CoursesType } from '@/types'
 import {
   BodyTable,
   CellTable,
@@ -6,11 +8,9 @@ import {
   RootTable,
   RowTable,
 } from '@/components/ui/tables/table'
-import { DAYS_OF_WEEK } from '../constants'
-import type { CoursesType } from '@/types'
 
 interface TeacherTimetableProps {
-  courses: CoursesType[]
+  courses: Array<CoursesType>
 }
 
 export function TeacherTimetable({ courses }: TeacherTimetableProps) {

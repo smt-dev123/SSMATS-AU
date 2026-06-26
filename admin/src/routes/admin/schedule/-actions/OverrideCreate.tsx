@@ -1,21 +1,21 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
+  Box,
   Button,
   Dialog,
   Flex,
   Select,
+  Separator,
   Text,
   TextField,
-  Box,
-  Separator,
 } from '@radix-ui/themes'
 import { Controller, useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
+import { FaBan, FaCalendarAlt } from 'react-icons/fa'
 import { createOverride, getDailySchedule } from '@/api/OverrideAPI'
 import { getTeachers } from '@/api/TeacherAPI'
 import { getRoom } from '@/api/RoomAPI'
-import { FaCalendarAlt, FaBan } from 'react-icons/fa'
 
 interface Props {
   scheduleId?: number
@@ -45,7 +45,7 @@ const OverrideCreate = ({ scheduleId }: Props) => {
 
   const dailyCourses = useMemo(() => {
     if (!scheduleId) return allDailyCourses
-    return (allDailyCourses as any[]).filter(
+    return (allDailyCourses as Array<any>).filter(
       (c: any) => Number(c.scheduleId) === Number(scheduleId),
     )
   }, [allDailyCourses, scheduleId])
@@ -55,14 +55,14 @@ const OverrideCreate = ({ scheduleId }: Props) => {
     queryFn: () => getTeachers(),
     enabled: open,
   })
-  const teachers = (teachersResponse as any)?.data || []
+  const teachers = (teachersResponse)?.data || []
 
   const { data: roomsResponse } = useQuery({
     queryKey: ['rooms'],
     queryFn: () => getRoom('all'),
     enabled: open,
   })
-  const rooms = (roomsResponse as any)?.data || []
+  const rooms = (roomsResponse)?.data || []
 
   useEffect(() => {
     if (!open) reset()
@@ -159,7 +159,7 @@ const OverrideCreate = ({ scheduleId }: Props) => {
                       style={{ width: '100%' }}
                     />
                     <Select.Content position="popper">
-                      {(dailyCourses as any[]).map((course: any) => (
+                      {(dailyCourses as Array<any>).map((course: any) => (
                         <Select.Item key={course.id} value={String(course.id)}>
                           {course.name} (
                           {course.sessionTime?.firstSessionStartTime} -{' '}
@@ -229,7 +229,7 @@ const OverrideCreate = ({ scheduleId }: Props) => {
                             style={{ width: '100%' }}
                           />
                           <Select.Content position="popper">
-                            {(teachers as any[]).map((t: any) => (
+                            {(teachers as Array<any>).map((t: any) => (
                               <Select.Item key={t.id} value={String(t.id)}>
                                 {t.name}
                               </Select.Item>
@@ -257,7 +257,7 @@ const OverrideCreate = ({ scheduleId }: Props) => {
                             style={{ width: '100%' }}
                           />
                           <Select.Content position="popper">
-                            {(rooms as any[]).map((r: any) => (
+                            {(rooms as Array<any>).map((r: any) => (
                               <Select.Item key={r.id} value={String(r.id)}>
                                 {r.name} ({r.building?.name})
                               </Select.Item>

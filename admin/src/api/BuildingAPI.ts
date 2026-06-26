@@ -1,5 +1,5 @@
-import api from '@/lib/axios'
 import type { BuildingType } from '@/types'
+import api from '@/lib/axios'
 
 export const getBuilding = async (
   name?: string,

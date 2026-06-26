@@ -1,18 +1,18 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { Box, Flex, Text } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
-import { getSchedules, getMySchedule } from '@/api/SchedulesAPI'
+import { useEffect, useState } from 'react'
+import ScheduleCreate from './-actions/Create'
+import ScheduleUpdate from './-actions/Update'
+import ExportExcel from './-exports/ExportExcel'
+import { ScheduleReport } from './-exports/ExportPDF'
+import { getMySchedule, getSchedules } from '@/api/SchedulesAPI'
 import { getCourses } from '@/api/CourseAPI'
 import { useAcademicStore } from '@/stores/useAcademicStore'
 import FetchData from '@/components/FetchData'
 import { ScheduleTable } from '@/features/schedule/ScheduleTable'
-import ScheduleCreate from './-actions/Create'
-import ScheduleUpdate from './-actions/Update'
-import ExportExcel from './-exports/ExportExcel'
 import PDFDownload from '@/components/ui/PDFDownload'
-import { ScheduleReport } from './-exports/ExportPDF'
 import { useSessionContext } from '@/providers/AuthProvider'
-import { useState, useEffect } from 'react'
 import { getFaculties } from '@/api/FacultyAPI'
 import { getDepartments } from '@/api/DepartmentAPI'
 import { getAcademicLevels } from '@/api/AcademicLevelAPI'
@@ -101,7 +101,9 @@ function ScheduleListComponent() {
           academicLevelId === 'all' ? undefined : Number(academicLevelId),
       })
     },
-    enabled: (role === 'student' || !['student', 'teacher'].includes(role)) && !!selectedYearId,
+    enabled:
+      (role === 'student' || !['student', 'teacher'].includes(role)) &&
+      !!selectedYearId,
   })
 
   const {
@@ -182,7 +184,11 @@ function ScheduleListComponent() {
       )}
 
       {role === 'teacher' ? (
-        <FetchData isLoading={isLoadingTeacherCourses} error={teacherCoursesError} data={teacherCoursesResponse}>
+        <FetchData
+          isLoading={isLoadingTeacherCourses}
+          error={teacherCoursesError}
+          data={teacherCoursesResponse}
+        >
           <Box mt="4">
             <TeacherTimetable courses={teacherCoursesResponse?.data || []} />
           </Box>

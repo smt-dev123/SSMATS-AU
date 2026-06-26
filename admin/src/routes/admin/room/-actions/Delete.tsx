@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AlertDialog, IconButton } from '@radix-ui/themes'
-import DeleteDialog from '@/components/action/DeleteDialog'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import toast from 'react-hot-toast'
-import { deleteRoom } from '@/api/RoomAPI'
 import type { RoomType } from '@/types'
+import { deleteRoom } from '@/api/RoomAPI'
+import DeleteDialog from '@/components/action/DeleteDialog'
 
 interface Props {
   data: RoomType

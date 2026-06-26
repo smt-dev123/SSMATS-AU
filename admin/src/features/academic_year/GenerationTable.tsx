@@ -1,9 +1,9 @@
-import { DataTable } from '@/components/table/DataTable'
-import type { AcademicYearsType } from '@/types'
 import { AcademicYearColumns } from './Columns'
+import type { AcademicYearsType } from '@/types'
+import { DataTable } from '@/components/table/DataTable'
 
 interface Props {
-  data: AcademicYearsType[]
+  data: Array<AcademicYearsType>
 }
 
 export function AcademicYearTable({ data }: Props) {

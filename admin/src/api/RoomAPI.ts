@@ -1,5 +1,5 @@
-import api from '@/lib/axios'
 import type { RoomType } from '@/types'
+import api from '@/lib/axios'
 
 export const getRoom = async (name?: string, page?: number, limit?: number) => {
   const res = await api.get('/classrooms', { params: { name, page, limit } })
@@ -9,7 +9,7 @@ export const getRoom = async (name?: string, page?: number, limit?: number) => {
 export const createRoom = async (newRoom: RoomType) => {
   const res = await api.post('/classrooms', newRoom)
   return res.data?.data ?? []
-} 
+}
 
 export const updateRoom = async (id: number, updateRoom: RoomType) => {
   const res = await api.put(`/classrooms/${id}`, updateRoom)

@@ -1,18 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useState, useRef, useEffect, useMemo } from 'react'
-import { Send, BookOpen, MessageSquare, ChevronRight, Bell } from 'lucide-react'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { Bell, BookOpen, ChevronRight, MessageSquare, Send } from 'lucide-react'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import toast from 'react-hot-toast'
+import type { FacultiesType, GenerationsType, MajorsType } from '@/types'
 import { getFaculties } from '@/api/FacultyAPI'
 import { getGeneration } from '@/api/GenerationAPI'
 import {
-  getNotifications,
   broadcastNotification,
   getMyNotifications,
+  getNotifications,
   markNotificationAsRead,
 } from '@/api/NotificationAPI'
 import { getMajors } from '@/api/MajorAPI'
-import type { FacultiesType, GenerationsType, MajorsType } from '@/types'
-import toast from 'react-hot-toast'
 import { useSessionContext } from '@/providers/AuthProvider'
 
 export const Route = createFileRoute('/admin/notification/')({
@@ -37,17 +37,17 @@ function RouteComponent() {
   const role = (sessionData?.user as any)?.role || ''
 
   // --- Data Fetching with Safety Defaults ---
-  const { data: rawFaculties } = useQuery<FacultiesType[]>({
+  const { data: rawFaculties } = useQuery<Array<FacultiesType>>({
     queryKey: ['faculties'],
     queryFn: getFaculties,
   })
 
-  const { data: rawGenerations } = useQuery<GenerationsType[]>({
+  const { data: rawGenerations } = useQuery<Array<GenerationsType>>({
     queryKey: ['generations'],
     queryFn: getGeneration,
   })
 
-  const { data: rawNotifications } = useQuery<Message[]>({
+  const { data: rawNotifications } = useQuery<Array<Message>>({
     queryKey: ['notifications', role],
     queryFn: () => {
       if (role === 'student' || role === 'teacher') {
@@ -57,7 +57,7 @@ function RouteComponent() {
     },
   })
 
-  const { data: rawMajors } = useQuery<MajorsType[]>({
+  const { data: rawMajors } = useQuery<Array<MajorsType>>({
     queryKey: ['majors'],
     queryFn: getMajors,
   })
@@ -299,7 +299,7 @@ function RouteComponent() {
 
               const isRead = isStudentOrTeacher ? msg.isRead : true
 
-              let displayTitle = actualMsg.title || 'សារជូនដំណឹងទូទៅ'
+              const displayTitle = actualMsg.title || 'សារជូនដំណឹងទូទៅ'
 
               const handleCardClick = () => {
                 if (isStudentOrTeacher && !isRead) {

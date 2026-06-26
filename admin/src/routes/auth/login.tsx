@@ -1,9 +1,9 @@
-import { useTitle } from '@/hooks/useTitle'
-import { signIn } from '@/lib/auth-client'
 import { Button, Flex, Spinner, Text, TextField } from '@radix-ui/themes'
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { Link, createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { signIn } from '@/lib/auth-client'
+import { useTitle } from '@/hooks/useTitle'
 import Logo from '@/assets/au.webp'
 
 export const Route = createFileRoute('/auth/login')({

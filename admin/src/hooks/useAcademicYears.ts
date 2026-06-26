@@ -1,5 +1,5 @@
-import { getAcademicYear } from '@/api/AcademicYearAPI'
 import { useQuery } from '@tanstack/react-query'
+import { getAcademicYear } from '@/api/AcademicYearAPI'
 
 export const useAcademicYears = () => {
   return useQuery({

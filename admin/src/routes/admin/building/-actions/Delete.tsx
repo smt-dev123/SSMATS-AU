@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AlertDialog, IconButton } from '@radix-ui/themes'
-import { deleteBuilding } from '@/api/BuildingAPI'
-import type { BuildingType } from '@/types'
-import DeleteDialog from '@/components/action/DeleteDialog'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import toast from 'react-hot-toast'
+import type { BuildingType } from '@/types'
+import { deleteBuilding } from '@/api/BuildingAPI'
+import DeleteDialog from '@/components/action/DeleteDialog'
 
 interface Props {
   data: BuildingType

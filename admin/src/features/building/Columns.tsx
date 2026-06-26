@@ -1,11 +1,11 @@
+import { Badge, Flex } from '@radix-ui/themes'
+import type { BuildingType } from '@/types'
+import type { ColumnDef } from '@tanstack/react-table'
 import BuildingDelete from '@/routes/admin/building/-actions/Delete'
 import BuildingUpdate from '@/routes/admin/building/-actions/Update'
-import type { BuildingType } from '@/types'
-import { Badge, Flex } from '@radix-ui/themes'
-import type { ColumnDef } from '@tanstack/react-table'
 
-export const BuildingColumns: ColumnDef<BuildingType>[] = [
-  { accessorKey: 'index', header: 'ល.រ', cell: ({ row }) => row.index + 1},
+export const BuildingColumns: Array<ColumnDef<BuildingType>> = [
+  { accessorKey: 'index', header: 'ល.រ', cell: ({ row }) => row.index + 1 },
   { accessorKey: 'name', header: 'អាគារសិក្សា' },
   {
     accessorKey: 'isActive',

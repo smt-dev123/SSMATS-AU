@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { Button, Dialog, Flex, Grid, IconButton } from '@radix-ui/themes'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { FaLock } from 'react-icons/fa'
 import type { UsersType } from '@/types'
 import { FormInput } from '@/components/ui/forms/Input'
-import { FaLock } from 'react-icons/fa'
 import { admin } from '@/lib/auth-client'
 
 interface Props {
@@ -50,10 +50,13 @@ const ChangePassword = ({ user }: Props) => {
   }
 
   return (
-    <Dialog.Root open={open} onOpenChange={(val) => {
-      setOpen(val)
-      if (!val) reset()
-    }}>
+    <Dialog.Root
+      open={open}
+      onOpenChange={(val) => {
+        setOpen(val)
+        if (!val) reset()
+      }}
+    >
       <Dialog.Trigger>
         <IconButton
           size="1"
@@ -90,10 +93,10 @@ const ChangePassword = ({ user }: Props) => {
                   required: 'ត្រូវបញ្ចូលលេខកូដថ្មី',
                   minLength: {
                     value: 6,
-                    message: 'លេខកូដត្រូវមានយ៉ាងហោចណាស់ 6 ខ្ទង់'
-                  }
+                    message: 'លេខកូដត្រូវមានយ៉ាងហោចណាស់ 6 ខ្ទង់',
+                  },
                 }}
-                error={errors.newPassword as any}
+                error={errors.newPassword}
                 isRequired
               />
             </Grid>

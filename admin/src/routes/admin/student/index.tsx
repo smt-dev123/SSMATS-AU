@@ -1,21 +1,21 @@
+import { Box, Button, Flex, Select, Text, TextField } from '@radix-ui/themes'
+import { useQuery } from '@tanstack/react-query'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { IoFilter, IoSearch } from 'react-icons/io5'
+import { useEffect, useMemo, useState } from 'react'
+import StudentCreate from './-actions/Create'
+import StudentReport from './-exports/ExportPDF'
+import ExportExcel from './-exports/ExportExcel'
 import { getStudents } from '@/api/StudentAPI'
 import { getFaculties } from '@/api/FacultyAPI'
 import { getDepartments } from '@/api/DepartmentAPI'
 import { getAcademicLevels } from '@/api/AcademicLevelAPI'
 import { useTitle } from '@/hooks/useTitle'
-import { Button, Flex, Select, Text, TextField, Box } from '@radix-ui/themes'
-import { useQuery } from '@tanstack/react-query'
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { IoSearch, IoFilter } from 'react-icons/io5'
-import { useState, useEffect, useMemo } from 'react'
 import { StudentTable } from '@/features/student/StudentTable'
 import FetchData from '@/components/FetchData'
-import StudentCreate from './-actions/Create'
 import { useAcademicStore } from '@/stores/useAcademicStore'
 import PDFDownload from '@/components/ui/PDFDownload'
-import StudentReport from './-exports/ExportPDF'
 import { useSessionContext } from '@/providers/AuthProvider'
-import ExportExcel from './-exports/ExportExcel'
 
 type StudentSearch = {
   name?: string
@@ -124,10 +124,10 @@ function RouteComponent() {
 
   const students = useMemo(() => {
     if (!data) return []
-    return (data as any)?.data || []
+    return (data)?.data || []
   }, [data])
 
-  const total = (data as any)?.total || 0
+  const total = (data)?.total || 0
   const pageCount = Math.ceil(total / (limit ?? 10))
 
   const onPaginationChange = (updater: any) => {

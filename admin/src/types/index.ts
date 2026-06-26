@@ -217,7 +217,7 @@ export interface ScheduleType {
   }
   academicYear?: AcademicYearsType
   sessionTime?: SessionTimeType
-  courses?: CoursesType[]
+  courses?: Array<CoursesType>
   updatedAt?: string
 }
 

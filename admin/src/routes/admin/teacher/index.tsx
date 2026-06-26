@@ -1,19 +1,19 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { Box, Button, Flex, Select, Text, TextField } from '@radix-ui/themes'
-import { IoSearch, IoFilter } from 'react-icons/io5'
-import { useTitle } from '@/hooks/useTitle'
+import { IoFilter, IoSearch } from 'react-icons/io5'
 import { useQuery } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
+import TeacherCreate from './-actions/Create'
+import ExportExcel from './-exports/ExportExcel'
+import { TeacherReport } from './-exports/ExportPDF'
+import { useTitle } from '@/hooks/useTitle'
 import { getTeachers } from '@/api/TeacherAPI'
 import { getFaculties } from '@/api/FacultyAPI' // នាំចូល API
 import { getAcademicLevels } from '@/api/AcademicLevelAPI' // នាំចូល API
 import { TeacherTable } from '@/features/teacher/GenerationTable'
-import TeacherCreate from './-actions/Create'
-import { useState, useEffect } from 'react'
 import FetchData from '@/components/FetchData'
 import { useSessionContext } from '@/providers/AuthProvider'
-import ExportExcel from './-exports/ExportExcel'
 import PDFDownload from '@/components/ui/PDFDownload'
-import { TeacherReport } from './-exports/ExportPDF'
 
 type TeacherSearch = {
   search?: string
@@ -112,7 +112,7 @@ function RouteComponent() {
     })
   }
 
-  const total = (teachersData as any)?.total || 0
+  const total = (teachersData)?.total || 0
   const pageCount = Math.ceil(total / (limit ?? 10))
 
   const onPaginationChange = (updater: any) => {

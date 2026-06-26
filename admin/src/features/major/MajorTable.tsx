@@ -1,9 +1,9 @@
-import { DataTable } from '@/components/table/DataTable'
-import type { MajorsType } from '@/types'
 import { MajorColumns } from './Columns'
+import type { MajorsType } from '@/types'
+import { DataTable } from '@/components/table/DataTable'
 
 interface Props {
-  data: MajorsType[]
+  data: Array<MajorsType>
 }
 
 export function MajorTable({ data }: Props) {

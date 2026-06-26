@@ -1,9 +1,9 @@
-import { DataTable } from '@/components/table/DataTable'
-import type { AcademicLevelType } from '@/types'
 import { AcademicLevelColumns } from './Columns'
+import type { AcademicLevelType } from '@/types'
+import { DataTable } from '@/components/table/DataTable'
 
 interface Props {
-  data: AcademicLevelType[]
+  data: Array<AcademicLevelType>
 }
 
 export function GradeLevelTable({ data }: Props) {

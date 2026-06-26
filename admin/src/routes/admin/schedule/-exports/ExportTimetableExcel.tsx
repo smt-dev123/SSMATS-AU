@@ -12,13 +12,30 @@ interface ExportTimetableExcelProps {
 const toKhmerNum = (num: number | string | undefined | null) => {
   if (num === undefined || num === null) return ''
   const khmerNumbers = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩']
-  return num.toString().split('').map(d => /[0-9]/.test(d) ? khmerNumbers[parseInt(d)] : d).join('')
+  return num
+    .toString()
+    .split('')
+    .map((d) => (/[0-9]/.test(d) ? khmerNumbers[parseInt(d)] : d))
+    .join('')
 }
 
 const getKhmerDate = (dateString: string) => {
   if (!dateString) return ''
   const date = new Date(dateString)
-  const khmerMonths = ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ']
+  const khmerMonths = [
+    'មករា',
+    'កុម្ភៈ',
+    'មីនា',
+    'មេសា',
+    'ឧសភា',
+    'មិថុនា',
+    'កក្កដា',
+    'សីហា',
+    'កញ្ញា',
+    'តុលា',
+    'វិច្ឆិកា',
+    'ធ្នូ',
+  ]
   return `ថ្ងៃទី${toKhmerNum(date.getDate())} ខែ${khmerMonths[date.getMonth()]} ឆ្នាំ${toKhmerNum(date.getFullYear())}`
 }
 
@@ -88,7 +105,7 @@ const ExportTimetableExcel = ({ schedule }: ExportTimetableExcelProps) => {
       refCell.alignment = { horizontal: 'center' }
 
       const academicLevelText = schedule?.academicLevel?.level || 'បរិញ្ញាបត្រ'
-      
+
       worksheet.mergeCells(`A7:${lastColLetter}7`)
       const titleCell = worksheet.getCell('A7')
       titleCell.value = `កាលវិភាគសិក្សាថ្នាក់${academicLevelText}`
@@ -113,7 +130,14 @@ const ExportTimetableExcel = ({ schedule }: ExportTimetableExcelProps) => {
       dateCellHeader.font = { name: 'Khmer OS Battambang', size: 10 }
       dateCellHeader.alignment = { horizontal: 'center' }
 
-      const shiftText = schedule?.sessionTime?.shift === 'morning' ? 'ព្រឹក' : schedule?.sessionTime?.shift === 'evening' ? 'ល្ងាច' : schedule?.sessionTime?.shift === 'night' ? 'យប់' : ''
+      const shiftText =
+        schedule?.sessionTime?.shift === 'morning'
+          ? 'ព្រឹក'
+          : schedule?.sessionTime?.shift === 'evening'
+            ? 'ល្ងាច'
+            : schedule?.sessionTime?.shift === 'night'
+              ? 'យប់'
+              : ''
       worksheet.mergeCells(`A11:${lastColLetter}11`)
       const roomCell = worksheet.getCell('A11')
       roomCell.value = `វេនសិក្សា ៖ ${shiftText} បន្ទប់ ៖ ${schedule?.classroom?.name || ''}`
@@ -132,7 +156,7 @@ const ExportTimetableExcel = ({ schedule }: ExportTimetableExcelProps) => {
 
       const headerRowIndex = 13
       const headerRow = worksheet.getRow(headerRowIndex)
-      headerRow.values = ['Sessions/ម៉ោង', ...days.map(d => d.label)]
+      headerRow.values = ['Sessions/ម៉ោង', ...days.map((d) => d.label)]
 
       headerRow.eachCell((cell) => {
         cell.fill = {
@@ -156,12 +180,21 @@ const ExportTimetableExcel = ({ schedule }: ExportTimetableExcelProps) => {
       const s1RowIndex = 14
       const s1Row = worksheet.getRow(s1RowIndex)
       s1Row.height = 70
-      
+
       const s1Cell = s1Row.getCell(1)
       s1Cell.value = `Session 1\n${schedule?.sessionTime?.firstSessionStartTime}-${schedule?.sessionTime?.firstSessionEndTime}`
       s1Cell.font = { name: 'Khmer OS Battambang', size: 10 }
-      s1Cell.alignment = { wrapText: true, horizontal: 'center', vertical: 'middle' }
-      s1Cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+      s1Cell.alignment = {
+        wrapText: true,
+        horizontal: 'center',
+        vertical: 'middle',
+      }
+      s1Cell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' },
+      }
 
       days.forEach((day, index) => {
         const cell = s1Row.getCell(index + 2)
@@ -170,8 +203,17 @@ const ExportTimetableExcel = ({ schedule }: ExportTimetableExcelProps) => {
           cell.value = `${course.name}\nល. ${course.teacher?.name}\n${course.teacher?.phone || ''}`
         }
         cell.font = { name: 'Khmer OS Battambang', size: 10 }
-        cell.alignment = { wrapText: true, horizontal: 'center', vertical: 'middle' }
-        cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+        cell.alignment = {
+          wrapText: true,
+          horizontal: 'center',
+          vertical: 'middle',
+        }
+        cell.border = {
+          top: { style: 'thin' },
+          left: { style: 'thin' },
+          bottom: { style: 'thin' },
+          right: { style: 'thin' },
+        }
       })
 
       // Session 2
@@ -182,8 +224,17 @@ const ExportTimetableExcel = ({ schedule }: ExportTimetableExcelProps) => {
       const s2Cell = s2Row.getCell(1)
       s2Cell.value = `Session 2\n${schedule?.sessionTime?.secondSessionStartTime}-${schedule?.sessionTime?.secondSessionEndTime}`
       s2Cell.font = { name: 'Khmer OS Battambang', size: 10 }
-      s2Cell.alignment = { wrapText: true, horizontal: 'center', vertical: 'middle' }
-      s2Cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+      s2Cell.alignment = {
+        wrapText: true,
+        horizontal: 'center',
+        vertical: 'middle',
+      }
+      s2Cell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' },
+      }
 
       days.forEach((day, index) => {
         const cell = s2Row.getCell(index + 2)
@@ -192,8 +243,17 @@ const ExportTimetableExcel = ({ schedule }: ExportTimetableExcelProps) => {
           cell.value = `${course.name}\nល. ${course.teacher?.name}\n${course.teacher?.phone || ''}`
         }
         cell.font = { name: 'Khmer OS Battambang', size: 10 }
-        cell.alignment = { wrapText: true, horizontal: 'center', vertical: 'middle' }
-        cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } }
+        cell.alignment = {
+          wrapText: true,
+          horizontal: 'center',
+          vertical: 'middle',
+        }
+        cell.border = {
+          top: { style: 'thin' },
+          left: { style: 'thin' },
+          bottom: { style: 'thin' },
+          right: { style: 'thin' },
+        }
       })
 
       const footerRowIndex = 17
@@ -211,7 +271,8 @@ const ExportTimetableExcel = ({ schedule }: ExportTimetableExcelProps) => {
 
       worksheet.mergeCells(`F${footerRowIndex}:H${footerRowIndex}`)
       const sign3Cell = worksheet.getCell(`F${footerRowIndex}`)
-      sign3Cell.value = 'ក្រុងសៀមរាប ថ្ងៃទី........ ខែ........... ឆ្នាំ............\nរៀបចំដោយ\nប្រធាន ក.ស.រ'
+      sign3Cell.value =
+        'ក្រុងសៀមរាប ថ្ងៃទី........ ខែ........... ឆ្នាំ............\nរៀបចំដោយ\nប្រធាន ក.ស.រ'
       sign3Cell.font = { name: 'Khmer OS Muol Light', size: 10 }
       sign3Cell.alignment = { horizontal: 'center', wrapText: true }
 

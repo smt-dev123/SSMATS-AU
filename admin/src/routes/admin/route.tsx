@@ -1,9 +1,9 @@
+import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
+import { Toaster } from 'react-hot-toast'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import { sessionQueryOptions } from '@/utils/session'
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
-import { Toaster } from 'react-hot-toast'
 
 export const Route = createFileRoute('/admin')({
   beforeLoad: async ({ context }) => {

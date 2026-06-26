@@ -12,6 +12,8 @@ import { routeTree } from './routeTree.gen'
 import '@radix-ui/themes/styles.css'
 import './styles.css'
 
+import { AuthProvider } from './providers/AuthProvider'
+
 // Create a new router instance
 const queryClient = new QueryClient()
 
@@ -32,8 +34,6 @@ declare module '@tanstack/react-router' {
     router: typeof router
   }
 }
-
-import { AuthProvider } from './providers/AuthProvider'
 
 // Render the app
 const rootElement = document.getElementById('app')

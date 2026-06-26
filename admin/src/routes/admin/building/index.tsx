@@ -1,13 +1,12 @@
+import { Flex, Text } from '@radix-ui/themes'
+import { useQuery } from '@tanstack/react-query'
+import { createFileRoute, useNavigate  } from '@tanstack/react-router'
+import BuildingCreate from './-actions/Create'
 import { getBuilding } from '@/api/BuildingAPI'
 import { BuildingTable } from '@/features/building/BuildingTable'
 import { useTitle } from '@/hooks/useTitle'
-import { Flex, Text } from '@radix-ui/themes'
-import { useQuery } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
-import BuildingCreate from './-actions/Create'
 import FetchData from '@/components/FetchData'
 
-import { useNavigate } from '@tanstack/react-router'
 import { useSessionContext } from '@/providers/AuthProvider'
 
 type BuildingSearch = {
@@ -40,7 +39,7 @@ function RouteComponent() {
     refetchOnWindowFocus: false,
   })
 
-  const total = (data as any)?.total || 0
+  const total = (data)?.total || 0
   const pageCount = Math.ceil(total / (limit ?? 10))
 
   const onPaginationChange = (updater: any) => {

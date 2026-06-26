@@ -1,13 +1,13 @@
-import type { ScheduleType } from '@/types'
 import { Badge, Flex, IconButton } from '@radix-ui/themes'
-import type { ColumnDef } from '@tanstack/react-table'
 import { FaRegEdit, FaRegEye } from 'react-icons/fa'
 import { Link } from '@tanstack/react-router'
+import type { ColumnDef } from '@tanstack/react-table'
+import type { ScheduleType } from '@/types'
 import { useSessionContext } from '@/providers/AuthProvider'
 import ScheduleDelete from '@/routes/admin/schedule/-actions/Delete'
 
-export const ScheduleColumns: ColumnDef<ScheduleType>[] = [
-  { accessorKey: 'index', header: 'ល.រ', cell: ({ row }) => row.index + 1},
+export const ScheduleColumns: Array<ColumnDef<ScheduleType>> = [
+  { accessorKey: 'index', header: 'ល.រ', cell: ({ row }) => row.index + 1 },
   {
     header: 'មហាវិទ្យាល័យ/ដេប៉ាតឺម៉ង់',
     cell: ({ row }) => {
@@ -51,7 +51,7 @@ export const ScheduleColumns: ColumnDef<ScheduleType>[] = [
 ]
 
 function ScheduleActions({ row }: { row: any }) {
-  const s = row.original as any
+  const s = row.original
   const { data: session } = useSessionContext()
   const role = (session?.user as any)?.role
 

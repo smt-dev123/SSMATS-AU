@@ -1,18 +1,18 @@
+import { Avatar, Badge, Flex } from '@radix-ui/themes'
+import type { TeachersType } from '@/types'
+import type { ColumnDef } from '@tanstack/react-table'
 import TeacherDetail from '@/routes/admin/teacher/-actions/ShowDetail'
 import TeacherDelete from '@/routes/admin/teacher/-actions/Delete'
 import TeacherUpdate from '@/routes/admin/teacher/-actions/Update'
 import TeacherScheduleDialog from '@/routes/admin/teacher/-actions/TeacherScheduleDialog'
 import ChangePassword from '@/routes/admin/user/-actions/ChangePassword'
-import type { TeachersType } from '@/types'
-import { Avatar, Badge, Flex } from '@radix-ui/themes'
-import type { ColumnDef } from '@tanstack/react-table'
 import { useSessionContext } from '@/providers/AuthProvider'
 
 const handleViewImage = (imageUrl: string) => {
   window.open(imageUrl, '_blank')
 }
 
-export const TeachaerColumns: ColumnDef<TeachersType>[] = [
+export const TeachaerColumns: Array<ColumnDef<TeachersType>> = [
   { accessorKey: 'index', header: 'ល.រ', cell: ({ row }) => row.index + 1 },
   {
     accessorKey: 'image',

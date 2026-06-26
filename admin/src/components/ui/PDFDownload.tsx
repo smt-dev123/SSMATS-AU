@@ -1,6 +1,6 @@
 import { Button } from '@radix-ui/themes'
 import { PDFDownloadLink } from '@react-pdf/renderer'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { FaPrint } from 'react-icons/fa'
 
 const PDFDownload = ({

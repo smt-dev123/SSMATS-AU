@@ -1,13 +1,13 @@
-import { Box, Flex, Text, Select, Button, TextField } from '@radix-ui/themes'
+import { Box, Button, Flex, Select, Text, TextField } from '@radix-ui/themes'
 import { IoFilter, IoSearch } from 'react-icons/io5'
 import { useMemo } from 'react'
 
 interface ScheduleFilterProps {
   draft: any
   setDraft: (val: any) => void
-  faculties: any[]
-  departments: any[]
-  academicLevels: any[]
+  faculties: Array<any>
+  departments: Array<any>
+  academicLevels: Array<any>
   handleApplyFilter: () => void
   handleClearFilter: () => void
 }

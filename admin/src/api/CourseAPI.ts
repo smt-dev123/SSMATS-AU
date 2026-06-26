@@ -1,5 +1,5 @@
-import api from '@/lib/axios'
 import type { CoursesType } from '@/types'
+import api from '@/lib/axios'
 
 const ENDPOINT = '/courses'
 

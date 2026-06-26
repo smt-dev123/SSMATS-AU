@@ -1,10 +1,10 @@
-import { useTitle } from '@/hooks/useTitle'
 import { Button, Flex, Text } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
+import SessionTimeCreate from './-actions/Create'
 import FetchData from '@/components/FetchData'
 import { getSessionTime } from '@/api/SessionTime'
-import SessionTimeCreate from './-actions/Create'
+import { useTitle } from '@/hooks/useTitle'
 import { SessionTimeTable } from '@/features/session_time/SessionTimeTable'
 
 export const Route = createFileRoute('/admin/session_time/')({

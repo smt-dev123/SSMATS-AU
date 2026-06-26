@@ -1,21 +1,22 @@
 import { Table } from '@radix-ui/themes'
 import {
+  
+  
+  
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type PaginationState,
-  type OnChangeFn,
+  useReactTable
 } from '@tanstack/react-table'
-import { HiArrowDown, HiArrowsUpDown, HiArrowUp } from 'react-icons/hi2'
+import { HiArrowDown, HiArrowUp, HiArrowsUpDown } from 'react-icons/hi2'
 import { DataTablePagination } from './DataTablePagination'
+import type {ColumnDef, OnChangeFn, PaginationState} from '@tanstack/react-table';
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  columns: Array<ColumnDef<TData, TValue>>
+  data: Array<TData>
   pageCount?: number
   manualPagination?: boolean
   onPaginationChange?: OnChangeFn<PaginationState>

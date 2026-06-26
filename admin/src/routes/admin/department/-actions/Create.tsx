@@ -18,7 +18,7 @@ const DepartmentCreate = () => {
   const queryClient = useQueryClient()
   const [open, setOpen] = useState(false)
 
-  const { data: faculties } = useQuery<FacultiesType[]>({
+  const { data: faculties } = useQuery<Array<FacultiesType>>({
     queryKey: ['faculties'],
     queryFn: getFaculties,
   })

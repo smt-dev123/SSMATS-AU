@@ -1,10 +1,10 @@
-import { getFaculties } from '@/api/FacultyAPI'
-import { FacultiesTable } from '@/features/faculties/FacultyTable'
-import { useTitle } from '@/hooks/useTitle'
 import { Flex, Text } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import FacultyCreate from './-actions/Create'
+import { useTitle } from '@/hooks/useTitle'
+import { FacultiesTable } from '@/features/faculties/FacultyTable'
+import { getFaculties } from '@/api/FacultyAPI'
 import FetchData from '@/components/FetchData'
 import { useSessionContext } from '@/providers/AuthProvider'
 

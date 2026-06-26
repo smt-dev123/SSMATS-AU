@@ -1,10 +1,10 @@
-import { DataTable } from '@/components/table/DataTable'
 import { TeachaerColumns } from './Columns'
 import type { TeachersType } from '@/types'
-import type { PaginationState, OnChangeFn } from '@tanstack/react-table'
+import type { OnChangeFn, PaginationState } from '@tanstack/react-table'
+import { DataTable } from '@/components/table/DataTable'
 
 interface Props {
-  data: TeachersType[]
+  data: Array<TeachersType>
   pageCount?: number
   onPaginationChange?: OnChangeFn<PaginationState>
   paginationState?: PaginationState

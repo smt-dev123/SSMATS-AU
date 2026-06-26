@@ -1,10 +1,10 @@
-import { DataTable } from '@/components/table/DataTable'
-import type { BuildingType } from '@/types'
 import { BuildingColumns } from './Columns'
+import type { BuildingType } from '@/types'
 import type { OnChangeFn, PaginationState } from '@tanstack/react-table'
+import { DataTable } from '@/components/table/DataTable'
 
 interface Props {
-  data: BuildingType[]
+  data: Array<BuildingType>
   pageCount?: number
   onPaginationChange?: OnChangeFn<PaginationState>
   paginationState?: PaginationState

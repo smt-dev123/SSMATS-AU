@@ -1,10 +1,10 @@
-import type { FacultiesType, MajorsType } from '@/types'
 import { Button, Dialog, Flex, IconButton } from '@radix-ui/themes'
 import { FaRegEdit } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
+import type { FacultiesType, MajorsType } from '@/types'
 import { updateMajors } from '@/api/MajorAPI'
 import { getFaculties } from '@/api/FacultyAPI'
 import { FormInput, FormSelect } from '@/components/ui/forms/Input'
@@ -31,7 +31,7 @@ const MajorUpdate = ({ data }: Props) => {
     },
   })
 
-  const { data: faculties } = useQuery<FacultiesType[]>({
+  const { data: faculties } = useQuery<Array<FacultiesType>>({
     queryKey: ['faculties'],
     queryFn: getFaculties,
   })

@@ -1,18 +1,19 @@
-import { useState, useEffect, type ChangeEvent } from 'react'
+import {  useEffect, useState } from 'react'
 import {
+  Avatar,
+  Box,
   Button,
   Dialog,
   Flex,
-  Text,
   Grid,
-  Box,
   IconButton,
-  Avatar,
+  Text,
 } from '@radix-ui/themes'
 import { FaRegEdit } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
+import type {ChangeEvent} from 'react';
 import type { TeachersType } from '@/types'
 import { getFaculties } from '@/api/FacultyAPI'
 import { getAcademicLevels } from '@/api/AcademicLevelAPI'

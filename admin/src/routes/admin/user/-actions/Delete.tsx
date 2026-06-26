@@ -2,8 +2,8 @@ import { Button, Dialog, Flex, IconButton, Text } from '@radix-ui/themes'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import { FaRegTrashAlt } from 'react-icons/fa'
-import { deleteUsers } from '@/api/UserAPI'
 import { useState } from 'react'
+import { deleteUsers } from '@/api/UserAPI'
 
 interface Props {
   userId: string
@@ -43,7 +43,8 @@ const UserDelete = ({ userId, userName }: Props) => {
       <Dialog.Content maxWidth="400px">
         <Dialog.Title>លុបអ្នកប្រើប្រាស់</Dialog.Title>
         <Dialog.Description size="2" mb="4">
-          តើអ្នកពិតជាចង់លុបអ្នកប្រើប្រាស់ <Text weight="bold">"{userName}"</Text> មែនទេ?
+          តើអ្នកពិតជាចង់លុបអ្នកប្រើប្រាស់{' '}
+          <Text weight="bold">"{userName}"</Text> មែនទេ?
           ការលុបនេះមិនអាចយកមកវិញបានទេ។
         </Dialog.Description>
 

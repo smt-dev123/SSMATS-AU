@@ -1,11 +1,11 @@
-import type { BuildingType, RoomType } from '@/types'
 import { Button, Dialog, Flex, IconButton } from '@radix-ui/themes'
 import { FaRegEdit } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { getBuilding } from '@/api/BuildingAPI'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
+import type { BuildingType, RoomType } from '@/types'
+import { getBuilding } from '@/api/BuildingAPI'
 import { updateRoom } from '@/api/RoomAPI'
 import { FormInput, FormSelect } from '@/components/ui/forms/Input'
 
@@ -38,7 +38,7 @@ const RoomUpdate = ({ data }: Props) => {
     queryFn: () => getBuilding('all'),
   })
 
-  const buildings = ((buildingsResponse as any)?.data as BuildingType[]) || []
+  const buildings = ((buildingsResponse)?.data as Array<BuildingType>) || []
 
   const mutation = useMutation({
     mutationFn: (formData: RoomType) => updateRoom(Number(data.id), formData),

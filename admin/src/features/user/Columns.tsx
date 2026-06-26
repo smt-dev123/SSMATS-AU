@@ -1,7 +1,7 @@
-import type { UsersType } from '@/types'
 import { Avatar, Badge, Flex, IconButton } from '@radix-ui/themes'
-import type { ColumnDef } from '@tanstack/react-table'
 import { FaRegEye } from 'react-icons/fa'
+import type { UsersType } from '@/types'
+import type { ColumnDef } from '@tanstack/react-table'
 
 import UserUpdate from '@/routes/admin/user/-actions/Update'
 import UserDelete from '@/routes/admin/user/-actions/Delete'
@@ -26,8 +26,8 @@ const roleColor = (role: string) => {
   }
 }
 
-export const getUserColumns = (userRole: string): ColumnDef<UsersType>[] => {
-  const columns: ColumnDef<UsersType>[] = [
+export const getUserColumns = (userRole: string): Array<ColumnDef<UsersType>> => {
+  const columns: Array<ColumnDef<UsersType>> = [
     {
       accessorKey: 'no',
       header: 'ល.រ',

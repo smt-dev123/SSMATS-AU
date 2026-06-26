@@ -1,5 +1,5 @@
-import api from '@/lib/axios'
 import type { GradeLevelType } from '@/types'
+import api from '@/lib/axios'
 
 export const getGradeLevel = async () => {
   const res = await api.get('/grade_levels')

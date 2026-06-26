@@ -1,13 +1,13 @@
-import { useTitle } from '@/hooks/useTitle'
 import { Box, Flex, Text, TextField } from '@radix-ui/themes'
 import { createFileRoute } from '@tanstack/react-router'
 import { IoSearch } from 'react-icons/io5'
-import { UserTable } from '@/features/user/UserTable'
 import { useQuery } from '@tanstack/react-query'
-import { getUsers } from '@/api/UserAPI'
-import FetchData from '@/components/FetchData'
 import { useState } from 'react'
 import UserCreate from './-actions/Create'
+import { UserTable } from '@/features/user/UserTable'
+import { getUsers } from '@/api/UserAPI'
+import FetchData from '@/components/FetchData'
+import { useTitle } from '@/hooks/useTitle'
 import { useSessionContext } from '@/providers/AuthProvider'
 
 export const Route = createFileRoute('/admin/user/')({

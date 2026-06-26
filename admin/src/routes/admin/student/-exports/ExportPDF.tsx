@@ -1,16 +1,16 @@
 import {
   Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
   Font,
   Image,
+  Page,
+  StyleSheet,
+  Text,
+  View,
 } from '@react-pdf/renderer'
+import type { StudentsType } from '@/types'
 import KhmerOSsiemreap from '@/fonts/KhmerOSsiemreap.ttf'
 import KhmerOSMoulLight from '@/fonts/KhmerOSMoulLight.ttf'
 import Logo from '@/assets/au.png'
-import type { StudentsType } from '@/types'
 
 // Register Font
 Font.register({
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const StudentReport = ({ data }: { data: StudentsType[] }) => (
+const StudentReport = ({ data }: { data: Array<StudentsType> }) => (
   <Document title="បញ្ជីរាយនាមនិស្សិត">
     <Page size="A4" style={styles.page}>
       <View style={styles.headerCenter}>
@@ -181,10 +181,14 @@ const StudentReport = ({ data }: { data: StudentsType[] }) => (
                 <Text style={{ textAlign: 'center' }}>{item.gender || ''}</Text>
               </View>
               <View style={[styles.cell, styles.colPhone]}>
-                <Text style={{ textAlign: 'center' }}>{item.phone + ' ' || ''}</Text>
+                <Text style={{ textAlign: 'center' }}>
+                  {item.phone + ' ' || ''}
+                </Text>
               </View>
               <View style={[styles.cell, styles.colName]}>
-                <Text style={{ paddingLeft: 5 }}>{item.address + ' ' || ''}</Text>
+                <Text style={{ paddingLeft: 5 }}>
+                  {item.address + ' ' || ''}
+                </Text>
               </View>
             </View>
           ))

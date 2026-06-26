@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AlertDialog, IconButton } from '@radix-ui/themes'
-import DeleteDialog from '@/components/action/DeleteDialog'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import toast from 'react-hot-toast'
 import type { ScheduleType } from '@/types'
+import DeleteDialog from '@/components/action/DeleteDialog'
 import { deleteSchedule } from '@/api/SchedulesAPI'
 
 interface Props {

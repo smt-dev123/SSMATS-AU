@@ -2,24 +2,24 @@ import {
   Avatar,
   Badge,
   Box,
+  Button,
+  Card,
   Dialog,
   Flex,
   Grid,
+  Heading,
   IconButton,
   Text,
-  Card,
-  Heading,
-  Button,
 } from '@radix-ui/themes'
 import {
-  FaRegEye,
-  FaUser,
-  FaSchool,
-  FaMapMarkerAlt,
-  FaPhoneAlt,
   FaEnvelope,
   FaIdCard,
   FaInfoCircle,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaRegEye,
+  FaSchool,
+  FaUser,
 } from 'react-icons/fa'
 import type { TeachersType } from '@/types'
 

@@ -1,8 +1,9 @@
-import { useState, useEffect, type ChangeEvent } from 'react'
-import { Button, Dialog, Flex, Text, Grid, Box, Avatar } from '@radix-ui/themes'
+import {  useEffect, useState } from 'react'
+import { Avatar, Box, Button, Dialog, Flex, Grid, Text } from '@radix-ui/themes'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
+import type {ChangeEvent} from 'react';
 import type { StudentsType } from '@/types'
 import { createStudent } from '@/api/StudentAPI'
 import { getFaculties } from '@/api/FacultyAPI'
@@ -113,7 +114,7 @@ const StudentCreate = () => {
 
   // មុខងារសម្រាប់ទៅកាន់ Step បន្ទាប់ (មានការ Check Validation)
   const handleNextStep = async () => {
-    let fieldsToValidate: any[] = []
+    let fieldsToValidate: Array<any> = []
 
     if (step === 1) {
       fieldsToValidate = [
@@ -170,7 +171,7 @@ const StudentCreate = () => {
         return
       }
 
-      let issues: any[] = []
+      let issues: Array<any> = []
       try {
         if (
           data?.error?.name === 'ZodError' &&
@@ -188,7 +189,7 @@ const StudentCreate = () => {
         issues.forEach((issue: any) => {
           const field = issue.path?.[0] || issue.field
           if (field) {
-            setError(field as any, { type: 'server', message: issue.message })
+            setError(field, { type: 'server', message: issue.message })
           }
         })
         toast.error('សូមពិនិត្យមើលព័ត៌មានដែលបានបញ្ចូលឡើងវិញ')

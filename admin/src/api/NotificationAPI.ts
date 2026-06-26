@@ -7,10 +7,12 @@ export interface BroadcastNotificationData {
   targetDepartment?: number
   targetGeneration?: number
   targetSkill?: number
-  priority?: "low" | "normal" | "high"
+  priority?: 'low' | 'normal' | 'high'
 }
 
-export const broadcastNotification = async (data: BroadcastNotificationData) => {
+export const broadcastNotification = async (
+  data: BroadcastNotificationData,
+) => {
   const res = await api.post('/notifications/broadcast', data)
   return res.data
 }

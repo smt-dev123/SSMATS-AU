@@ -1,4 +1,5 @@
 import { Badge, Box, Flex, Text } from '@radix-ui/themes'
+import { DAYS_OF_WEEK } from '../constants'
 import {
   BodyTable,
   CellTable,
@@ -6,7 +7,6 @@ import {
   RootTable,
   RowTable,
 } from '@/components/ui/tables/table'
-import { DAYS_OF_WEEK } from '../constants'
 
 interface ScheduleTimetableProps {
   schedule: any

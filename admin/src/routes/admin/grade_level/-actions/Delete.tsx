@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AlertDialog, IconButton } from '@radix-ui/themes'
-import DeleteDialog from '@/components/action/DeleteDialog'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import toast from 'react-hot-toast'
-import { deleteAcademicLevel } from '@/api/AcademicLevelAPI'
 import type { GradeLevelType } from '@/types'
+import { deleteAcademicLevel } from '@/api/AcademicLevelAPI'
+import DeleteDialog from '@/components/action/DeleteDialog'
 
 interface Props {
   data: GradeLevelType

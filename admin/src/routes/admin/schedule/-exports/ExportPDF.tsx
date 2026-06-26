@@ -1,16 +1,16 @@
 import {
   Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
   Font,
   Image,
+  Page,
+  StyleSheet,
+  Text,
+  View,
 } from '@react-pdf/renderer'
+import type { ScheduleType } from '@/types'
 import KhmerOSsiemreap from '@/fonts/KhmerOSsiemreap.ttf'
 import KhmerOSMoulLight from '@/fonts/KhmerOSMoulLight.ttf'
 import Logo from '@/assets/au.png'
-import type { ScheduleType } from '@/types'
 
 // Register Font
 Font.register({
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export const ScheduleReport = ({ data }: { data: ScheduleType[] }) => (
+export const ScheduleReport = ({ data }: { data: Array<ScheduleType> }) => (
   <Document title="បញ្ជីកាលវិភាគសិក្សា">
     <Page size="A4" orientation="landscape" style={styles.page}>
       {/* ក្បាលលិខិតជាតិ */}
@@ -207,20 +207,32 @@ export const ScheduleReport = ({ data }: { data: ScheduleType[] }) => (
                 <Text>{item.department?.name || ''}</Text>
               </View>
               <View style={[styles.cell, styles.colLevel]}>
-                <Text style={{ textAlign: 'center' }}>{item.academicLevel?.level || ''}</Text>
+                <Text style={{ textAlign: 'center' }}>
+                  {item.academicLevel?.level || ''}
+                </Text>
               </View>
               <View style={[styles.cell, styles.colGen]}>
-                <Text style={{ textAlign: 'center' }}>{item.generation || ''}</Text>
+                <Text style={{ textAlign: 'center' }}>
+                  {item.generation || ''}
+                </Text>
               </View>
               <View style={[styles.cell, styles.colYear]}>
                 <Text style={{ textAlign: 'center' }}>{item.year || ''}</Text>
               </View>
               <View style={[styles.cell, styles.colSem]}>
-                <Text style={{ textAlign: 'center' }}>{item.semester || ''}</Text>
+                <Text style={{ textAlign: 'center' }}>
+                  {item.semester || ''}
+                </Text>
               </View>
               <View style={[styles.cell, styles.colShift]}>
                 <Text style={{ textAlign: 'center' }}>
-                  {item.sessionTime?.shift === 'morning' ? 'ព្រឹក' : item.sessionTime?.shift === 'evening' ? 'ល្ងាច' : item.sessionTime?.shift === 'night' ? 'យប់' : ''}
+                  {item.sessionTime?.shift === 'morning'
+                    ? 'ព្រឹក'
+                    : item.sessionTime?.shift === 'evening'
+                      ? 'ល្ងាច'
+                      : item.sessionTime?.shift === 'night'
+                        ? 'យប់'
+                        : ''}
                 </Text>
               </View>
               <View style={[styles.cell, styles.colRoom, styles.lastCell]}>

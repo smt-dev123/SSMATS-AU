@@ -1,10 +1,14 @@
-import type { TeachersType } from '@/types'
 import { Button } from '@radix-ui/themes'
 import { FaFileExcel } from 'react-icons/fa'
-import { generateExcelReport, type ColumnDefinition } from '@/utils/excel_report_helper'
+import type { TeachersType } from '@/types'
+import type {ColumnDefinition} from '@/utils/excel_report_helper';
+import {
+  
+  generateExcelReport
+} from '@/utils/excel_report_helper'
 
 interface ExportExcelProps {
-  data: TeachersType[]
+  data: Array<TeachersType>
 }
 
 const ExportExcel = ({ data }: ExportExcelProps) => {
@@ -14,7 +18,7 @@ const ExportExcel = ({ data }: ExportExcelProps) => {
       return
     }
 
-    const columns: ColumnDefinition[] = [
+    const columns: Array<ColumnDefinition> = [
       { header: 'ល.រ', width: 8, transform: (_, index) => index + 1 },
       { header: 'លេខសម្គាល់គ្រូ', width: 20, key: 'teacherCode' },
       { header: 'គោត្តនាម-នាម', width: 25, key: 'name' },
@@ -22,7 +26,11 @@ const ExportExcel = ({ data }: ExportExcelProps) => {
         header: 'ភេទ',
         width: 10,
         transform: (item) =>
-          item.gender === 'male' ? 'ប' : item.gender === 'female' ? 'ស' : item.gender || '',
+          item.gender === 'male'
+            ? 'ប'
+            : item.gender === 'female'
+              ? 'ស'
+              : item.gender || '',
       },
       { header: 'មហាវិទ្យាល័យ', width: 25, key: 'faculty.name' },
       { header: 'លេខទូរស័ព្ទ', width: 20, key: 'phone' },

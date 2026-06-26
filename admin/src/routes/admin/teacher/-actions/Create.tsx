@@ -1,8 +1,9 @@
-import { useState, useEffect, type ChangeEvent } from 'react'
-import { Button, Dialog, Flex, Text, Grid, Box, Avatar } from '@radix-ui/themes'
+import {  useEffect, useState } from 'react'
+import { Avatar, Box, Button, Dialog, Flex, Grid, Text } from '@radix-ui/themes'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
+import type {ChangeEvent} from 'react';
 import type { TeachersType } from '@/types'
 import { createTeachers } from '@/api/TeacherAPI'
 import { getAcademicLevels } from '@/api/AcademicLevelAPI'
@@ -91,7 +92,7 @@ const TeacherCreate = () => {
         return
       }
 
-      let issues: any[] = []
+      let issues: Array<any> = []
       try {
         if (
           data?.error?.name === 'ZodError' &&
@@ -109,7 +110,7 @@ const TeacherCreate = () => {
         issues.forEach((issue: any) => {
           const field = issue.path?.[0] || issue.field
           if (field) {
-            setError(field as any, {
+            setError(field, {
               type: 'server',
               message: issue.message,
             })

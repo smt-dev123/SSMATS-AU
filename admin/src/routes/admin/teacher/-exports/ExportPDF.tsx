@@ -1,16 +1,16 @@
 import {
   Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
   Font,
   Image,
+  Page,
+  StyleSheet,
+  Text,
+  View,
 } from '@react-pdf/renderer'
+import type { TeachersType } from '@/types'
 import KhmerOSsiemreap from '@/fonts/KhmerOSsiemreap.ttf'
 import KhmerOSMoulLight from '@/fonts/KhmerOSMoulLight.ttf'
 import Logo from '@/assets/au.png'
-import type { TeachersType } from '@/types'
 
 // Register Font
 Font.register({
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export const TeacherReport = ({ data }: { data: TeachersType[] }) => (
+export const TeacherReport = ({ data }: { data: Array<TeachersType> }) => (
   <Document title="បញ្ជីសាស្រ្ដាចារ្យ">
     <Page size="A4" style={styles.page}>
       {/* ក្បាលលិខិតជាតិ */}
@@ -193,7 +193,11 @@ export const TeacherReport = ({ data }: { data: TeachersType[] }) => (
               </View>
               <View style={[styles.cell, styles.colGender]}>
                 <Text style={{ textAlign: 'center' }}>
-                  {item.gender === 'male' ? 'ប' : item.gender === 'female' ? 'ស' : item.gender || ''}
+                  {item.gender === 'male'
+                    ? 'ប'
+                    : item.gender === 'female'
+                      ? 'ស'
+                      : item.gender || ''}
                 </Text>
               </View>
               <View style={[styles.cell, styles.colFaculty]}>

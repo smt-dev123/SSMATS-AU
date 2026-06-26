@@ -11,7 +11,7 @@ export function DataTablePagination<T>({ table }: Props<T>) {
     const totalPages = table.getPageCount()
     const currentPage = table.getState().pagination.pageIndex + 1
     const maxVisible = 5 // Maximum number of visible page buttons
-    let pages: (number | string)[] = []
+    let pages: Array<number | string> = []
 
     if (totalPages <= maxVisible) {
       pages = Array.from({ length: totalPages }, (_, i) => i + 1)

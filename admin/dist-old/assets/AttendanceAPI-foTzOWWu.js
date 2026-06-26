@@ -1,0 +1,1 @@
+import{a as e}from"./axios-Y4V3X_W2.js";const o=async(t,a,n)=>{let r=`/attendance/course/${t}?date=${a}`;return n&&(r+=`&session=${n}`),(await e.get(r)).data},d=async t=>(await e.post("/attendance/bulk",t)).data,u=async t=>(await e.get("/attendance/report",{params:{courseId:t}})).data.data??[];export{u as a,o as g,d as m};

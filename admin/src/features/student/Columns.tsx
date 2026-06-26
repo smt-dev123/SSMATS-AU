@@ -1,11 +1,11 @@
+import { Avatar, Badge, Flex, Text } from '@radix-ui/themes'
+import type { StudentsType } from '@/types'
+import type { ColumnDef } from '@tanstack/react-table'
 import StudentDetail from '@/routes/admin/student/-actions/ShowDetail'
 import StudentDelete from '@/routes/admin/student/-actions/Delete'
 import StudentPromote from '@/routes/admin/student/-actions/StudentPromote'
 import StudentUpdate from '@/routes/admin/student/-actions/Update'
 import ChangePassword from '@/routes/admin/user/-actions/ChangePassword'
-import type { StudentsType } from '@/types'
-import { Avatar, Badge, Flex, Text } from '@radix-ui/themes'
-import type { ColumnDef } from '@tanstack/react-table'
 import { useSessionContext } from '@/providers/AuthProvider'
 
 const getStatusColor = (status: StudentsType['educationalStatus']) => {
@@ -29,8 +29,8 @@ const handleViewImage = (imageUrl: string) => {
   window.open(imageUrl, '_blank')
 }
 
-export const StudentColumns: ColumnDef<StudentsType>[] = [
-  { accessorKey: 'index', header: 'ល.រ', cell: ({ row }) => row.index + 1},
+export const StudentColumns: Array<ColumnDef<StudentsType>> = [
+  { accessorKey: 'index', header: 'ល.រ', cell: ({ row }) => row.index + 1 },
   {
     accessorKey: 'image',
     header: 'រូបភាព',
@@ -97,9 +97,11 @@ function StudentActions({ row }: { row: any }) {
         <StudentPromote student={row.original} />
       )}
       <StudentDetail data={row.original} />
-      
+
       {['admin', 'manager'].includes(role) && row.original.userId && (
-        <ChangePassword user={{ id: row.original.userId, name: row.original.name } as any} />
+        <ChangePassword
+          user={{ id: row.original.userId, name: row.original.name } as any}
+        />
       )}
       {['admin', 'manager', 'staff'].includes(role) && (
         <StudentUpdate data={row.original} />

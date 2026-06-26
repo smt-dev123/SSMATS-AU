@@ -1,4 +1,5 @@
 import {
+  AlertDialog,
   Box,
   Button,
   Card,
@@ -7,11 +8,10 @@ import {
   Separator,
   Switch,
   Text,
-  AlertDialog,
 } from '@radix-ui/themes'
 import toast from 'react-hot-toast'
-import api from '@/lib/axios'
 import { useRef, useState } from 'react'
+import api from '@/lib/axios'
 
 export function BackupTab() {
   const [isBackingUp, setIsBackingUp] = useState(false)

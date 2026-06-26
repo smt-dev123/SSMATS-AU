@@ -1,15 +1,15 @@
-import { useTitle } from '@/hooks/useTitle'
 import { Box, Card, Flex, Tabs, Text } from '@radix-ui/themes'
 import { createFileRoute } from '@tanstack/react-router'
-import { useAuth } from '@/stores/auth'
 import { useForm } from 'react-hook-form'
-import { authClient } from '@/lib/auth-client'
 import toast from 'react-hot-toast'
-import { useEffect, useState, useRef } from 'react'
-import api from '@/lib/axios'
+import { useEffect, useRef, useState } from 'react'
 import { SecurityTab } from './-tabs/SecurityTab'
 import { BackupTab } from './-tabs/BackupTab'
 import { AccountTab } from './-tabs/AccountTab'
+import api from '@/lib/axios'
+import { authClient } from '@/lib/auth-client'
+import { useAuth } from '@/stores/auth'
+import { useTitle } from '@/hooks/useTitle'
 
 export const Route = createFileRoute('/admin/setting/')({
   component: RouteComponent,

@@ -1,25 +1,25 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
-  Box,
-  Flex,
-  Text,
   Badge,
+  Box,
   Card,
+  Flex,
   IconButton,
-  Tooltip,
   ScrollArea,
+  Text,
+  Tooltip,
 } from '@radix-ui/themes'
-import { getOverrides, deleteOverride } from '@/api/OverrideAPI'
 import {
-  FaTrash,
-  FaCalendarDay,
   FaBan,
+  FaCalendarDay,
   FaMapMarkerAlt,
+  FaTrash,
   FaUserTie,
 } from 'react-icons/fa'
 import toast from 'react-hot-toast'
 import { format, isAfter, isToday, parseISO } from 'date-fns'
 import { km } from 'date-fns/locale'
+import { deleteOverride, getOverrides } from '@/api/OverrideAPI'
 
 interface Props {
   scheduleId?: number

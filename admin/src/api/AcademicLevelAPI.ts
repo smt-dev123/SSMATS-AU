@@ -1,7 +1,7 @@
-import api from '@/lib/axios'
 import type { AcademicLevelType } from '@/types'
+import api from '@/lib/axios'
 
-export const getAcademicLevels = async (): Promise<AcademicLevelType[]> => {
+export const getAcademicLevels = async (): Promise<Array<AcademicLevelType>> => {
   const res = await api.get('/academic-levels')
   return res.data
 }

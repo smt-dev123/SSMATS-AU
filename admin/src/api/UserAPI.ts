@@ -1,5 +1,5 @@
-import api from '@/lib/axios'
 import type { UsersType } from '@/types'
+import api from '@/lib/axios'
 
 export const getUsers = async () => {
   const res = await api.get('/users')
@@ -11,10 +11,7 @@ export const createUsers = async (newUsers: UsersType) => {
   return res.data?.data ?? []
 }
 
-export const updateUsers = async (
-  id: string,
-  updateUsers: UsersType,
-) => {
+export const updateUsers = async (id: string, updateUsers: UsersType) => {
   const res = await api.put(`/users/${id}`, updateUsers)
   return res.data?.data
 }

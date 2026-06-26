@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Dialog, Flex, Text, Grid } from '@radix-ui/themes'
+import { Button, Dialog, Flex, Grid, Text } from '@radix-ui/themes'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
@@ -38,7 +38,7 @@ const SessionTimeCreate = () => {
     onError: (error: any) => {
       const data = error?.response?.data
 
-      let issues: any[] = []
+      let issues: Array<any> = []
       try {
         if (
           data?.error?.name === 'ZodError' &&
@@ -56,7 +56,7 @@ const SessionTimeCreate = () => {
         issues.forEach((issue: any) => {
           const field = issue.path?.[0] || issue.field
           if (field) {
-            setError(field as any, {
+            setError(field, {
               type: 'server',
               message: issue.message,
             })

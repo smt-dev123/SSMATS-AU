@@ -8,7 +8,7 @@ import { DAYS_OF_WEEK } from '@/features/schedule/constants'
 
 interface ExportTeacherExcelProps {
   teacher: any
-  courses: any[]
+  courses: Array<any>
 }
 
 const toKhmerNum = (num: number | string | undefined | null) => {
@@ -140,7 +140,9 @@ const ExportTeacherExcel = ({ teacher, courses }: ExportTeacherExcelProps) => {
       let currentRowIndex = headerRowIndex + 1
 
       if (uniqueSessionTimes.length === 0) {
-        worksheet.mergeCells(`A${currentRowIndex}:${lastColLetter}${currentRowIndex}`)
+        worksheet.mergeCells(
+          `A${currentRowIndex}:${lastColLetter}${currentRowIndex}`,
+        )
         const emptyCell = worksheet.getCell(`A${currentRowIndex}`)
         emptyCell.value = 'មិនមានកាលវិភាគបង្រៀនទេ'
         emptyCell.font = { name: 'Khmer OS Battambang', size: 10 }
@@ -153,7 +155,12 @@ const ExportTeacherExcel = ({ teacher, courses }: ExportTeacherExcelProps) => {
         row.height = 70
 
         const sessionCell = row.getCell(1)
-        const shiftStr = session.shift === 'morning' ? 'ព្រឹក' : session.shift === 'evening' ? 'ល្ងាច' : 'យប់'
+        const shiftStr =
+          session.shift === 'morning'
+            ? 'ព្រឹក'
+            : session.shift === 'evening'
+              ? 'ល្ងាច'
+              : 'យប់'
         sessionCell.value = `${shiftStr}\n${session.firstSessionStartTime}-${session.firstSessionEndTime}\n${session.secondSessionStartTime}-${session.secondSessionEndTime}`
         sessionCell.font = { name: 'Khmer OS Battambang', size: 10 }
         sessionCell.alignment = {
@@ -179,7 +186,7 @@ const ExportTeacherExcel = ({ teacher, courses }: ExportTeacherExcelProps) => {
             cell.value = dayCourses
               .map(
                 (c) =>
-                  `${c.name}\n${c.schedule?.faculty?.name || ''}\nជំនាន់ ${c.schedule?.generation} (ឆ្នាំ ${c.schedule?.year})\nបន្ទប់: ${c.schedule?.classroom?.name || 'TBA'}`
+                  `${c.name}\n${c.schedule?.faculty?.name || ''}\nជំនាន់ ${c.schedule?.generation} (ឆ្នាំ ${c.schedule?.year})\nបន្ទប់: ${c.schedule?.classroom?.name || 'TBA'}`,
               )
               .join('\n\n')
           } else {

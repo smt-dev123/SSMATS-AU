@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AlertDialog } from '@radix-ui/themes'
-import DeleteDialog from '@/components/action/DeleteDialog'
 import toast from 'react-hot-toast'
 import type { CoursesType } from '@/types'
+import DeleteDialog from '@/components/action/DeleteDialog'
 import { deleteCourse } from '@/api/CourseAPI'
 
 interface Props {

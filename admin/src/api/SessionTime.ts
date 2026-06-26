@@ -1,5 +1,5 @@
-import api from '@/lib/axios'
 import type { SessionTimeType } from '@/types'
+import api from '@/lib/axios'
 
 export const getSessionTime = async () => {
   const res = await api.get('/session-times')
@@ -11,9 +11,7 @@ export const getSessionTimeById = async (id: number) => {
   return res.data
 }
 
-export const createSessionTime = async (
-  newSessionTime: SessionTimeType,
-) => {
+export const createSessionTime = async (newSessionTime: SessionTimeType) => {
   const res = await api.post('/session-times', newSessionTime)
   return res.data
 }

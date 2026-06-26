@@ -1,9 +1,9 @@
-import { GradeLevelTable } from '@/features/gradeLevel/GradeLevelTable'
-import { useTitle } from '@/hooks/useTitle'
 import { Button, Flex, Text } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import GradeLevleCreate from './-actions/Create'
+import { useTitle } from '@/hooks/useTitle'
+import { GradeLevelTable } from '@/features/gradeLevel/GradeLevelTable'
 import FetchData from '@/components/FetchData'
 import { getAcademicLevels } from '@/api/AcademicLevelAPI'
 

@@ -3,13 +3,13 @@ import * as Collapsible from '@radix-ui/react-collapsible'
 import * as Dialog from '@radix-ui/react-dialog'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import {
-  RiDashboardLine,
-  RiSettings3Line,
-  RiSchoolLine,
   RiArrowDownSLine,
   RiArrowRightSLine,
   RiCalendarEventLine,
+  RiDashboardLine,
   RiNotification2Line,
+  RiSchoolLine,
+  RiSettings3Line,
   RiUser3Line,
 } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next'
@@ -17,10 +17,10 @@ import { LiaChalkboardTeacherSolid } from 'react-icons/lia'
 import { AiOutlineSchedule } from 'react-icons/ai'
 import { PiStudent } from 'react-icons/pi'
 import { Link } from '@tanstack/react-router'
+import type { AcademicYearsType } from '@/types'
 import { useSessionContext } from '@/providers/AuthProvider'
 import { useSidebarStore } from '@/stores/sidebarStore'
 import { useAcademicYears } from '@/hooks/useAcademicYears'
-import type { AcademicYearsType } from '@/types'
 import { useAcademicStore } from '@/stores/useAcademicStore'
 import LogoDestop from '@/assets/au-logo.webp'
 import LogoMobile from '@/assets/au.webp'
@@ -31,7 +31,7 @@ interface MenuItem {
   icon?: any
   label: string
   url?: string
-  children?: MenuItem[]
+  children?: Array<MenuItem>
 }
 
 type SidebarProps = {
@@ -56,7 +56,7 @@ export default function Sidebar({
       setAcademicYear: (id: number, name: string) => void
     }
   const { data: academicYears = [], isLoading } = useAcademicYears() as any as {
-    data: AcademicYearsType[]
+    data: Array<AcademicYearsType>
     isLoading: boolean
   }
 
@@ -64,7 +64,7 @@ export default function Sidebar({
     if (academicYears.length > 0 && !selectedYearId) {
       const currentYear = academicYears.find((y) => y.isCurrent)
       if (currentYear) {
-        setAcademicYear(currentYear.id!, currentYear.name!)
+        setAcademicYear(currentYear.id!, currentYear.name)
       }
     }
   }, [academicYears, selectedYearId, setAcademicYear])
@@ -76,7 +76,7 @@ export default function Sidebar({
   const actualMobileOpen = mobileOpen !== undefined ? mobileOpen : isMobileOpen
   const actualOnMobileOpenChange = onMobileOpenChange || setMobileSidebar
 
-  const menuItems: MenuItem[] = [
+  const menuItems: Array<MenuItem> = [
     {
       key: 'dashboard',
       icon: <RiDashboardLine />,
@@ -177,7 +177,7 @@ export default function Sidebar({
     },
   ]
 
-  const filterMenu = (items: MenuItem[]): MenuItem[] => {
+  const filterMenu = (items: Array<MenuItem>): Array<MenuItem> => {
     return items
       .filter((item) => {
         const allowedRoles = menuPermissions[item.key]
@@ -267,7 +267,7 @@ export default function Sidebar({
                 {academicYears.map((year) => (
                   <DropdownMenu.Item
                     key={year.id}
-                    onClick={() => setAcademicYear(year.id!, year.name!)}
+                    onClick={() => setAcademicYear(year.id!, year.name)}
                     className={`flex items-center justify-between px-3 py-2.5 text-sm rounded-lg outline-none cursor-pointer transition-colors ${selectedYearId === year.id ? 'bg-blue-600 text-white font-bold' : 'text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700'}`}
                   >
                     {year.name}

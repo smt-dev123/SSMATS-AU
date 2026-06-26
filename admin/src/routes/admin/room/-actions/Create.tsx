@@ -7,6 +7,7 @@ import type { BuildingType, RoomType } from '@/types'
 import { createRoom } from '@/api/RoomAPI'
 import { getBuilding } from '@/api/BuildingAPI'
 import { FormInput, FormSelect } from '@/components/ui/forms/Input'
+
 const RoomCreate = () => {
   const {
     control,
@@ -24,7 +25,7 @@ const RoomCreate = () => {
     queryFn: () => getBuilding('all'),
   })
 
-  const buildings = ((buildingsResponse as any)?.data as BuildingType[]) || []
+  const buildings = ((buildingsResponse)?.data as Array<BuildingType>) || []
 
   const mutation = useMutation({
     mutationFn: (formData: RoomType) => createRoom(formData),

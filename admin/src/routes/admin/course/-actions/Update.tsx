@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Button, Dialog, Flex, Select, Text, TextField } from '@radix-ui/themes'
+import { Box, Button, Dialog, Flex, Grid, Select, Text, TextField  } from '@radix-ui/themes'
 import { Controller, useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
@@ -8,7 +8,6 @@ import { updateCourse } from '@/api/CourseAPI'
 import { getTeachers } from '@/api/TeacherAPI'
 import { getSchedules } from '@/api/SchedulesAPI'
 import { useAcademicStore } from '@/stores/useAcademicStore'
-import { Grid, Box } from '@radix-ui/themes'
 
 interface Props {
   course: CoursesType | null
@@ -83,10 +82,10 @@ const CourseUpdate = ({ course, open, onOpenChange }: Props) => {
 
   const scheduleList = Array.isArray(schedules)
     ? schedules
-    : (schedules as any).data || []
+    : (schedules).data || []
   const teacherList = Array.isArray(teachers)
     ? teachers
-    : (teachers as any).data || []
+    : (teachers).data || []
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -175,7 +174,7 @@ const CourseUpdate = ({ course, open, onOpenChange }: Props) => {
                   rules={{ required: 'ត្រូវជ្រើសរើសថ្ងៃ' }}
                   render={({ field }) => (
                     <Select.Root
-                      value={field.value as string}
+                      value={field.value}
                       onValueChange={field.onChange}
                     >
                       <Select.Trigger

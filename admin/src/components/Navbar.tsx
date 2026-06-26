@@ -1,13 +1,13 @@
 import { Avatar, DropdownMenu } from '@radix-ui/themes'
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
+import { RiMenu2Line } from 'react-icons/ri'
 import Language from './ui/Language'
 import DarkMode from './ui/DarkMode'
-import { useTranslation } from 'react-i18next'
 import { Notifications } from './ui/Notifications'
 import Expand from './ui/Expand'
 import { useSidebarStore } from '@/stores/sidebarStore'
 import { useAuth } from '@/stores/auth'
-import { RiMenu2Line } from 'react-icons/ri'
 
 const Navbar = () => {
   const { toggleMobileSidebar, toggleDesktopSidebar } = useSidebarStore()
@@ -41,7 +41,8 @@ const Navbar = () => {
 
         {/* Name */}
         <h2 className="hidden min-[480px]:block font-khmer text-lg font-medium text-gray-800 dark:text-white">
-          {t('Navbar.hello')}{', '}
+          {t('Navbar.hello')}
+          {', '}
           <b className="font-semibold text-gray-900 dark:text-white">
             {user?.name || 'User'}
           </b>
@@ -67,8 +68,12 @@ const Navbar = () => {
             <button className="outline-none focus:outline-none border-none bg-transparent cursor-pointer rounded-full hover:opacity-80 transition-opacity">
               <Avatar
                 size="2"
-                src={user?.image || "https://ui-avatars.com/api/?name=" + encodeURIComponent(user?.name || 'User')}
-                fallback={user?.name?.[0]?.toUpperCase() || "U"}
+                src={
+                  user?.image ||
+                  'https://ui-avatars.com/api/?name=' +
+                    encodeURIComponent(user?.name || 'User')
+                }
+                fallback={user?.name?.[0]?.toUpperCase() || 'U'}
                 radius="full"
               />
             </button>
@@ -77,7 +82,10 @@ const Navbar = () => {
             <DropdownMenu.Item>
               <Link to="/admin/setting">ការកំណត់</Link>
             </DropdownMenu.Item>
-            <DropdownMenu.Item onClick={logout} style={{ color: 'red', cursor: 'pointer' }}>
+            <DropdownMenu.Item
+              onClick={logout}
+              style={{ color: 'red', cursor: 'pointer' }}
+            >
               ចាកចេញ
             </DropdownMenu.Item>
           </DropdownMenu.Content>

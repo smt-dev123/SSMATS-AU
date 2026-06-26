@@ -1,5 +1,7 @@
+import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
 import { authClient } from '@/lib/auth-client'
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
+
+import DarkMode from '@/components/ui/DarkMode'
 
 export const Route = createFileRoute('/auth')({
   beforeLoad: async () => {
@@ -10,8 +12,6 @@ export const Route = createFileRoute('/auth')({
   },
   component: RouteComponent,
 })
-
-import DarkMode from '@/components/ui/DarkMode'
 
 function RouteComponent() {
   return (

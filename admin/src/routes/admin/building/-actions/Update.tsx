@@ -1,11 +1,11 @@
-import type { BuildingType } from '@/types'
 import { Button, Dialog, Flex, IconButton } from '@radix-ui/themes'
 import { FaRegEdit } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { updateBuilding } from '@/api/BuildingAPI'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
+import type { BuildingType } from '@/types'
+import { updateBuilding } from '@/api/BuildingAPI'
 import { FormInput } from '@/components/ui/forms/Input'
 import { FormCheckbox } from '@/components/ui/forms/Checkbox'
 

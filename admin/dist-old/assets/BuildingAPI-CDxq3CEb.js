@@ -1,0 +1,1 @@
+import{a as s}from"./axios-Y4V3X_W2.js";const d=async(a,t,e,n)=>(await s.get("/buildings",{params:{name:a,search:t,page:e,limit:n}})).data,u=async a=>(await s.post("/buildings",a)).data.data,c=async(a,t)=>(await s.put(`/buildings/${a}`,t)).data.data,o=async a=>(await s.delete(`/buildings/${a}`)).data.data;export{u as c,o as d,d as g,c as u};

@@ -1,10 +1,10 @@
-import { getMajors } from '@/api/MajorAPI'
-import { MajorTable } from '@/features/major/MajorTable'
-import { useTitle } from '@/hooks/useTitle'
 import { Button, Flex, Text } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import MajorCreate from './-actions/Create'
+import { useTitle } from '@/hooks/useTitle'
+import { MajorTable } from '@/features/major/MajorTable'
+import { getMajors } from '@/api/MajorAPI'
 import FetchData from '@/components/FetchData'
 import { useSessionContext } from '@/providers/AuthProvider'
 

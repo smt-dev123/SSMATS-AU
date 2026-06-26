@@ -1,5 +1,6 @@
-import api from '@/lib/axios'
 import type { AcademicYearsType } from '@/types'
+import api from '@/lib/axios'
+
 export const getAcademicYear = async () => {
   const res = await api.get('/academic-years')
   return res.data

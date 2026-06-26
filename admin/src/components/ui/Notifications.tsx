@@ -1,16 +1,16 @@
-import { Popover, Box, Text, Flex } from '@radix-ui/themes'
+import { Box, Flex, Popover, Text } from '@radix-ui/themes'
 import { IoNotificationsOutline } from 'react-icons/io5'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Link } from '@tanstack/react-router'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import {
-  getNotifications,
   getMyNotifications,
+  getNotifications,
   markNotificationAsRead,
 } from '@/api/NotificationAPI'
 import { useAuth } from '@/stores/auth'
-import { Link } from '@tanstack/react-router'
-import { useState, useEffect } from 'react'
 import { useSessionContext } from '@/providers/AuthProvider'
-import toast from 'react-hot-toast'
 
 export function Notifications() {
   const { user } = useAuth()

@@ -1,15 +1,15 @@
+import { Badge, Checkbox, Flex, Table } from '@radix-ui/themes'
+import { STATUS_OPTIONS } from '../constants'
 import {
   CellTable,
   HeaderTable,
   RootTable,
   RowTable,
 } from '@/components/ui/tables/table'
-import { Badge, Checkbox, Flex, Table } from '@radix-ui/themes'
-import { STATUS_OPTIONS } from '../constants'
 
 interface AttendanceTableProps {
-  students: any[]
-  activeStudents: any[]
+  students: Array<any>
+  activeStudents: Array<any>
   selected: Record<string, string>
   notes: Record<string, string>
   isEditing: boolean

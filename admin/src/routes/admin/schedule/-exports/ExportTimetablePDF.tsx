@@ -1,11 +1,11 @@
 import {
   Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
   Font,
   Image,
+  Page,
+  StyleSheet,
+  Text,
+  View,
 } from '@react-pdf/renderer'
 import KhmerOSsiemreap from '@/fonts/KhmerOSsiemreap.ttf'
 import KhmerOSMoulLight from '@/fonts/KhmerOSMoulLight.ttf'
@@ -159,19 +159,36 @@ const styles = StyleSheet.create({
 const toKhmerNum = (num: number | string | undefined | null) => {
   if (num === undefined || num === null) return ''
   const khmerNumbers = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩']
-  return num.toString().split('').map(d => /[0-9]/.test(d) ? khmerNumbers[parseInt(d)] : d).join('')
+  return num
+    .toString()
+    .split('')
+    .map((d) => (/[0-9]/.test(d) ? khmerNumbers[parseInt(d)] : d))
+    .join('')
 }
 
 const getKhmerDate = (dateString: string) => {
   if (!dateString) return ''
   const date = new Date(dateString)
-  const khmerMonths = ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ']
+  const khmerMonths = [
+    'មករា',
+    'កុម្ភៈ',
+    'មីនា',
+    'មេសា',
+    'ឧសភា',
+    'មិថុនា',
+    'កក្កដា',
+    'សីហា',
+    'កញ្ញា',
+    'តុលា',
+    'វិច្ឆិកា',
+    'ធ្នូ',
+  ]
   return `ថ្ងៃទី${toKhmerNum(date.getDate())} ខែ${khmerMonths[date.getMonth()]} ឆ្នាំ${toKhmerNum(date.getFullYear())}`
 }
 
 export const TimetableReport = ({ schedule }: { schedule: any }) => {
   const courses = schedule?.courses || []
-  
+
   const days = [
     { key: 'monday', label: 'ចន្ទ' },
     { key: 'tuesday', label: 'អង្គារ' },
@@ -182,7 +199,14 @@ export const TimetableReport = ({ schedule }: { schedule: any }) => {
     { key: 'sunday', label: 'អាទិត្យ' },
   ]
 
-  const shiftText = schedule?.sessionTime?.shift === 'morning' ? 'ព្រឹក' : schedule?.sessionTime?.shift === 'evening' ? 'ល្ងាច' : schedule?.sessionTime?.shift === 'night' ? 'យប់' : ''
+  const shiftText =
+    schedule?.sessionTime?.shift === 'morning'
+      ? 'ព្រឹក'
+      : schedule?.sessionTime?.shift === 'evening'
+        ? 'ល្ងាច'
+        : schedule?.sessionTime?.shift === 'night'
+          ? 'យប់'
+          : ''
   const academicLevelText = schedule?.academicLevel?.level || 'បរិញ្ញាបត្រ'
 
   return (
@@ -204,13 +228,16 @@ export const TimetableReport = ({ schedule }: { schedule: any }) => {
             កាលវិភាគសិក្សាថ្នាក់{academicLevelText}
           </Text>
           <Text style={styles.subTitle}>
-            ជំនាន់ទី{toKhmerNum(schedule?.generation)} ឆ្នាំទី{toKhmerNum(schedule?.year)} ឆមាសទី{toKhmerNum(schedule?.semester)} ឆ្នាំសិក្សា{toKhmerNum(schedule?.academicYear?.name)}
+            ជំនាន់ទី{toKhmerNum(schedule?.generation)} ឆ្នាំទី
+            {toKhmerNum(schedule?.year)} ឆមាសទី{toKhmerNum(schedule?.semester)}{' '}
+            ឆ្នាំសិក្សា{toKhmerNum(schedule?.academicYear?.name)}
           </Text>
           <Text style={[styles.subTitle, { fontSize: 11 }]}>
             មុខជំនាញ ៖ {schedule?.department?.name || ''}
           </Text>
           <Text style={styles.detailText}>
-            ចាប់ផ្ដើមពី{getKhmerDate(schedule?.semesterStart)} បញ្ចប់ត្រឹម {getKhmerDate(schedule?.semesterEnd)}
+            ចាប់ផ្ដើមពី{getKhmerDate(schedule?.semesterStart)} បញ្ចប់ត្រឹម{' '}
+            {getKhmerDate(schedule?.semesterEnd)}
           </Text>
           <Text style={styles.detailText}>
             វេនសិក្សា ៖ {shiftText} បន្ទប់ ៖ {schedule?.classroom?.name || ''}
@@ -224,7 +251,14 @@ export const TimetableReport = ({ schedule }: { schedule: any }) => {
               <Text style={styles.tableHeaderText}>Sessions/ម៉ោង </Text>
             </View>
             {days.map((day, i) => (
-              <View key={day.key} style={[styles.cell, styles.colDay, i === days.length - 1 ? styles.lastCell : {}]}>
+              <View
+                key={day.key}
+                style={[
+                  styles.cell,
+                  styles.colDay,
+                  i === days.length - 1 ? styles.lastCell : {},
+                ]}
+              >
                 <Text style={styles.tableHeaderText}>{day.label} </Text>
               </View>
             ))}
@@ -233,20 +267,36 @@ export const TimetableReport = ({ schedule }: { schedule: any }) => {
           {/* Session 1 Row */}
           <View style={styles.tableRow}>
             <View style={[styles.cell, styles.colSession]}>
-              <Text style={{ textAlign: 'center', fontSize: 9 }}>Session 1 </Text>
+              <Text style={{ textAlign: 'center', fontSize: 9 }}>
+                Session 1{' '}
+              </Text>
               <Text style={{ textAlign: 'center', fontSize: 9, marginTop: 4 }}>
-                {schedule?.sessionTime?.firstSessionStartTime}-{schedule?.sessionTime?.firstSessionEndTime} 
+                {schedule?.sessionTime?.firstSessionStartTime}-
+                {schedule?.sessionTime?.firstSessionEndTime}
               </Text>
             </View>
             {days.map((day, i) => {
-              const course = courses.find((c: any) => c.day.toLowerCase() === day.key)
+              const course = courses.find(
+                (c: any) => c.day.toLowerCase() === day.key,
+              )
               return (
-                <View key={day.key} style={[styles.cell, styles.colDay, i === days.length - 1 ? styles.lastCell : {}]}>
+                <View
+                  key={day.key}
+                  style={[
+                    styles.cell,
+                    styles.colDay,
+                    i === days.length - 1 ? styles.lastCell : {},
+                  ]}
+                >
                   {course ? (
                     <>
                       <Text style={styles.courseText}>{course.name} </Text>
-                      <Text style={styles.teacherText}>ល. {course.teacher?.name} </Text>
-                      <Text style={styles.teacherText}>{course.teacher?.phone} </Text>
+                      <Text style={styles.teacherText}>
+                        ល. {course.teacher?.name}{' '}
+                      </Text>
+                      <Text style={styles.teacherText}>
+                        {course.teacher?.phone}{' '}
+                      </Text>
                     </>
                   ) : null}
                 </View>
@@ -257,20 +307,36 @@ export const TimetableReport = ({ schedule }: { schedule: any }) => {
           {/* Session 2 Row */}
           <View style={[styles.tableRow, { borderBottomWidth: 0 }]}>
             <View style={[styles.cell, styles.colSession]}>
-              <Text style={{ textAlign: 'center', fontSize: 9 }}>Session 2</Text>
+              <Text style={{ textAlign: 'center', fontSize: 9 }}>
+                Session 2
+              </Text>
               <Text style={{ textAlign: 'center', fontSize: 9, marginTop: 4 }}>
-                {schedule?.sessionTime?.secondSessionStartTime}-{schedule?.sessionTime?.secondSessionEndTime}
+                {schedule?.sessionTime?.secondSessionStartTime}-
+                {schedule?.sessionTime?.secondSessionEndTime}
               </Text>
             </View>
             {days.map((day, i) => {
-              const course = courses.find((c: any) => c.day.toLowerCase() === day.key)
+              const course = courses.find(
+                (c: any) => c.day.toLowerCase() === day.key,
+              )
               return (
-                <View key={day.key} style={[styles.cell, styles.colDay, i === days.length - 1 ? styles.lastCell : {}]}>
+                <View
+                  key={day.key}
+                  style={[
+                    styles.cell,
+                    styles.colDay,
+                    i === days.length - 1 ? styles.lastCell : {},
+                  ]}
+                >
                   {course ? (
                     <>
                       <Text style={styles.courseText}>{course.name} </Text>
-                      <Text style={styles.teacherText}>ល. {course.teacher?.name} </Text>
-                      <Text style={styles.teacherText}>{course.teacher?.phone} </Text>
+                      <Text style={styles.teacherText}>
+                        ល. {course.teacher?.name}{' '}
+                      </Text>
+                      <Text style={styles.teacherText}>
+                        {course.teacher?.phone}{' '}
+                      </Text>
                     </>
                   ) : null}
                 </View>
@@ -284,20 +350,28 @@ export const TimetableReport = ({ schedule }: { schedule: any }) => {
           <View style={styles.signatureBox}>
             <Text style={styles.signatureTitle}>បានឃើញ និងឯកភាព </Text>
             <Text style={styles.signatureRole}>សាកលវិទ្យាធិការ </Text>
-            <Text style={styles.signatureTitle}>....................................</Text>
+            <Text style={styles.signatureTitle}>
+              ....................................
+            </Text>
           </View>
 
           <View style={styles.signatureBox}>
             <Text style={styles.signatureTitle}>បានពិនិត្យ និងឯកភាព </Text>
             <Text style={styles.signatureRole}>សាកលវិទ្យាធិការរង </Text>
-            <Text style={styles.signatureTitle}>....................................</Text>
+            <Text style={styles.signatureTitle}>
+              ....................................
+            </Text>
           </View>
 
           <View style={styles.signatureBox}>
-            <Text style={styles.dateText}>{`ក្រុងសៀមរាប ថ្ងៃទី........ ខែ........... ឆ្នាំ............`}</Text>
-            <Text style={styles.signatureTitle}>រៀបចំដោយ  </Text>
+            <Text
+              style={styles.dateText}
+            >{`ក្រុងសៀមរាប ថ្ងៃទី........ ខែ........... ឆ្នាំ............`}</Text>
+            <Text style={styles.signatureTitle}>រៀបចំដោយ </Text>
             <Text style={styles.signatureRole}>ប្រធាន ក.ស.រ </Text>
-            <Text style={styles.signatureTitle}>....................................</Text>
+            <Text style={styles.signatureTitle}>
+              ....................................
+            </Text>
           </View>
         </View>
       </Page>

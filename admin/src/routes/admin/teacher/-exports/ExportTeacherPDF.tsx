@@ -1,11 +1,11 @@
 import {
   Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
   Font,
   Image,
+  Page,
+  StyleSheet,
+  Text,
+  View,
 } from '@react-pdf/renderer'
 import KhmerOSsiemreap from '@/fonts/KhmerOSsiemreap.ttf'
 import KhmerOSMoulLight from '@/fonts/KhmerOSMoulLight.ttf'
@@ -162,7 +162,7 @@ export const TeacherTimetableReport = ({
   courses,
 }: {
   teacher: any
-  courses: any[]
+  courses: Array<any>
 }) => {
   const uniqueSessionTimes = Array.from(
     new Map(

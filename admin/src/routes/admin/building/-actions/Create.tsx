@@ -1,10 +1,10 @@
-import type { BuildingType } from '@/types'
 import { Button, Dialog, Flex, Text, TextField } from '@radix-ui/themes'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { createBuilding } from '@/api/BuildingAPI'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import type { BuildingType } from '@/types'
+import { createBuilding } from '@/api/BuildingAPI'
 import { FormInput } from '@/components/ui/forms/Input'
 
 const BuildingCreate = () => {

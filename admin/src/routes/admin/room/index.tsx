@@ -1,14 +1,13 @@
-import { getRoom } from '@/api/RoomAPI'
-import { RoomTable } from '@/features/room/RoomTable'
 import { Flex, Text } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate  } from '@tanstack/react-router'
 import RoomCreate from './-actions/Create'
+import { RoomTable } from '@/features/room/RoomTable'
+import { getRoom } from '@/api/RoomAPI'
 import { useTitle } from '@/hooks/useTitle'
 import FetchData from '@/components/FetchData'
 import { useSessionContext } from '@/providers/AuthProvider'
 
-import { useNavigate } from '@tanstack/react-router'
 
 type RoomSearch = {
   page?: number
@@ -41,7 +40,7 @@ function RouteComponent() {
     refetchOnWindowFocus: false,
   })
 
-  const total = (data as any)?.total || 0
+  const total = (data)?.total || 0
   const pageCount = Math.ceil(total / (limit ?? 10))
 
   const onPaginationChange = (updater: any) => {

@@ -39,7 +39,11 @@ const DarkMode = () => {
       className="flex items-center text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white text-2xl transition-colors"
       aria-label="Toggle dark mode"
     >
-      {theme === 'dark' ? <RiSunFill className="text-yellow-400" /> : <RiMoonFill className="text-slate-700" />}
+      {theme === 'dark' ? (
+        <RiSunFill className="text-yellow-400" />
+      ) : (
+        <RiMoonFill className="text-slate-700" />
+      )}
     </button>
   )
 }

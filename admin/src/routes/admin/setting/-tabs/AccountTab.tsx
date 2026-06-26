@@ -8,7 +8,7 @@ import {
   Text,
   TextField,
 } from '@radix-ui/themes'
-import type { UseFormRegister, FieldErrors } from 'react-hook-form'
+import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 import type { RefObject } from 'react'
 import { FormInput } from '@/components/ui/forms/Input'
 

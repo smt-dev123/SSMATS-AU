@@ -1,11 +1,11 @@
 import {
   Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
   Font,
   Image,
+  Page,
+  StyleSheet,
+  Text,
+  View,
 } from '@react-pdf/renderer'
 import KhmerOSsiemreap from '@/fonts/KhmerOSsiemreap.ttf'
 import KhmerOSMoulLight from '@/fonts/KhmerOSMoulLight.ttf'
@@ -153,7 +153,13 @@ const styles = StyleSheet.create({
   },
 })
 
-export const AttendanceReportDocument = ({ course, students }: { course: any, students: any[] }) => {
+export const AttendanceReportDocument = ({
+  course,
+  students,
+}: {
+  course: any
+  students: Array<any>
+}) => {
   return (
     <Document title={`វត្តមាន_${course?.name || ''}`}>
       <Page size="A4" style={styles.page}>
@@ -173,29 +179,51 @@ export const AttendanceReportDocument = ({ course, students }: { course: any, st
             របាយការណ៍វត្តមាន និងពិន្ទុប្រចាំឆមាស
           </Text>
           <Text style={styles.subTitle}>
-            ឆ្នាំទី {course?.schedule?.year || '--'} ឆមាសទី {course?.schedule?.semester || '--'} | ជំនាញ៖ {course?.schedule?.department?.name || '--'}
+            ឆ្នាំទី {course?.schedule?.year || '--'} ឆមាសទី{' '}
+            {course?.schedule?.semester || '--'} | ជំនាញ៖{' '}
+            {course?.schedule?.department?.name || '--'}
           </Text>
           <Text style={styles.subTitle}>
-            មុខវិជ្ជា៖ <Text style={styles.boldText}>{course?.name || '--'}</Text>
+            មុខវិជ្ជា៖{' '}
+            <Text style={styles.boldText}>{course?.name || '--'}</Text>
           </Text>
         </View>
 
         <View style={styles.table}>
           <View style={[styles.tableRow, styles.tableHeader]}>
-            <View style={[styles.cell, styles.colNo]}><Text style={styles.tableHeaderText}>ល.រ </Text></View>
-            <View style={[styles.cell, styles.colName]}><Text style={styles.tableHeaderText}>ឈ្មោះនិស្សិត </Text></View>
-            <View style={[styles.cell, styles.colGender]}><Text style={styles.tableHeaderText}>ភេទ </Text></View>
-            <View style={[styles.cell, styles.colPhone]}><Text style={styles.tableHeaderText}>លេខទូរស័ព្ទ </Text></View>
-            <View style={[styles.cell, styles.colLeave]}><Text style={styles.tableHeaderText}>ច្បាប់ </Text></View>
-            <View style={[styles.cell, styles.colAbsent]}><Text style={styles.tableHeaderText}>អវត្តមាន </Text></View>
-            <View style={[styles.cell, styles.colTotal]}><Text style={styles.tableHeaderText}>សរុប </Text></View>
-            <View style={[styles.cell, styles.colPercent]}><Text style={styles.tableHeaderText}>ភាគរយ </Text></View>
-            <View style={[styles.cell, styles.colScore, styles.lastCell]}><Text style={styles.tableHeaderText}>ពិន្ទុវត្តមាន </Text></View>
+            <View style={[styles.cell, styles.colNo]}>
+              <Text style={styles.tableHeaderText}>ល.រ </Text>
+            </View>
+            <View style={[styles.cell, styles.colName]}>
+              <Text style={styles.tableHeaderText}>ឈ្មោះនិស្សិត </Text>
+            </View>
+            <View style={[styles.cell, styles.colGender]}>
+              <Text style={styles.tableHeaderText}>ភេទ </Text>
+            </View>
+            <View style={[styles.cell, styles.colPhone]}>
+              <Text style={styles.tableHeaderText}>លេខទូរស័ព្ទ </Text>
+            </View>
+            <View style={[styles.cell, styles.colLeave]}>
+              <Text style={styles.tableHeaderText}>ច្បាប់ </Text>
+            </View>
+            <View style={[styles.cell, styles.colAbsent]}>
+              <Text style={styles.tableHeaderText}>អវត្តមាន </Text>
+            </View>
+            <View style={[styles.cell, styles.colTotal]}>
+              <Text style={styles.tableHeaderText}>សរុប </Text>
+            </View>
+            <View style={[styles.cell, styles.colPercent]}>
+              <Text style={styles.tableHeaderText}>ភាគរយ </Text>
+            </View>
+            <View style={[styles.cell, styles.colScore, styles.lastCell]}>
+              <Text style={styles.tableHeaderText}>ពិន្ទុវត្តមាន </Text>
+            </View>
           </View>
 
           {students.length > 0 ? (
             students.map((student: any, index: number) => {
-              const totalAbsent = Number(student.leave || 0) + Number(student.absent || 0)
+              const totalAbsent =
+                Number(student.leave || 0) + Number(student.absent || 0)
               const attendanceRate = `${Math.max(0, 100 - totalAbsent * 5)}%`
 
               return (
@@ -203,18 +231,64 @@ export const AttendanceReportDocument = ({ course, students }: { course: any, st
                   key={index}
                   style={[
                     styles.tableRow,
-                    index === students.length - 1 ? { borderBottomWidth: 0 } : {},
+                    index === students.length - 1
+                      ? { borderBottomWidth: 0 }
+                      : {},
                   ]}
                 >
-                  <View style={[styles.cell, styles.colNo]}><Text style={{ textAlign: 'center' }}>{index + 1}</Text></View>
-                  <View style={[styles.cell, styles.colName]}><Text style={{ textTransform: 'uppercase' }}>{student.name}</Text></View>
-                  <View style={[styles.cell, styles.colGender]}><Text style={{ textAlign: 'center' }}>{student.gender === 'male' ? 'ប្រុស' : student.gender === 'female' ? 'ស្រី' : student.gender}</Text></View>
-                  <View style={[styles.cell, styles.colPhone]}><Text style={{ textAlign: 'center' }}>{student.phone}</Text></View>
-                  <View style={[styles.cell, styles.colLeave]}><Text style={{ textAlign: 'center' }}>{student.leave}</Text></View>
-                  <View style={[styles.cell, styles.colAbsent]}><Text style={{ textAlign: 'center' }}>{student.absent}</Text></View>
-                  <View style={[styles.cell, styles.colTotal]}><Text style={{ textAlign: 'center', fontFamily: 'KhmerOSMoulLight' }}>{totalAbsent}</Text></View>
-                  <View style={[styles.cell, styles.colPercent]}><Text style={{ textAlign: 'center' }}>{attendanceRate}</Text></View>
-                  <View style={[styles.cell, styles.colScore, styles.lastCell]}><Text style={{ textAlign: 'center', fontFamily: 'KhmerOSMoulLight' }}>{student.score}</Text></View>
+                  <View style={[styles.cell, styles.colNo]}>
+                    <Text style={{ textAlign: 'center' }}>{index + 1}</Text>
+                  </View>
+                  <View style={[styles.cell, styles.colName]}>
+                    <Text style={{ textTransform: 'uppercase' }}>
+                      {student.name}
+                    </Text>
+                  </View>
+                  <View style={[styles.cell, styles.colGender]}>
+                    <Text style={{ textAlign: 'center' }}>
+                      {student.gender === 'male'
+                        ? 'ប្រុស'
+                        : student.gender === 'female'
+                          ? 'ស្រី'
+                          : student.gender}
+                    </Text>
+                  </View>
+                  <View style={[styles.cell, styles.colPhone]}>
+                    <Text style={{ textAlign: 'center' }}>{student.phone}</Text>
+                  </View>
+                  <View style={[styles.cell, styles.colLeave]}>
+                    <Text style={{ textAlign: 'center' }}>{student.leave}</Text>
+                  </View>
+                  <View style={[styles.cell, styles.colAbsent]}>
+                    <Text style={{ textAlign: 'center' }}>
+                      {student.absent}
+                    </Text>
+                  </View>
+                  <View style={[styles.cell, styles.colTotal]}>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontFamily: 'KhmerOSMoulLight',
+                      }}
+                    >
+                      {totalAbsent}
+                    </Text>
+                  </View>
+                  <View style={[styles.cell, styles.colPercent]}>
+                    <Text style={{ textAlign: 'center' }}>
+                      {attendanceRate}
+                    </Text>
+                  </View>
+                  <View style={[styles.cell, styles.colScore, styles.lastCell]}>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontFamily: 'KhmerOSMoulLight',
+                      }}
+                    >
+                      {student.score}
+                    </Text>
+                  </View>
                 </View>
               )
             })
@@ -230,14 +304,20 @@ export const AttendanceReportDocument = ({ course, students }: { course: any, st
           <View style={styles.signatureBox}>
             <Text style={styles.signatureTitle}>បានឃើញ និងឯកភាព</Text>
             <Text style={styles.signatureRole}>ព្រឹទ្ធបុរស</Text>
-            <Text style={styles.signatureTitle}>....................................</Text>
+            <Text style={styles.signatureTitle}>
+              ....................................
+            </Text>
           </View>
 
           <View style={styles.signatureBox}>
-            <Text style={styles.dateText}>{`ថ្ងៃទី........ ខែ........... ឆ្នាំ............`}</Text>
+            <Text
+              style={styles.dateText}
+            >{`ថ្ងៃទី........ ខែ........... ឆ្នាំ............`}</Text>
             <Text style={styles.signatureTitle}>សាស្ត្រាចារ្យមុខវិជ្ជា</Text>
             <Text style={styles.signatureRole}> </Text>
-            <Text style={styles.signatureTitle}>....................................</Text>
+            <Text style={styles.signatureTitle}>
+              ....................................
+            </Text>
           </View>
         </View>
       </Page>

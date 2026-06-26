@@ -1,23 +1,23 @@
 import {
+  Box,
+  Button,
   Dialog,
   Flex,
-  IconButton,
   Heading,
-  Button,
-  Box,
+  IconButton,
   Spinner,
   Text,
 } from '@radix-ui/themes'
 import { FaCalendarAlt } from 'react-icons/fa'
-import type { TeachersType } from '@/types'
 import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
+import { TeacherTimetableReport } from '../-exports/ExportTeacherPDF'
+import ExportTeacherExcel from '../-exports/ExportTeacherExcel'
+import type { TeachersType } from '@/types'
 import { getCourses } from '@/api/CourseAPI'
 import { useAcademicStore } from '@/stores/useAcademicStore'
 import { TeacherTimetable } from '@/features/schedule/components/TeacherTimetable'
-import { useState } from 'react'
 import PDFDownload from '@/components/ui/PDFDownload'
-import { TeacherTimetableReport } from '../-exports/ExportTeacherPDF'
-import ExportTeacherExcel from '../-exports/ExportTeacherExcel'
 
 interface Props {
   data: TeachersType
@@ -100,7 +100,9 @@ const TeacherScheduleDialog = ({ data }: Props) => {
             {courses.length > 0 && (
               <>
                 <PDFDownload
-                  document={<TeacherTimetableReport teacher={data} courses={courses} />}
+                  document={
+                    <TeacherTimetableReport teacher={data} courses={courses} />
+                  }
                   fileName={`កាលវិភាគបង្រៀន_${data.name}.pdf`}
                 />
                 <ExportTeacherExcel teacher={data} courses={courses} />

@@ -1,6 +1,7 @@
-import React, { type ReactNode } from 'react'
-import { useAuth } from '@/stores/auth'
+import React from 'react'
 import { Navigate } from '@tanstack/react-router'
+import type {ReactNode} from 'react';
+import { useAuth } from '@/stores/auth'
 
 interface Props {
   children: ReactNode

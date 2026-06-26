@@ -1,8 +1,6 @@
-import { Box, Text, TextField, Select, TextArea } from '@radix-ui/themes'
-import {
-  Controller,
-  type FieldError,
-} from 'react-hook-form'
+import { Box, Select, Text, TextArea, TextField } from '@radix-ui/themes'
+import { Controller  } from 'react-hook-form'
+import type {FieldError} from 'react-hook-form';
 
 interface BaseProps {
   label: string
@@ -38,9 +36,9 @@ interface InputProps extends BaseProps {
 
 interface SelectProps extends BaseProps {
   control: any
-  options: { [key: string]: any }[]
+  options: Array<{ [key: string]: any }>
   disabled?: boolean
-  disabledOptions?: string[]
+  disabledOptions?: Array<string>
   labelKey?: string
   valueKey?: string
   rules?: object

@@ -1,5 +1,6 @@
 import { Box, Checkbox, Flex, Text } from '@radix-ui/themes'
-import { Controller, type Control } from 'react-hook-form'
+import {  Controller } from 'react-hook-form'
+import type {Control} from 'react-hook-form';
 
 interface FormCheckboxProps {
   label: string

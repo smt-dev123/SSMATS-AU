@@ -1,0 +1,1 @@
+import{a as e}from"./axios-Y4V3X_W2.js";const i=async()=>(await e.get("/session-times")).data,o=async s=>(await e.post("/session-times",s)).data,r=async(s,t)=>(await e.put(`/session-times/${s}`,t)).data,c=async s=>(await e.delete(`/session-times/${s}`)).data;export{o as c,c as d,i as g,r as u};

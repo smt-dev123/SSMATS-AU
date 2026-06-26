@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Dialog, Flex, Grid, IconButton } from '@radix-ui/themes'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
+import { FaRegEdit } from 'react-icons/fa'
 import type { UsersType } from '@/types'
 import { updateUsers } from '@/api/UserAPI'
 import { FormInput, FormSelect } from '@/components/ui/forms/Input'
-import { FaRegEdit } from 'react-icons/fa'
 
 interface Props {
   user: UsersType

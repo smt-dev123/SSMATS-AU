@@ -17,11 +17,11 @@ export interface AdditionalInfo {
 
 interface GenerateExcelOptions {
   title: string
-  data: any[]
-  columns: ColumnDefinition[]
+  data: Array<any>
+  columns: Array<ColumnDefinition>
   fileName: string
   sheetName?: string
-  additionalInfo?: AdditionalInfo[]
+  additionalInfo?: Array<AdditionalInfo>
 }
 
 export const generateExcelReport = async ({
@@ -169,7 +169,9 @@ export const generateExcelReport = async ({
     worksheet.mergeCells(
       `${secondLastColLetter}${footerRowIndex}:${lastColLetter}${footerRowIndex}`,
     )
-    const dateCell = worksheet.getCell(`${secondLastColLetter}${footerRowIndex}`)
+    const dateCell = worksheet.getCell(
+      `${secondLastColLetter}${footerRowIndex}`,
+    )
     dateCell.value = `ក្រុងសៀមរាប ថ្ងៃទី........ ខែ........... ឆ្នាំ............`
     dateCell.font = { name: 'Khmer OS Battambang', size: 10 }
     dateCell.alignment = { horizontal: 'center' }

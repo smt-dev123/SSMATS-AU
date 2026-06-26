@@ -1,17 +1,17 @@
 import { useEffect, useMemo } from 'react'
 import {
+  Box,
   Button,
   Dialog,
   Flex,
-  Text,
-  Box,
   Grid,
   Spinner,
+  Text,
 } from '@radix-ui/themes'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
-import { FaPlus, FaEdit } from 'react-icons/fa'
+import { FaEdit, FaPlus } from 'react-icons/fa'
 import { CourseItem } from './components/ScheduleFormComponents'
 import { getScheduleById, updateSchedule } from '@/api/SchedulesAPI'
 import { getFaculties } from '@/api/FacultyAPI'
@@ -21,7 +21,7 @@ import { getAcademicYear } from '@/api/AcademicYearAPI'
 import { getRoom } from '@/api/RoomAPI'
 import { getTeachers } from '@/api/TeacherAPI'
 import { getSessionTime } from '@/api/SessionTime'
-import { FormSelect, FormInput } from '@/components/ui/forms/Input'
+import { FormInput, FormSelect } from '@/components/ui/forms/Input'
 
 interface Props {
   scheduleId: number | null
@@ -66,13 +66,13 @@ const ScheduleUpdate = ({ scheduleId, open, onOpenChange }: Props) => {
     queryKey: ['rooms'],
     queryFn: () => getRoom('all'),
   })
-  const rooms = (roomsResponse as any)?.data || []
+  const rooms = (roomsResponse)?.data || []
 
   const { data: teachersResponse } = useQuery({
     queryKey: ['teachers'],
     queryFn: () => getTeachers(),
   })
-  const teachers = (teachersResponse as any)?.data || []
+  const teachers = (teachersResponse)?.data || []
   const { data: sessions = [] } = useQuery({
     queryKey: ['sessionTimes'],
     queryFn: getSessionTime,
@@ -83,7 +83,7 @@ const ScheduleUpdate = ({ scheduleId, open, onOpenChange }: Props) => {
   })
 
   const departments = useMemo(() => {
-    return (allDeps as any[]).filter(
+    return (allDeps as Array<any>).filter(
       (d) => String(d.facultyId) === String(selectedFacultyId),
     )
   }, [allDeps, selectedFacultyId])

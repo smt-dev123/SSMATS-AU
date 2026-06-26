@@ -1,4 +1,3 @@
-import { useTitle } from '@/hooks/useTitle'
 import {
   Badge,
   Box,
@@ -6,33 +5,34 @@ import {
   Card,
   Flex,
   Heading,
+  Spinner,
   Table,
   Text,
   TextField,
-  Spinner,
 } from '@radix-ui/themes'
 import { createFileRoute } from '@tanstack/react-router'
 import {
-  IoSearch,
-  IoPeople,
-  IoSchool,
-  IoPerson,
   IoExit,
+  IoPeople,
+  IoPerson,
+  IoSchool,
+  IoSearch,
   IoTrendingUp,
 } from 'react-icons/io5'
 import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
   Cell,
   ResponsiveContainer,
   Tooltip,
-  BarChart,
-  CartesianGrid,
   XAxis,
   YAxis,
-  Bar,
-  AreaChart,
-  Area,
 } from 'recharts'
 import { useQuery } from '@tanstack/react-query'
+import { useTitle } from '@/hooks/useTitle'
 import api from '@/lib/axios'
 
 export const Route = createFileRoute('/admin/dashboard/')({
@@ -40,7 +40,7 @@ export const Route = createFileRoute('/admin/dashboard/')({
 })
 
 // 1. Component ក្រាបសសរ
-function StudentBarChart({ data }: { data: any[] }) {
+function StudentBarChart({ data }: { data: Array<any> }) {
   return (
     <ResponsiveContainer width="100%" height={220}>
       <BarChart data={data}>
@@ -71,7 +71,7 @@ function StudentBarChart({ data }: { data: any[] }) {
 }
 
 // 2. Component ក្រាបខ្សែ (Area Chart)
-function AttendanceTrendChart({ data }: { data: any[] }) {
+function AttendanceTrendChart({ data }: { data: Array<any> }) {
   return (
     <ResponsiveContainer width="100%" height={220}>
       <AreaChart data={data}>

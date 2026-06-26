@@ -17,7 +17,7 @@ export function ManualPagination({
     const totalPages = pageCount
     const currentPage = pageIndex + 1
     const maxVisible = 5
-    let pages: (number | string)[] = []
+    let pages: Array<number | string> = []
 
     if (totalPages <= maxVisible) {
       pages = Array.from({ length: totalPages }, (_, i) => i + 1)

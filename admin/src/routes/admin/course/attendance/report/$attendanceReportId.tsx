@@ -1,3 +1,13 @@
+import { Box, Button, Flex, Text } from '@radix-ui/themes'
+import { createFileRoute, useRouter } from '@tanstack/react-router'
+import { FaArrowLeft, FaFileExcel } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import ExportAttendanceExcel from './-exports/ExportAttendanceExcel'
+import { AttendanceReportDocument } from './-exports/ExportAttendancePDF'
+import { getCourseAttendanceReport } from '@/api/AttendanceAPI'
+import { getCourseById } from '@/api/CourseAPI'
+import PDFDownload from '@/components/ui/PDFDownload'
 import {
   BodyTable,
   CellTable,
@@ -5,16 +15,6 @@ import {
   RootTable,
   RowTable,
 } from '@/components/ui/tables/table'
-import { Button, Flex, Text, Box } from '@radix-ui/themes'
-import { createFileRoute, useRouter } from '@tanstack/react-router'
-import { FaArrowLeft, FaFileExcel } from 'react-icons/fa'
-import { useState, useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { getCourseAttendanceReport } from '@/api/AttendanceAPI'
-import { getCourseById } from '@/api/CourseAPI'
-import ExportAttendanceExcel from './-exports/ExportAttendanceExcel'
-import PDFDownload from '@/components/ui/PDFDownload'
-import { AttendanceReportDocument } from './-exports/ExportAttendancePDF'
 
 export const Route = createFileRoute(
   '/admin/course/attendance/report/$attendanceReportId',
@@ -60,7 +60,12 @@ function RouteComponent() {
             <>
               <ExportAttendanceExcel course={course} students={students} />
               <PDFDownload
-                document={<AttendanceReportDocument course={course} students={students} />}
+                document={
+                  <AttendanceReportDocument
+                    course={course}
+                    students={students}
+                  />
+                }
                 fileName={`វត្តមាន_${course?.name || ''}.pdf`}
               />
             </>
@@ -82,7 +87,9 @@ function RouteComponent() {
         </Box>
         <Box className="text-sm space-y-1 text-slate-600 dark:text-slate-200">
           <Text as="div">
-            ឆ្នាំទី {course?.schedule?.year || '--'} ឆមាសទី {course?.schedule?.semester || '--'} | ជំនាញ៖ {course?.schedule?.department?.name || '--'}
+            ឆ្នាំទី {course?.schedule?.year || '--'} ឆមាសទី{' '}
+            {course?.schedule?.semester || '--'} | ជំនាញ៖{' '}
+            {course?.schedule?.department?.name || '--'}
           </Text>
           <Text as="div">
             មុខវិជ្ជា៖{' '}
@@ -155,7 +162,8 @@ function RouteComponent() {
             </RowTable>
           ) : (
             students.map((student: any, index: number) => {
-              const totalAbsent = Number(student.leave || 0) + Number(student.absent || 0)
+              const totalAbsent =
+                Number(student.leave || 0) + Number(student.absent || 0)
               const statusStr = String(student.status || '').toLowerCase()
               const attendanceRate =
                 statusStr === 'dropped out'
@@ -171,7 +179,13 @@ function RouteComponent() {
                   <CellTable className="text-left font-medium uppercase text-[13px]">
                     {student.name}
                   </CellTable>
-                  <CellTable>{student.gender === 'male' ? 'ប្រុស' : student.gender === 'female' ? 'ស្រី' : student.gender}</CellTable>
+                  <CellTable>
+                    {student.gender === 'male'
+                      ? 'ប្រុស'
+                      : student.gender === 'female'
+                        ? 'ស្រី'
+                        : student.gender}
+                  </CellTable>
                   <CellTable className="font-mono text-[12px]">
                     {student.phone}
                   </CellTable>

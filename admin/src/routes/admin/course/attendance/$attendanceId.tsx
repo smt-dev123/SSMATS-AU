@@ -1,11 +1,11 @@
-import { useTitle } from '@/hooks/useTitle'
 import { createFileRoute } from '@tanstack/react-router'
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 
-import { getCourseStudents, getCourseById } from '@/api/CourseAPI'
-import { getCourseAttendance, markBulkAttendance } from '@/api/AttendanceAPI'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { getCourseById, getCourseStudents } from '@/api/CourseAPI'
+import { getCourseAttendance, markBulkAttendance } from '@/api/AttendanceAPI'
+import { useTitle } from '@/hooks/useTitle'
 import { useSessionContext } from '@/providers/AuthProvider'
 import { formatDate } from '@/hooks/useDate'
 
@@ -120,7 +120,12 @@ function RouteComponent() {
     onSuccess: () => {
       toast.success('រក្សាទុកវត្តមានបានជោគជ័យ!')
       queryClient.invalidateQueries({
-        queryKey: ['course_attendance', courseId, selectedDate, selectedSession],
+        queryKey: [
+          'course_attendance',
+          courseId,
+          selectedDate,
+          selectedSession,
+        ],
       })
       setIsEditing(false)
     },
@@ -160,7 +165,9 @@ function RouteComponent() {
 
   const handleSubmit = async () => {
     if (!accessCheck.canEdit) {
-      toast.error(accessCheck.reason || 'លោកគ្រូ/អ្នកគ្រូ មិនអាចស្រង់វត្តមានបានទេ')
+      toast.error(
+        accessCheck.reason || 'លោកគ្រូ/អ្នកគ្រូ មិនអាចស្រង់វត្តមានបានទេ',
+      )
       return
     }
 
@@ -200,7 +207,9 @@ function RouteComponent() {
           if (accessCheck.canEdit) {
             setIsEditing(val)
           } else {
-            toast.error(accessCheck.reason || 'សិទ្ធិស្រង់វត្តមានត្រូវបានរឹតត្បិត')
+            toast.error(
+              accessCheck.reason || 'សិទ្ធិស្រង់វត្តមានត្រូវបានរឹតត្បិត',
+            )
           }
         }}
         courseId={courseId}

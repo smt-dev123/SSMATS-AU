@@ -1,4 +1,4 @@
-import { useState, useEffect, type ChangeEvent } from 'react'
+import {  useEffect, useState } from 'react'
 import {
   Avatar,
   Box,
@@ -13,6 +13,7 @@ import { FaRegEdit } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
+import type {ChangeEvent} from 'react';
 import type { StudentsType } from '@/types'
 import { updateStudent } from '@/api/StudentAPI'
 import { getFaculties } from '@/api/FacultyAPI'
@@ -128,7 +129,7 @@ const StudentUpdate = ({ data }: Props) => {
 
   // មុខងារត្រួតពិនិត្យ និងប្តូរទៅ Step បន្ទាប់
   const handleNextStep = async () => {
-    let fieldsToValidate: any[] = []
+    let fieldsToValidate: Array<any> = []
     if (step === 1) {
       fieldsToValidate = [
         'studentCode',
@@ -184,7 +185,7 @@ const StudentUpdate = ({ data }: Props) => {
         return
       }
 
-      let issues: any[] = []
+      let issues: Array<any> = []
       try {
         if (
           resData?.error?.name === 'ZodError' &&
@@ -202,7 +203,7 @@ const StudentUpdate = ({ data }: Props) => {
         issues.forEach((issue: any) => {
           const field = issue.path?.[0] || issue.field
           if (field) {
-            setError(field as any, { type: 'server', message: issue.message })
+            setError(field, { type: 'server', message: issue.message })
           }
         })
         toast.error('សូមពិនិត្យមើលព័ត៌មានដែលបានបញ្ចូលឡើងវិញ')
@@ -241,7 +242,7 @@ const StudentUpdate = ({ data }: Props) => {
       const dobDate =
         typeof formData.dob === 'string'
           ? formData.dob
-          : (formData.dob as Date).toISOString()
+          : (formData.dob).toISOString()
       payload.append('dob', dobDate)
     }
 

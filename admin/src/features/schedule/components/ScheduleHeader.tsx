@@ -1,4 +1,4 @@
-import { Flex, Text, Box } from '@radix-ui/themes'
+import { Box, Flex, Text } from '@radix-ui/themes'
 import { FaArrowLeft } from 'react-icons/fa'
 import { useRouter } from '@tanstack/react-router'
 import OverrideCreate from '@/routes/admin/schedule/-actions/OverrideCreate'

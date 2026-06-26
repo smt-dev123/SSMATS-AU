@@ -1,12 +1,12 @@
+import { Flex } from '@radix-ui/themes'
+import type { AcademicYearsType } from '@/types'
+import type { ColumnDef } from '@tanstack/react-table'
 import AcademicYearDelete from '@/routes/admin/academic_year/-actions/Delete'
 import AcademicYearUpdate from '@/routes/admin/academic_year/-actions/Update'
-import type { AcademicYearsType } from '@/types'
-import { Flex } from '@radix-ui/themes'
-import type { ColumnDef } from '@tanstack/react-table'
 import { formatDate } from '@/hooks/useDate'
 
-export const AcademicYearColumns: ColumnDef<AcademicYearsType>[] = [
-  { accessorKey: 'index', header: 'ល.រ', cell: ({ row }) => row.index + 1},
+export const AcademicYearColumns: Array<ColumnDef<AcademicYearsType>> = [
+  { accessorKey: 'index', header: 'ល.រ', cell: ({ row }) => row.index + 1 },
   { accessorKey: 'name', header: 'ឆ្នាំសិក្សា' },
   {
     accessorKey: 'startDate',

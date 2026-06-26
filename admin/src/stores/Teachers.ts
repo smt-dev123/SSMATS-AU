@@ -1,11 +1,11 @@
 import { create } from 'zustand'
-import api from '@/lib/axios'
 import type {
   Actions,
   State,
   TeacherCreate,
   TeacherType,
 } from '@/types/teachersType'
+import api from '@/lib/axios'
 
 export const useTeacherStore = create<State & Actions>((set) => ({
   teachers: [],
@@ -17,7 +17,7 @@ export const useTeacherStore = create<State & Actions>((set) => ({
   fetchTeachers: async () => {
     set({ loading: true, error: null })
     try {
-      const response = await api.get<TeacherType[]>('/teachers')
+      const response = await api.get<Array<TeacherType>>('/teachers')
       const updatedTeachers = response.data.map((teacher) => {
         if (teacher.education_level === 'បរិញ្ញាបត្រជាន់ខ្ពស់') {
           return { ...teacher, name: `អនុបណ្ឌិត ${teacher.name}` }

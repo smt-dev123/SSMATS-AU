@@ -1,10 +1,10 @@
 import {
   Document,
+  Font,
   Page,
+  StyleSheet,
   Text,
   View,
-  StyleSheet,
-  Font,
 } from '@react-pdf/renderer'
 
 Font.register({
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const AttendancePDF = ({ students }: { students: any[] }) => (
+const AttendancePDF = ({ students }: { students: Array<any> }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       {/* Header */}
